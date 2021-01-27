@@ -177,18 +177,18 @@ hr.f1 {
         font-size: 20px;
        padding: 5px;
        padding-left: 25px;
-       padding-right: 45px;
+       padding-right: 15px;
        border-radius: 3px;
        border: none;
        padding-bottom: 150px;
     }
     .input{
-        padding-right:45px;
+        padding-right:5px;
        padding-left:5px ;
        padding-top: 5px;
        padding-bottom: 5px; 
        border-radius: 4px;
-       height: 40px;
+       height: 30px;
        font-size: 16px;
        border: 0.2px solid rgba(216, 216, 216, 0.959);
        
