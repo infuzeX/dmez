@@ -1,0 +1,175 @@
+/*
+
+Developer- Infuzex Ventures
+Date- 21-01-2021
+Color code green: #588D45;
+color code brown: #5E4316
+background-color:#EAFFBA;
+
+
+
+*/
+
+
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+ 
+}
+a{
+    text-decoration: none;
+}
+.top-bar
+{
+    text-align: center;
+    padding: 30px 30px;
+    background-color: #588D45;
+}
+.top-bar  .select-1{
+    padding: 17px;
+    font-size: 40px;
+    color: #5E4316;
+    font-weight: 700;
+    }
+
+.top-bar  .select{
+padding: 17px;
+font-size: 20px;
+color: #5E4316;
+font-weight: 700;
+}
+.top-bar  .select:hover{
+   color: #588D45;
+   border-bottom: 3px solid #588D45;
+    }
+
+hr.f1 {
+    
+    margin-top: 15px;
+    border-top: 1px solid #5E4316;
+  }
+  /************************************************/
+
+  .contact-main{
+        display: flex;
+        justify-content: space-around;
+    
+        flex-wrap: wrap;
+      margin-top: 50px;
+  }
+  .city-name{
+      font-size: 20px;
+      margin-bottom: 20px;
+  }
+  .branch{
+      background-color: #F0F0F5;
+     height: 100%;
+     width: 40%;
+     padding: 30px;
+  }
+  .branch-name{
+      margin-bottom: 30px;
+  }
+  .address{
+     
+      padding: 10px;
+  }
+  .address-main{
+      display: flex;
+      background-color: white;
+      justify-content: space-between;
+      padding: 10px;
+  }
+  /*****************************************************************/
+  .contact{
+      width: 40%;
+      background-color: #F0F0F5;
+      padding: 20px;
+  }
+  .space{
+    padding: 15px;
+}
+.input{
+     padding-right:85px;
+    padding-left:5px ;
+    padding-top: 5px;
+    padding-bottom: 5px; 
+    border-radius: 4px;
+    height: 40px;
+    font-size: 16px;
+    border: 0.2px solid rgba(216, 216, 216, 0.959);
+    
+    
+}
+.input:hover{
+    color: #588D45;
+}
+.l1{
+    margin-bottom: 15px;
+    font-size: 25px;
+    color: #5E4316;
+    
+   
+}
+.btn{
+    width:100%;
+   font-size: 20px;
+   padding: 5px;
+   padding-left: 25px;
+   padding-right: 25px;
+   border-radius: 3px;
+   border: none;
+   color: white;
+   background-color: #5E4316 ;
+}
+.btn:hover{
+    color: #588D45;
+}
+.box2{
+
+    border:solid 1px #588D45;
+    padding: 30px;
+}
+.sugesstion-message{
+    padding: 50px;
+}
+.suggestion{
+    font-size: 20px;
+   padding: 5px;
+   padding-left: 25px;
+   padding-right: 95px;
+   border-radius: 3px;
+   border: none;
+   padding-bottom: 150px;
+}
+.btn-2{
+    margin-top: 20px;
+    width:50%;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    background-color: #5E4316 ;
+}
+/*******************************************************************************/
+@media only screen and (max-width: 900px) {
+ 
+    .contact{
+        width: 100%;
+        background-color: #F0F0F5;
+        padding: 20px;
+    }
+    .branch{
+        background-color: #F0F0F5;
+       height: 100%;
+       width: 100%;
+       padding: 30px;
+    }
+  }
