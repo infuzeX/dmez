@@ -159,6 +159,7 @@ hr.f1 {
     background-color: #5E4316 ;
 }
 /*******************************************************************************/
+
 @media only screen and (max-width: 900px) {
  
     .contact{
@@ -172,4 +173,26 @@ hr.f1 {
        width: 100%;
        padding: 30px;
     }
+    .suggestion{
+        font-size: 20px;
+       padding: 5px;
+       padding-left: 25px;
+       padding-right: 45px;
+       border-radius: 3px;
+       border: none;
+       padding-bottom: 150px;
+    }
+    .input{
+        padding-right:45px;
+       padding-left:5px ;
+       padding-top: 5px;
+       padding-bottom: 5px; 
+       border-radius: 4px;
+       height: 40px;
+       font-size: 16px;
+       border: 0.2px solid rgba(216, 216, 216, 0.959);
+       
+       
+   }
+ 
   }
