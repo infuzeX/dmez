@@ -1,0 +1,22 @@
+.link{
+   display: flex;
+   flex-wrap: wrap;
+}
+button{
+    padding: 20px;
+    font-size: 25px;
+    margin: 20px;
+    border: none;
+    color: white;
+    background-color: brown;
+    
+}
+button:hover{
+background-color: blanchedalmond;
+color: black;
+}
+.link1{
+    background-color: #588D45;
+    padding: 10px;
+    color: white;
+}
