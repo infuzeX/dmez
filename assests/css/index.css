@@ -9,6 +9,7 @@ button{
     border: none;
     color: white;
     background-color: brown;
+    border-radius: 20px;
     
 }
 button:hover{
