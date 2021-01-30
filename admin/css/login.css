@@ -57,11 +57,8 @@ main{
     flex-wrap: wrap;
 
 }
-.box1{
-    padding: 35px;
-}
-.box1 img{
-   border-radius: 50%;
+
+  border-radius: 50%;
 }
 .box2{
 padding: 35px;
