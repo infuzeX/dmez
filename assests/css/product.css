@@ -1,0 +1,157 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(241,243,246);
+}
+a{
+    text-decoration: none;
+}
+/*********************search***************************************/
+.search{
+    display: flex;
+}
+#search-bar{
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 700;
+    border: none;
+    width: 600px;
+   border-radius: 20px;
+    
+}
+#icon{
+ 
+}
+  
+  /***************************************************************************/
+  .search-bar{
+      display: flex;
+      justify-content: space-around;
+      align-items: baseline;
+           box-shadow: 0 6px 5px rgba(0,0,0,.035);
+           flex-wrap:wrap ;
+  }
+  .cart-btn{
+      display: flex;
+    align-items: baseline;
+    background-color: #5E4316;
+    border: none;
+    padding: 15px;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 20px;
+    color: white;
+  }
+  /*******************************media-query***************************/
+  @media only screen and (max-width: 450px) {
+    #search-bar{
+        font-size: 20px;
+        padding: 10px;
+        font-weight: 700;
+        border: none;
+        width: 90%;
+       border-radius: 20px;
+        
+    }
+    .search-bar{
+        margin: 10px;
+    }
+    .cart-btn{
+        display: flex;
+      align-items: baseline;
+      background-color: #5E4316;
+      border: none;
+      padding: 15px;
+      font-weight: 700;
+      font-size: 11px;
+      margin: 20px;
+      color: white;
+    }
+    
+  }
+  /************************************************************************************/
+  .item{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+   flex-wrap: wrap;
+   margin-top: 50px;
+  }
+  .content{
+    width: 60%;
+    margin: 0 auto;
+  }
+  .p-name h2{
+    margin: 10px;
+    font-size: 30px;
+  }
+  .ingredients .i-head,  .desc .desc-head{
+    font-size: 25px;
+    font-weight: 500;
+    margin: 10px;
+  }
+  .ingredients .i-details,.desc .desc-details{
+    font-size: 20px;
+    margin: 10px;
+  }
+/***********************price-box********************************************/
+.price-box{
+  padding: 20px;
+}
+.final-price{
+  font-size: 23px;
+  font-weight: 700;
+ padding-right: 5px;
+}
+.mrp{
+  font-size: 16px;
+  font-weight: 700;
+  color: #787887;
+  padding-right: 10px;
+}
+.discount{
+  font-size: 16px;
+  font-weight: 700;
+  color: #00a500;
+}
+.unit{
+  margin-top: 25px;
+  color: #787887;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  
+}
+.stock{
+    margin: 10px;
+    line-height: 28px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #2d2d32;
+    border-radius: 2px;
+    border: 1px solid black;
+    padding: 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.price-box .top{
+ display: flex;
+ justify-content:center;
+ align-items: center;
+}
+.add-cart{
+  border: none;
+  margin-top: 10px;
+  background-color: aquamarine;
+  width: 100%;
+  font-size: 30px;
+  padding: 11px 12px;
+  font-weight: 700;
+}
