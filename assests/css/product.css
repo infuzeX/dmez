@@ -170,7 +170,7 @@ body {
   display: grid;
   min-height: 60px;
   grid-auto-flow: column;
-  background-color: #fcfcfc;
+  background-color: #CFD7C0;
   grid-gap: 1.5em;
   padding: 0 40px;
   -webkit-box-shadow: -1px 4px 5px 0px rgba(209, 205, 209, 1);
@@ -273,3 +273,33 @@ a {
     display: none;
   }
 }
+/******************************************************************************************************/
+.bulk{
+  margin-top: 50px;
+  background-color: #76ADA8;
+ padding-bottom: 30px;
+  text-align: center;
+}
+.bulk p{
+  padding: 30px;
+  font-size: 40px;
+  font-weight: 700;
+  font-family: spotify-circular, Helvetica, Arial, sans-serif;
+  
+}
+.bulk .bulk-btn{
+  color: white;
+ border-radius: 500px;
+ background-color: black;
+ letter-spacing: 2px;
+ padding: 17px 48px;
+ user-select: none;
+ vertical-align: middle;
+ transform: translate3d(0px, 0px, 0px);
+ touch-action: manipulation;
+    transition-duration: 33ms;
+    transition-property: background-color, border-color, color, box-shadow, filter, transform;
+    font-weight: 700;
+    border: 0px;
+}
+/*********************************************************************************************/
