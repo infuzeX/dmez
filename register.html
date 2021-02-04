@@ -5,17 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DMEZ | Register</title>
     <link rel="stylesheet" href="assests/css/style.css">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    
+    <link rel="stylesheet" href="assests/css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
 <body>
+    <header>
+        <nav>
+          <div id="navbar">
+            <div id="logo" class="reverse">
+              <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;</div>
+              <div class="logo">DMEZ</div>
+    
+            </div>
+            <div id="links">
+              <a href="index.html">Home</a>
+              <a href="">Shop</a>
+              <a href="login.html">Account</a>
+              <a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
+      
+            </div>
+          </div>
+    
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mySidenav" class="sidenav">
+          <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#">Home</a>
+          <a href="#">Gallery</a>
+          <a href="#">Blog</a>
+          <a href="#">Portfolio</a>
+          <a href="#">Contact</a>
+        </div>
+      </header>
 <sub-header>
     <div class="top-bar">
-      <a href=""> <span class="select">Login</span></a> 
-      <a href=""> <span class="select" style="color: #588D45;">Register</span></a> 
+      <a href="login.html"> <span class="select">Login</span></a> 
+      <a href="register.html"> <span class="select" style="color: #588D45;">Register</span></a> 
       <hr class="f1">
     </div>
 </sub-header>
@@ -71,10 +101,18 @@
 
 
 
-
-    <footer>
-        
-    </footer>
+ 
+    
+    
+    <script>
+        function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    
 
 </body>
 </html>
