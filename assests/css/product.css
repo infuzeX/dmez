@@ -150,7 +150,7 @@ a{
 .add-cart{
   border: none;
   margin-top: 10px;
-  background-color: aquamarine;
+  background-color: #a1b985;
   width: 100%;
   font-size: 30px;
   padding: 11px 12px;
@@ -164,13 +164,14 @@ a{
 body {
   margin: 0;
   background-color: #e9ebee;
+
 }
 
 #navbar {
   display: grid;
   min-height: 60px;
   grid-auto-flow: column;
-  background-color: #CFD7C0;
+  background-color: #a1b985;
   grid-gap: 1.5em;
   padding: 0 40px;
   -webkit-box-shadow: -1px 4px 5px 0px rgba(209, 205, 209, 1);
@@ -275,17 +276,18 @@ a {
 }
 /******************************************************************************************************/
 .bulk{
-  margin-top: 50px;
+  /* margin-top: 50px;
   background-color: #76ADA8;
  padding-bottom: 30px;
-  text-align: center;
+  text-align: center; */
+  background-image: url("https://ibb.co/71THq8J");
 }
 .bulk p{
-  padding: 30px;
+  /* padding: 30px;
   font-size: 40px;
   font-weight: 700;
-  font-family: spotify-circular, Helvetica, Arial, sans-serif;
-  
+  font-family: spotify-circular, Helvetica, Arial, sans-serif; */
+
 }
 .bulk .bulk-btn{
   color: white;
@@ -303,3 +305,10 @@ a {
     border: 0px;
 }
 /*********************************************************************************************/
+.banner{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+width: 100%;
+margin-bottom: -10px;
+margin-top: 100px;
+}
