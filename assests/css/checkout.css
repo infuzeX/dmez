@@ -128,4 +128,15 @@ a{
     }
 
   }
-  
+  /**********************************************************************************************/
+  .top-bar{
+      text-align: center;
+      padding-top: 30px;
+      padding-bottom: 30px;
+     background-color: white;
+  }
+  .select{
+      font-size: 30px;
+      font-weight: 700;
+     
+  }
