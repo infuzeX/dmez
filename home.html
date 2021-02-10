@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
+    <title>DMEZ</title>
+    <link href="shop/css/bootstrap.min.css" rel="stylesheet">
+    <link href="shop/css/font-awesome.min.css" rel="stylesheet">
+    <link href="shop/css/prettyPhoto.css" rel="stylesheet">
+    <link href="shop/css/price-range.css" rel="stylesheet">
+    <link href="shop/css/animate.css" rel="stylesheet">
+	<link href="shop/css/main.css" rel="stylesheet">
+	<link href="shop/css/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="assests/css/header.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -25,6 +27,53 @@
 </head><!--/head-->
 
 <body>
+	<header>
+        <nav>
+          <div id="navbar">
+            <div id="logo" class="reverse">
+              <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;</div>
+              <div class="logo">DMEZ</div>
+    
+            </div>
+            <div id="links">
+            
+              <a href="shop.html">Shop</a>
+              <a href="login.html">Account</a>
+              <a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
+      
+            </div>
+          </div>
+    
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mySidenav" class="sidenav">
+          <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+          
+              <a href="shop.html">Shop</a>
+              <a href="login.html">Account</a>
+              <a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
+        </div>
+      </header>
+
+
+	  <sub-header>
+		<div class="top-bar">
+		<div class="links">
+			<a href="">Shop by concern</a>
+			<a href="">Medicines</a>
+			<a href="">Health care</a>
+			<a href="">Treatments</a>
+			<a href="">Lab tests</a>
+			<a href="">Doctors consultation</a>
+		</div>
+		</div>
+
+	  </sub-header>
+
+
+
+
+
 
 	<section id="slider"><!--slider-->
 		<div class="container">
@@ -41,7 +90,7 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free E-Commerce Template</h2>
+									<h2>DMEZ</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
@@ -53,7 +102,7 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>100% Responsive Design</h2>
+									<h2>DMEZ</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
@@ -66,7 +115,7 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free Ecommerce Template</h2>
+									<h2>DMEZ</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
@@ -92,16 +141,68 @@
 	</section><!--/slider-->
 	
 
+	<div class="categories">
+		<div class="head">
+			<p>CATEGORIES</p>
+		</div>
+
+		<div class="items">
+			<div class="p">
+				<img src="assests\images\ayurveda.png">
+				<p>Ayurveda Products</p>
+			</div>
+			<div class="p">
+				<img src="assests\images\ayurveda.png">
+				<p>Ayurveda Products</p>
+			</div>
+			<div class="p">
+				<img src="assests\images\ayurveda.png">
+				<p>Ayurveda Products</p>
+			</div>
+			<div class="p">
+				<img src="assests\images\ayurveda.png">
+				<p>Ayurveda Products</p>
+			</div>
+			
+		</div>
+		
+	</div>
 	
-	
-	
+	<div class="reviews">
+		<div class="container">
+			<div class="columns has-text-centered is-multiline">
+				<div class="column is-4 testimonial-wrapper">
+					<div class="testimonial">
+						<p class="quote"> "I've been using your cinematics in my montages for ages! Awesome stuff man and thank you!"</p>
+						<p class="attribution">- QuakeV</p>
+					</div>
+				</div>
+				<div class="column is-4 testimonial-wrapper">
+					<div class="testimonial">
+						<p class="quote"> "I've been using your cinematics in my montages for ages! Awesome stuff man and thank you!"</p>
+						<p class="attribution">- QuakeV</p>
+					</div>
+				</div>
+				<div class="column is-4 testimonial-wrapper">
+					<div class="testimonial">
+						<p class="quote"> "I've been using your cinematics in my montages for ages! Awesome stuff man and thank you!"</p>
+						<p class="attribution">- QuakeV</p>
+					</div>
+				</div>
+			
+			
+				
+		
+			</div>
+		</div>
+	</div>
 
   
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-	<script src="js/price-range.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+    <script src="shop/js/jquery.js"></script>
+	<script src="shop/js/bootstrap.min.js"></script>
+	<script src="shop/js/jquery.scrollUp.min.js"></script>
+	<script src="shop/js/price-range.js"></script>
+    <script src="shop/js/jquery.prettyPhoto.js"></script>
+    <script src="shop/js/main.js"></script>
 </body>
 </html>
