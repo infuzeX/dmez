@@ -110,3 +110,51 @@ a {
     display: none;
   }
 }
+/****************home-sub-header****************************************************/
+
+.top-bar{
+  width: 100%;
+  background: #E5E5E5;
+
+ 
+}
+.links{
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+}
+.links a{
+  color: #000;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+/***************************************CATEGORIES****************************************************/
+.categories{
+background-color:#CFD7C0 ;
+height: 720px;
+}
+.categories .head{
+  padding: 70px;
+}
+.categories .head p{
+ font-size: 24px;
+ font-weight: 700;
+ 
+ color: #000;
+}
+
+.items
+{
+  background-color: #fff;
+justify-content: space-around;
+  
+  display: flex;
+padding: 30px;
+}
+.items p{
+  text-align: center;
+  padding: 20px;
+}
+
+/***************************************************************************************************/
