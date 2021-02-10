@@ -128,7 +128,14 @@ a {
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
+  text-decoration: none;
 }
+.links a:hover{
+ color: coral;
+ 
+}
+
+
 /***************************************CATEGORIES****************************************************/
 .categories{
 background-color:#CFD7C0 ;
