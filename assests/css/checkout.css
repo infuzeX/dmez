@@ -24,19 +24,19 @@ a{
     justify-content: space-between;
 }
 .btn{
+    border-radius: 20px;
+    border:  1px solid #A1B985;
+    background-color: #A1B985;
+    color: white;
+    font-weight: 700;
     width: 100%;
-    
-   font-size: 30px;
-   padding: 8px;
-   padding-left: 25px;
-   padding-right: 25px;
-   box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
-   border: none;
-   color: white;
-   background-color: #5E4316 ;
+    padding: 10px 30px 10px 30px;
+    font-size: 16px;
+        margin-bottom: 10px;
+    white-space: nowrap;
 }
 .btn:hover{
-    color: #588D45;
+    color:black;
 }
 .btn-1
 {
