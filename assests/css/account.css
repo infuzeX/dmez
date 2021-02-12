@@ -19,14 +19,17 @@ a{
 .part{
     margin-top: 30px;
     display: flex;
-    justify-content: space-around;
+   justify-content: space-around;
+flex-wrap: wrap;
+margin-bottom: 30px;
 }
 
 .bx{
     border: 1px #ddd solid;
-    width: 25%;
+    width: 300px;
     padding: 20px;
     color: black;
+    margin: 10px;
 }
 .bx:hover{
 background-color: #EEEEEE;
@@ -130,3 +133,9 @@ width: 200px;
 #editing{
     justify-content: center;
 }
+/********************************************************************************************/
+@media only screen and (max-width: 900px) {
+   .search{
+       display: hidden;
+   }
+  }
