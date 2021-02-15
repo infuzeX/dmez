@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const pages = require('./controller/pageController');
+const pages = require('./route/pages');
 
 const app = express();
 
