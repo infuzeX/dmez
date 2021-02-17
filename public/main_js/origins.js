@@ -3,6 +3,6 @@ const origins = {
    img: ["http://127.0.0.1:4000", "https://dmez.herokuapp.com"],
    getApi: function (data) {
       const prod = window.location.protocol.startsWith('https');
-      return this[data][prod];
+      return this[data][Number(prod)];
    }
 }
