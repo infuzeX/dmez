@@ -23,7 +23,7 @@ let state = {
 
 //HTML TEMPLATES
 function productTemp({ _id, title, price, discount, discountInPer, coverImage }) {
-  const imgUrl = coverImage ? `${imgOrgin}/${coverImage}` : `/public/images/default.png`;
+  const imgUrl = coverImage ? `${origins.getApi('img')}/${coverImage}` : `/public/images/default.png`;
   return `
     <div class="col-sm-4" id="${_id}">
       <div class="product-image-wrapper">
@@ -82,13 +82,13 @@ function parseString(temp) {
 //API REQUESTS
 function getProducts() {
   const queryString = new URLSearchParams(state['settings']).toString();
-  xhr.open('GET', `${origin}/api/v1/products?${queryString}`);
+  xhr.open('GET', `${origins.getApi("api")}/api/v1/products?${queryString}`);
   xhr.send();
 }
 
 function addToCart(e) {
   const productId = e.path[4].id;
-  xhr.open('PATCH', `${origin}/api/v1/cart/${productId}`)
+  xhr.open('PATCH', `${origins.getApi("api")}/api/v1/cart/${productId}`)
   xhr.send();
 }
 
