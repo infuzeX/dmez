@@ -1,198 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMEZ | Product</title>
-    <link rel="stylesheet" href="/public/css/product.css">
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dmez</title>
     <link rel="stylesheet" href="/public/css/footer1.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/public/css/header.css">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/public/assets/css/plugins/magnific-popup/magnific-popup.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+
 </head>
-<!-- <body style="
-  background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
+
 <body>
     <header>
         <nav>
-          <div id="navbar">
-            <div id="logo" class="reverse">
-              <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;</div>
-              <div class="logo">DMEZ</div>
-    
+            <div id="navbar">
+                <div id="logo" class="reverse">
+                    <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;"
+                        onclick="openNav()">&#9776;</div>
+                    <div class="logos">DMEZ</div>
+
+                </div>
+                <div id="links">
+                    <a href="">Home</a>
+                    <a href="">About</a>
+                    <a href="">Blog</a>
+                    <a href="">Service</a>
+                    <a href="">Contact</a>
+                </div>
             </div>
-            <div id="links">
-              <a href="/">Home</a>
-              <a href="/products">Shop</a>
-              <a href="/account">Account</a>
-              <a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
-      
-            </div>
-          </div>
-    
+
         </nav>
         <!-- Mobile Menu -->
         <div id="mySidenav" class="sidenav">
-          <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="/">Home</a>
-              <a href="/products">Shop</a>
-              <a href="/account">Account</a>
-              <a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
+            <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Home</a>
+            <a href="#">Gallery</a>
+            <a href="#">Blog</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Contact</a>
         </div>
-      </header>
-<sub-header>
-    <br>
-    <div class="search-bar">
-    
-        <div class="search">
-            <form class="search-container">
-                <input type="text" id="search-bar" placeholder="Search for medicines">
-                <a href="#"><i id="icon" class="fas fa-search"></i></a>
-              </form>
-              
-        </div>
-
-        
-    </div>
-</sub-header>
+    </header>
+    <div class="page-wrapper">
 
 
-<main>
-    <div class="item">
-
-        <div class="image-box">
-            <img src="/public/images/p1.webp" width="300px" height="300px">
-
-
-
-            <div class="price-box" style="font-family: Arial, Helvetica, sans-serif;">
-                <div class="top">
-                <p class="final-price">₹84.06</p><del class="mrp">₹98.9</del>
-                <p class="discount">15% off</p>
-            </div>
+        <main class="main">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                <div class="container d-flex align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Products</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Default</li>
+                    </ol>
 
 
-                <div class="unit">
-                <p class="unit">UNIT COUNT</p>
-                <P class="stock">15 tablet(15/Strip)</P>
-            </div>
-               <div class="cart-box">
-                   <button class="add-cart">ADD TO CART</button>
-               </div>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
 
-            </div>
+            <div class="page-content">
+                <div class="container">
+                    <div class="product-details-top">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-gallery product-gallery-vertical">
+                                    <div class="row">
 
+                                        <!-- End .product-main-image -->
+                                        <figure class="product-main-image">
+                                            <img id="product-zoom"
+                                                class="product-element" 
+                                                src="/public/images/default.png"
+                                                data-zoom-image="/public/images/default.png"
+                                                alt="product image">
 
+                                            <a href="#" id="btn-produ/publicct-gallery" class="btn-product-gallery">
+                                                <i class="icon-arrows"></i>
+                                            </a>
+                                        </figure>
+                                        <!-- End .product-main-image -->
+                                        <!-- Start product-image-gallery -->
+                                        <div id="product-zoom-gallery" class="product-image-gallery product-element">
+                                            <!--
+                                            <a class="product-gallery-item active" href="#"
+                                                data-image="/public/assets/images/products/single/1.jpg"
+                                                data-zoom-image="/public/assets/images/products/single/1-big.jpg">
+                                                <img src="/public/assets/images/products/single/1-small.jpg"
+                                                    alt="product side">
+                                            </a>
 
-        </div>
+                                            <a class="product-gallery-item" href="#"
+                                                data-image="/public/assets/images/products/single/2.jpg"
+                                                data-zoom-image="/public/assets/images/products/single/2-big.jpg">
+                                                <img src="/public/assets/images/products/single/2-small.jpg"
+                                                    alt="product cross">
+                                            </a>
 
-        <div class="content">
+                                            <a class="product-gallery-item" href="#"
+                                                data-image="/public/assets/images/products/single/3.jpg"
+                                                data-zoom-image="/public/assets/images/products/single/3-big.jpg">
+                                                <img src="/public/assets/images/products/single/3-small.jpg"
+                                                    alt="product with model">
+                                            </a>
 
-            <div class="p-name">
-                <h2>Shelcal-500 Tablet</h2>
-                <hr class="h1">
-            </div>
-            <div class="ingredients">
-                <p class="i-head">Ingredients</p>
-                <p class="i-details">
-                    Calcium- 500 mg, Vitamin D3- 250 IU
-                </p>
-            </div>
-            <div class="desc">
-                <p class="desc-head">Description</p>
-                <p class="desc-details">Shelcal-500 Tablet is a Calcium and Vitamin D supplement which is used for improving bone and joint health. It is used for treating Calcium and Vitamin D deficiency and associated conditions like osteoporosis, osteomalacia, etc.</p>
-            </div>
-
-        </div>
-
-    </div>
-</main>
-
-
-
-   
-<!----------------------------------------------------------------------------------->
-<container>
-<div class="footer-main">
-<div class="bulk">
-    <!-- <p>For Bulk Order</p>
-    <br>
-    <button class="bulk-btn">CONTACT FOR BULK</button> -->
-    <img class="banner"  src="/public/images/banner1.jpg">
-</div>
-</div>
-</container>
-
-
-  <!-- Site footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h6>About</h6>
-          <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6>Categories</h6>
-          <ul class="footer-links">
-            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-          </ul>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6>Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">About Us</a></li>
-            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-          </ul>
-        </div>
-      </div>
-      <hr>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
-       <a href="#">Scanfcode</a>.
-          </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
-          </ul>
-        </div>
-      </div>
-    </div>
-</footer>
+                                            <a class="product-gallery-item" href="#"
+                                                data-image="/public/assets/images/products/single/4.jpg"
+                                                data-zoom-image="/public/assets/images/products/single/4-big.jpg">
+                                                <img src="/public/assets/images/products/single/4-small.jpg"
+                                                    alt="product back">
+                                            </a>-->
+                                        </div>
+                                        <!-- End .product-image-gallery -->
+                                    </div><!-- End .row -->
+                                </div><!-- End .product-gallery -->
+                            </div><!-- End .col-md-6 -->
 
 
-<script>
-    function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
+                            <div class="col-md-6">
+                                <div class="product-details">
+                                    <!--product-title -->
+                                    <h1 class="product-title product-element">PRODUCT NAME</h1>
+                                    <!--product-price -->
+                                    <div class="product-price product-element">₹00.00</div>
+                                    <!--product-description -->
+                                    <div class="product-content product-element">
+                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
+                                            metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus.
+                                        </p>
+                                    </div>
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
 
-</script>
+                                    <!--<div class="details-filter-row details-row-size">
+                                        <label for="qty">Qty:</label>
+                                        <div class="product-details-quantity">
+                                            <input type="number" id="qty" class="form-control" value="1" min="1"
+                                                max="10" step="1" data-decimals="0" required>
+                                        </div>
+                                    </div>-->
+                                    <!--Start product-details-action -->
+                                    <div class="product-details-action">
 
-<script defer src="/public/main_js/product.js"></script>
+                                        <button onclick="addTot()" class="btn-product btn-cart">
+                                            <span>add to cart</span>
+                                        </button>
+
+                                        <div class="details-action-wrapper">
+                                            <a class="btn-product btn-wishlist" title="Wishlist">
+                                                <span>Add to Wishlist</span>
+                                            </a>
+                                        </div><!-- End .details-action-wrapper -->
+                                    </div>
+                                    <!-- End product-details-action -->
+
+
+                                </div><!-- End .product-details -->
+                            </div><!-- End .col-md-6 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .product-details-top -->
+
+                    <div class="product-details-tab">
+                        <ul class="nav nav-pills justify-content-center" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" id="product-info-link" data-toggle="tab"
+                                    href="#product-info-tab" role="tab" aria-controls="product-info-tab"
+                                    aria-selected="false">Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-shipping-link" data-toggle="tab"
+                                    href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab"
+                                    aria-selected="false">Shipping & Returns</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane fade show active" id="product-info-tab" role="tabpanel"
+                                aria-labelledby="product-info-link">
+                                <!--Information -->
+                                <div class="product-desc-content product-element">
+                                    <h3>Ingredients</h3>
+                                    <ul>
+                                        <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
+                                        <li>Vivamus finibus vel mauris ut vehicula.</li>
+                                        <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
+                                    </ul>
+                                    <h3>Side Effects</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                                        odio. Quisque
+                                        volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra
+                                        non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis
+                                        fermentum. Aliquam porttitor mauris sit amet orci. </p>
+                                </div>
+                                <!--Information -->
+                            </div>
+                            <!-- .End .tab-pane -->
+                            <!-- Start .tab-pane of delivery and return -->
+                            <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
+                                aria-labelledby="product-shipping-link">
+                                <div class="product-desc-content">
+                                    <h3>Delivery & returns</h3>
+                                    <p>We deliver to over 100 countries around the world. For full details of the
+                                        delivery options we offer, please view our <a href="#">Delivery
+                                            information</a><br>
+                                        We hope you’ll love every purchase, but if you ever need to return an item you
+                                        can do so within a month of receipt. For full details of how to make a return,
+                                        please view our <a href="#">Returns information</a></p>
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+
+                        </div><!-- End .tab-content -->
+                    </div><!-- End .product-details-tab -->
+
+                    <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
+
+                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                        data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "480": {
+                                    "items":2
+                                },
+                                "768": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                },
+                                "1200": {
+                                    "items":4,
+                                    "nav": true,
+                                    "dots": false
+                                }
+                            }
+                        }'>
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-4.jpg" alt="Product image"
+                                        class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                        title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">product name</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    $60.00
+                                </div><!-- End .product-price -->
+
+
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-out">Out of Stock</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-6.jpg" alt="Product image"
+                                        class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                        title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">product name</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    <span class="out-price">$120.00</span>
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+
+
+                                </div><!-- End .rating-container -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-top">Top</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-11.jpg" alt="Product image"
+                                        class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                        title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">product name</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    $110.00
+                                </div><!-- End .product-price -->
+
+
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-10.jpg" alt="Product image"
+                                        class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                        title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">product name</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    $56.00
+                                </div><!-- End .product-price -->
+
+
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-7.jpg" alt="Product image"
+                                        class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                        title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">product name</a></h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    $76.00
+                                </div><!-- End .product-price -->
+
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                    </div><!-- End .owl-carousel -->
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Plugins JS File -->
+    <script src="/public/assets/js/jquery.min.js"></script>
+    <script src="/public/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="/public/assets/js/jquery.waypoints.min.js"></script>
+
+    <script src="/public/assets/js/owl.carousel.min.js"></script>
+    <script src="/public/assets/js/bootstrap-input-spinner.js"></script>
+    <script src="/public/assets/js/jquery.elevateZoom.min.js"></script>
+    <script src="/public/assets/js/bootstrap-input-spinner.js"></script>
+    <script src="/public/assets/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- Other JS File -->
+    <script src="/public/assets/js/main.js"></script>
+
+    <!--Main JS File-->
+    <script defer src="/public/main_js/origins.js"> </script>
+    <script defer src="/public/main_js/product.js"></script>
+
 </body>
 
 </html>

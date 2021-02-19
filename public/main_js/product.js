@@ -1,16 +1,107 @@
 const xhr = new XMLHttpRequest();
-const id = window.location.pathname.split('/')[2];
+const productId = window.location.pathname.split('/')[2];
+const productEl = document.querySelectorAll('.product-element');
+console.log(productEl)
+const [photo, gallery, title, price, description, information] = productEl;
 
-//replace localhost origin with https://dmezapi,herokuapp.com
-const origin = "http://127.0.0.1:3000"
+//not active
+function formatImage(coverImage, images) {
+
+    if (coverImage)
+        images.push(coverImage);
+
+    images.forEach((image) => {
+        const a = document.createElement('a');
+        const img = document.createElement('img');
+        a.classList.add = "product-gallery-item";
+        a.setAttribute('data-image', image);
+        a.setAttribute('data-zoom', image)
+        img.src = image;
+        img.alt = "product side";
+        a.appendChild(img);
+        gallery.appendChild(a);
+    })
+
+    images.children[1].classList.add('active');
+}
+
+function formatProductData(_title, _price, _description) {
+    title.textContent = _title;
+    price.textContent = `₹${_price}`;
+    description.textContent = _description;
+}
+function formatInfo(sideEffects, ingredients) {
+
+    let no_info = true;
+
+    information.innerText = "";
+    const h3 = document.createElement('h3');
+
+    if (ingredients.length) {
+        h3.textContent = 'Ingredients';
+        const ul = document.createElement('ul');
+        ingredients.forEach(ing => {
+            const li = document.createElement('li');
+            li.textContent = ing;
+            ul.appendChild(li);
+        })
+
+        information.appendChild(h3);
+        information.appendChild(ul);
+        no_info = false;
+    }
+
+    if (sideEffects) {
+        h3.textContent = "Side Effects";
+        const p = document.createElement('p');
+        p.textContent = ing;
+
+        information.appendChild(h3);
+        information.appendChild(p);
+        no_info = false;
+    }
+
+    if (no_info) {
+        const p = document.createElement('p');
+        p.textContent = "Information not available";
+        information.appendChild(p);
+    }
+
+
+}
 
 function getProductDetails() {
-    xhr.open('GET', `${origin}/api/v1/products/${id}`);
+    xhr.open('GET', `${origins.getApi('prod', 1)}/api/v1/products/${productId}`);
+    xhr.send();
+}
+
+function addToCart() {
+    xhr.open('PATCH', `${origins.getApi("prod", 1)}/api/v1/cart/${productId}`);
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 }
 
 xhr.onload = function () {
-    console.log(this.responseText);
+    const res = JSON.parse(this.responseText);
+    console.log(res);
+    if (res.status === 'fail' || res.status === 'error') {
+        /**show erro message */
+        console.log(res);
+        return;
+    }
+
+    if (res.data) {
+        const { title, price, description, sideEffects, ingredients } = res.data.product;
+        formatProductData(title, price, description);
+        formatInfo(sideEffects, ingredients)
+        return;
+    }
+
+    if (res.message) {
+        console.log(res);
+    }
+
+
 }
 
 window.addEventListener('DOMContentLoaded', () => getProductDetails());

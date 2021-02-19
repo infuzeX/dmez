@@ -5,10 +5,6 @@ const container = document.querySelector('#main_container');
 const products_Div = container.children[1];
 const nav = container.children[2];
 
-//replace localhost origin with https://dmezapi,herokuapp.com
-const origin = "http://127.0.0.1:3000"
-const imgOrgin = "https://dmez.herokuapp.com"
-
 //STATE
 let state = {
   results: 0,
@@ -23,7 +19,7 @@ let state = {
 
 //HTML TEMPLATES
 function productTemp({ _id, title, price, discount, discountInPer, coverImage }) {
-  const imgUrl = coverImage ? `${origins.getApi('img')}/${coverImage}` : `/public/images/default.png`;
+  const imgUrl = coverImage ? `${origins.getApi("prod", 0)}/${coverImage}` : `/public/images/default.png`;
   return `
     <div class="col-sm-4" id="${_id}">
       <div class="product-image-wrapper">
@@ -82,30 +78,36 @@ function parseString(temp) {
 //API REQUESTS
 function getProducts() {
   const queryString = new URLSearchParams(state['settings']).toString();
-  xhr.open('GET', `${origins.getApi("api")}/api/v1/products?${queryString}`);
+  xhr.open('GET', `${origins.getApi("prod", 1)}/api/v1/products?${queryString}`);
   xhr.send();
 }
 
 function addToCart(e) {
   const productId = e.path[4].id;
-  xhr.open('PATCH', `${origins.getApi("api")}/api/v1/cart/${productId}`)
+  xhr.open('PATCH', `${origins.getApi("prod", 1)}/api/v1/cart/${productId}`);
   xhr.send();
 }
 
 //RESPONSE HANDLER
 xhr.onload = function () {
+  console.log(this.responseText);
   const res = JSON.parse(this.responseText);
 
   if (res.status === 'fail' || res.status === 'error') {
-    console.log(res);
+    //show error message to user
     return
   }
-  if (res.data.products) {
+
+  //handle product response
+  if (res.data) {
     state['products'] = res.data.products;
     state['results'] = res.data.products.length;
     buildProducts(state['products']);
     updateNavigation();
     return;
+  } else {
+    //handle cart response
+    //show success message to user;
   }
 
 }
