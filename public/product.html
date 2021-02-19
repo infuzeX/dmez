@@ -8,9 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dmez</title>
-    <link rel="stylesheet" href="/public/css/footer1.css">
 
+    <link rel="stylesheet" href="/public/css/footer1.css">
     <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/status.css">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/assets/css/plugins/owl-carousel/owl.carousel.css">
@@ -21,6 +22,12 @@
 </head>
 
 <body>
+    <!--status-->
+    <div style="background-color:brown" class="status">
+        <p></p>
+        <span onclick="closeStatus(event)">CLOSE</span>
+    </div>
+    <!--status-->
     <header>
         <nav>
             <div id="navbar">
@@ -76,10 +83,9 @@
 
                                         <!-- End .product-main-image -->
                                         <figure class="product-main-image">
-                                            <img id="product-zoom"
-                                                class="product-element" 
-                                                src="/public/images/default.png"
-                                                data-zoom-image="/public/images/default.png"
+                                            <img id="product-zoom" class="product-element"
+                                                src="/public/assets/images/products/single/1.jpg"
+                                                data-zoom-image=/public/assets/images/products/single/1-big.jpg"
                                                 alt="product image">
 
                                             <a href="#" id="btn-produ/publicct-gallery" class="btn-product-gallery">
@@ -89,7 +95,7 @@
                                         <!-- End .product-main-image -->
                                         <!-- Start product-image-gallery -->
                                         <div id="product-zoom-gallery" class="product-image-gallery product-element">
-                                            <!--
+
                                             <a class="product-gallery-item active" href="#"
                                                 data-image="/public/assets/images/products/single/1.jpg"
                                                 data-zoom-image="/public/assets/images/products/single/1-big.jpg">
@@ -116,7 +122,7 @@
                                                 data-zoom-image="/public/assets/images/products/single/4-big.jpg">
                                                 <img src="/public/assets/images/products/single/4-small.jpg"
                                                     alt="product back">
-                                            </a>-->
+                                            </a>
                                         </div>
                                         <!-- End .product-image-gallery -->
                                     </div><!-- End .row -->
@@ -148,7 +154,7 @@
                                     <!--Start product-details-action -->
                                     <div class="product-details-action">
 
-                                        <button onclick="addTot()" class="btn-product btn-cart">
+                                        <button onclick="addToCart()" class="btn-product btn-cart">
                                             <span>add to cart</span>
                                         </button>
 
@@ -187,18 +193,7 @@
                                 aria-labelledby="product-info-link">
                                 <!--Information -->
                                 <div class="product-desc-content product-element">
-                                    <h3>Ingredients</h3>
-                                    <ul>
-                                        <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
-                                        <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                        <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
-                                    </ul>
-                                    <h3>Side Effects</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                                        odio. Quisque
-                                        volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra
-                                        non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis
-                                        fermentum. Aliquam porttitor mauris sit amet orci. </p>
+                                   <p>fetching Information....</p>
                                 </div>
                                 <!--Information -->
                             </div>
@@ -451,6 +446,7 @@
     <script src="/public/assets/js/main.js"></script>
 
     <!--Main JS File-->
+    <script defer src="/public/main_js/status.js"></script>
     <script defer src="/public/main_js/origins.js"> </script>
     <script defer src="/public/main_js/product.js"></script>
 

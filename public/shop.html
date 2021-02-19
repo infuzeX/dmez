@@ -17,7 +17,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
 		integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
 		crossorigin="anonymous" />
-	<link href="public/css/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="public/css/status.css">
+	<link rel="stylesheet" href="public/css/responsive.css">
 	<link rel="stylesheet" href="public/css/header.css">
 	<link rel="stylesheet" href="public/css/product.css">
 	<!--[if lt IE 9]>
@@ -36,6 +37,12 @@
 <!--/head-->
 
 <body>
+	  <!--status-->
+	  <div style="background-color:brown" class="status">
+        <p></p>
+        <span onclick="closeStatus(event)">CLOSE</span>
+    </div>
+    <!--status-->
 	<header>
 		<nav>
 			<div id="navbar">
@@ -351,8 +358,9 @@
 	<script src="public/js/main.js"></script>
 
 	<!--main_js-->
-	<script src="public/main_js/origins.js"></script>
-	<script src="public/main_js/products.js"></script>
+	<script defer src="/public/main_js/status.js"></script>
+	<script defer src="/public/main_js/origins.js"></script>
+	<script defer src="/public/main_js/products.js"></script>
 </body>
 
 </html>

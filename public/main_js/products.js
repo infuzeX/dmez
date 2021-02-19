@@ -26,7 +26,7 @@ function productTemp({ _id, title, price, discount, discountInPer, coverImage })
         <div class="single-products">
           <div class="productinfo text-center">
             <img src="${imgUrl}" alt="" />
-            <h2>Rs ${price}</h2>
+            <h2>₹ ${price}</h2>
             <p>${title}</p>
             <a href="/products/${_id}"></a>
           </div>
@@ -90,11 +90,11 @@ function addToCart(e) {
 
 //RESPONSE HANDLER
 xhr.onload = function () {
-  console.log(this.responseText);
+
   const res = JSON.parse(this.responseText);
 
   if (res.status === 'fail' || res.status === 'error') {
-    //show error message to user
+    showStatus(res);
     return
   }
 
@@ -108,6 +108,7 @@ xhr.onload = function () {
   } else {
     //handle cart response
     //show success message to user;
+    showStatus(res);
   }
 
 }
