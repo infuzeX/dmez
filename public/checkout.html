@@ -8,42 +8,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>DMEZ</title>
-    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="/public/css/product.css">
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 </head>
 
 <body>
-    <header>
+	<header>
         <nav>
-          <div id="navbar">
-            <div id="logo" class="reverse">
-              <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;</div>
-              <div class="logos">DMEZ</div>
-    
+            <div id="navbar">
+                <div id="logo" class="reverse">
+                    <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;"
+                        onclick="openNav()">&#9776;</div>
+                    <div class="logos"><a href="/" ><img src="/public/images/dmez.png"  width="45" height="30"></img></a></div>
+
+                </div>
+                <div id="links">
+                    <a href="/">Home</a>
+                    <a href="/products">Shop</a>
+                    <a href="/<i class="fas fa-user-circle"></i> Account"><i class="fas fa-user-circle"></i> <i class="fas fa-user-circle"></i> Account</a>
+                    <a href="/cart"> <i class="fas fa-shopping-cart"></i>  Cart</a>
+            
+                  </div>
             </div>
-            <div id="links">
-              <a href="">Home</a>
-              <a href="">About</a>
-              <a href="">Blog</a>
-              <a href="">Service</a>
-              <a href="">Contact</a>
-            </div>
-          </div>
-    
+
         </nav>
         <!-- Mobile Menu -->
         <div id="mySidenav" class="sidenav">
-          <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#">Home</a>
-          <a href="#">Gallery</a>
-          <a href="#">Blog</a>
-          <a href="#">Portfolio</a>
-          <a href="#">Contact</a>
+            <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/">Home</a>
+          <a href="/products">Shop</a>
+          <a href="/<i class="fas fa-user-circle"></i> Account"><i class="fas fa-user-circle"></i> Account</a>
+          <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
         </div>
-      </header>
+    </header>
     <div class="page-wrapper">
    
 
@@ -176,14 +177,26 @@
 
     
     <!-- Plugins JS File -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.hoverIntent.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/superfish.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="/public/assets/js/jquery.min.js"></script>
+    <script src="/public/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="/public/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/public/assets/js/superfish.min.js"></script>
+    <script src="/public/assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="/public/assets/js/main.js"></script>
+	
+<script>
+    function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+</script>
+
 </body>
 
 
