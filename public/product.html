@@ -10,7 +10,7 @@
     <title>Dmez</title>
 
     <link rel="stylesheet" href="/public/css/footer1.css">
-    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/product.css">
     <link rel="stylesheet" href="/public/css/status.css">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/public/assets/css/plugins/magnific-popup/magnific-popup.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="/public/assets/css/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -34,29 +34,32 @@
                 <div id="logo" class="reverse">
                     <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;"
                         onclick="openNav()">&#9776;</div>
-                    <div class="logos">DMEZ</div>
+                    <div class="logos"><a href="/" ><img src="/public/images/dmez.png"  width="45" height="30"></img></a></div>
 
                 </div>
                 <div id="links">
-                    <a href="">Home</a>
-                    <a href="">About</a>
-                    <a href="">Blog</a>
-                    <a href="">Service</a>
-                    <a href="">Contact</a>
-                </div>
+                    <a href="/">Home</a>
+                    <a href="/products">Shop</a>
+                    <a href="/account">Account</a>
+                    <a href="/cart"> <i class="fas fa-shopping-cart"></i>  Cart</a>
+            
+                  </div>
             </div>
 
         </nav>
         <!-- Mobile Menu -->
         <div id="mySidenav" class="sidenav">
             <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Home</a>
-            <a href="#">Gallery</a>
-            <a href="#">Blog</a>
-            <a href="#">Portfolio</a>
-            <a href="#">Contact</a>
+            <a href="/">Home</a>
+          <a href="/products">Shop</a>
+          <a href="/account">Account</a>
+          <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
         </div>
     </header>
+
+
+
+
     <div class="page-wrapper">
 
 
@@ -458,7 +461,16 @@
     <script defer src="/public/main_js/status.js"></script>
     <script defer src="/public/main_js/origins.js"> </script>
     <script defer src="/public/main_js/product.js"></script>
-
+    <script>
+        function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    
+    </script>
 </body>
 
 </html>
