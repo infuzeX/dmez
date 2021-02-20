@@ -1,7 +1,6 @@
 const xhr = new XMLHttpRequest();
 const productId = window.location.pathname.split('/')[2];
 const productEl = document.querySelectorAll('.product-element');
-console.log(productEl)
 const [photo, gallery, title, price, description, information] = productEl;
 
 //not active
@@ -14,10 +13,13 @@ function formatImage(coverImage, images) {
         const a = document.createElement('a');
         const img = document.createElement('img');
         a.classList.add = "product-gallery-item";
+
         a.setAttribute('data-image', image);
-        a.setAttribute('data-zoom', image)
+        a.setAttribute('data-zoom', image);
+
         img.src = image;
         img.alt = "product side";
+
         a.appendChild(img);
         gallery.appendChild(a);
     })
@@ -54,7 +56,7 @@ function formatInfo(sideEffects, ingredients) {
     if (sideEffects) {
         h3.textContent = "Side Effects";
         const p = document.createElement('p');
-        p.textContent = ing;
+        p.textContent = sideEffects;
 
         information.appendChild(h3);
         information.appendChild(p);
@@ -67,7 +69,6 @@ function formatInfo(sideEffects, ingredients) {
         information.appendChild(p);
     }
 
-
 }
 
 function getProductDetails() {
@@ -77,31 +78,21 @@ function getProductDetails() {
 
 function addToCart() {
     xhr.open('PATCH', `${origins.getApi("prod", 1)}/api/v1/cart/${productId}`);
-    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 }
 
 xhr.onload = function () {
     const res = JSON.parse(this.responseText);
-    console.log(res);
     if (res.status === 'fail' || res.status === 'error') {
-        /**show erro message */
-        console.log(res);
+        showStatus(res);
         return;
     }
-
     if (res.data) {
         const { title, price, description, sideEffects, ingredients } = res.data.product;
         formatProductData(title, price, description);
         formatInfo(sideEffects, ingredients)
-        return;
-    }
-
-    if (res.message) {
-        console.log(res);
-    }
-
-
+    } else
+        showStatus(res);
 }
 
 window.addEventListener('DOMContentLoaded', () => getProductDetails());
