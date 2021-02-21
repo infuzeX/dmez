@@ -95,7 +95,7 @@ xhr.onload = function () {
 
   if (res.status === 'fail' || res.status === 'error') {
     showStatus(res);
-    return
+    return;
   }
 
   //handle product response
@@ -104,7 +104,6 @@ xhr.onload = function () {
     state['results'] = res.data.products.length;
     buildProducts(state['products']);
     updateNavigation();
-    return;
   } else {
     //handle cart response
     //show success message to user;
