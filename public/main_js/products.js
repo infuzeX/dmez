@@ -45,8 +45,19 @@ function productTemp({ _id, title, price, discount, discountInPer, coverImage })
 }
 
 /*==========DOM MANIPULATORS==========*/
+
+function handleEmptySection(msg, add) {
+  products_Div.innerHTML = msg;
+  products_Div.classList[add ? 'add' : 'remove']('empty');
+}
 function buildProducts(products) {
-  products_Div.innerHTML = "";
+  if (!products.length) {
+    //replace loader with message
+    handleEmptySection("<p>No products found</p>", true);
+    return;
+  }
+  //replace loader with product
+  handleEmptySection('', false);
   products.forEach(product => products_Div.appendChild(parseString(productTemp(product))))
 }
 
@@ -58,6 +69,7 @@ function navigateToPage(e) {
   if (e.target.id === "next" && state['settings'].limit > state['results'])
     return;
   //update page number then request for next page product
+  handleEmptySection("<div class='loader'></div>", true)
   state['settings'].page += (e.target.id === "next") ? 1 : -1; //increment page
   getProducts();
 }

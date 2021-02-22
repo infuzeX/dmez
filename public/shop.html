@@ -18,6 +18,18 @@
 		integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
 		crossorigin="anonymous" />
 	<link rel="stylesheet" href="public/css/status.css">
+	<style>
+		.empty {
+			height: 400px !important;
+		}
+
+		.empty>p {
+			color: grey;
+			font-weight: bold;
+			font-size: 1.3rem !important;
+			margin: auto;
+		}
+	</style>
 	<link rel="stylesheet" href="public/css/responsive.css">
 	<link rel="stylesheet" href="/public/css/header.css">
 	<link rel="stylesheet" href="/public/css/product.css">
@@ -30,19 +42,18 @@
 		href="public/images/ico/apple-touch-icon-144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114"
 		href="public/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72"
-		href="public/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="public/images/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="/public/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <!--/head-->
 
 <body>
-	  <!--status-->
-	  <div style="background-color:brown" class="status">
-        <p></p>
-        <span onclick="closeStatus(event)">CLOSE</span>
-    </div>
-    <!--status-->
+	<!--status-->
+	<div style="background-color:brown" class="status">
+		<p></p>
+		<span onclick="closeStatus(event)">CLOSE</span>
+	</div>
+	<!--status-->
 	<header>
 		<nav>
 			<div id="navbar">
@@ -59,16 +70,16 @@
 				<sub-header id="links">
 					<br>
 					<div class="search-bar">
-			
+
 						<div class="search">
 							<form class="search-container">
 								<input type="text" id="search-bar" placeholder="Search for medicines">
 								<a href="#"><i id="icon" class="fas fa-search"></i></a>
 							</form>
-			
+
 						</div>
-			
-			
+
+
 					</div>
 				</sub-header>
 
@@ -78,7 +89,7 @@
 
 
 				<div id="links">
-					
+
 					<a href="/products">Shop</a>
 					<a href="/account">Account</a>
 					<a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
@@ -253,11 +264,14 @@
 			<div class="col-sm-12 padding-right" id="main_container">
 				<h2 class="title text-center">Features Items</h2>
 				<!--features_items-->
-				<div class="features_items">
+				<div class="features_items empty">
 
+					<div class="loader">
 
+					</div>
 
 				</div>
+
 				<!--features_items-->
 				<ul class="pagination">
 					<li style="color: grey;" id="prev" onclick="navigateToPage(event)">
@@ -368,13 +382,13 @@
 	<!--FOOTER START-->
 	<script>
 		function openNav() {
-	  document.getElementById("mySidenav").style.width = "250px";
-	}
-	
-	function closeNav() {
-	  document.getElementById("mySidenav").style.width = "0";
-	}
-	
+			document.getElementById("mySidenav").style.width = "250px";
+		}
+
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+
 	</script>
 	<script src="public/js/jquery.js"></script>
 	<script src="public/js/price-range.js"></script>

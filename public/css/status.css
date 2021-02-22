@@ -1,7 +1,7 @@
 .status {
-  margin-top:-100%;
-  left:10%;
-  position: fixed;;
+  margin-top: -100%;
+  left: 10%;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   width: 300px;
@@ -13,13 +13,40 @@
   z-index: 2;
 }
 .status-up {
-  margin-top:10%;
+  margin-top: 10%;
   transition: all 0.3s;
 }
 .status > p {
   width: 80%;
   margin: 0;
-  font-size:1.4rem !important;
+  font-size: 1.4rem !important;
   color: #fff;
 }
 
+.empty {
+  display: flex;
+}
+.empty > tr {
+  font-size:2rem;
+  border-bottom:0;
+  color: grey;
+}
+
+.empty > .loader {
+  margin: auto;
+  width:40px;
+  height: 40px;
+  border-radius: 100%;
+  border:5px solid rgba(128, 128, 128, 0.726);
+  border-left:5px solid rgba(128, 128, 128, 0.562);
+  animation: spin 1s infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

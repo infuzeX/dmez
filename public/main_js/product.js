@@ -3,6 +3,10 @@ const productId = window.location.pathname.split('/')[2];
 const productEl = document.querySelectorAll('.product-element');
 const [photo, gallery, title, price, description, information] = productEl;
 
+function removeLoader() {
+    const container = document.querySelector('.get-container');
+    container.removeChild(container.children[0]);
+}
 //not active
 function formatImage(coverImage, images) {
 
@@ -90,7 +94,8 @@ xhr.onload = function () {
     if (res.data) {
         const { title, price, description, sideEffects, ingredients } = res.data.product;
         formatProductData(title, price, description);
-        formatInfo(sideEffects, ingredients)
+        formatInfo(sideEffects, ingredients);
+        removeLoader();
     } else
         showStatus(res);
 }

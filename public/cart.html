@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
 	<!-- Main CSS File -->
 	<link rel="stylesheet" href="/public/css/header.css">
+	<link rel="stylesheet" href="/public/css/status.css">
 	<link rel="stylesheet" href="/public/assets/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
 		integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
@@ -19,6 +20,12 @@
 </head>
 
 <body>
+	<!--status-->
+	<div style="background-color:brown" class="status">
+		<p></p>
+		<span onclick="closeStatus(event)">CLOSE</span>
+	</div>
+	<!--status-->
 	<header>
 		<nav>
 			<div id="navbar">
@@ -88,11 +95,11 @@
 									</thead>
 
 									<!--START PRODUCT DETAILS-->
-									<tbody id="products-list">
+									<tbody id="products-list" class="empty">
 
-										<!--dumy product1-->
+										<!--dumy product1, empty message-->
 										<tr>
-											<td>No products Added in your cart</td>
+											<td style="border-bottom:0;">No products Added in your cart</td>
 										</tr>
 										<!--dumy product1-->
 
@@ -101,6 +108,7 @@
 								</table>
 								<!--END PRODUCTS INFO-->
 
+								<!--START .cart-bottom
 								<div class="cart-bottom">
 									<div class="cart-discount">
 										<form action="#">
@@ -110,13 +118,12 @@
 												<div class="input-group-append">
 													<button class="btn btn-outline-primary-2" type="submit"><i
 															class="icon-long-arrow-right"></i></button>
-												</div><!-- .End .input-group-append -->
-											</div><!-- End .input-group -->
+												</div>
+											</div>
 										</form>
-									</div><!-- End .cart-discount -->
-
-
-								</div><!-- End .cart-bottom -->
+									</div>
+								</div>
+								End .cart-bottom -->
 							</div><!-- End .col-lg-9 -->
 
 
@@ -222,6 +229,7 @@
 	<script src="/public/assets/js/main.js"></script>
 
 	<!--ABD MAIN_JS-->
+	<script src="/public/main_js/status.js"></script>
 	<script src="/public/main_js/origins.js"></script>
 	<script src="/public/main_js/cart.js"></script>
 </body>

@@ -2,8 +2,8 @@ const xhr = new XMLHttpRequest();
 
 const cart_products = document.querySelector('#products-list');
 const cart_summary = document.querySelector('.cart-summary')
-const cart = {
-    products: [
+let cart = {
+    /*products: [
         {
             _id: 1,
             title: "dhdjgdf-1",
@@ -34,15 +34,15 @@ const cart = {
     ],
     totalAmount: 1000,
     totalSavings: 350,
-    totalProducts: 3,
+    totalProducts: 3,*/
     shipping: 'free-shipping',
     shippingCharge: 0
 }
 
 /*========================TEMPLATES==========================*/
-function cart_product_temp({ _id, title, brand, coverImage, price, discount, quantity }) {
+function cart_product_temp({ productId, title, brand, coverImage, price, discount, quantity }) {
     const imgUrl = coverImage || '/public/images/default.png';
-    return `<tr id="${_id}">
+    return `<tr id="${productId}">
     <td class="product-col">
         <div class="product">
 
@@ -72,7 +72,7 @@ function cart_product_temp({ _id, title, brand, coverImage, price, discount, qua
     <td class="total-col">₹${quantity * (price - discount)}</td>
 
     <td class="remove-col">
-    <button class="btn-remove"><i id="${_id}" onclick="removeItemFromCart(event)" class="icon-close"></i></button>
+    <button class="btn-remove"><i id="${productId}" onclick="deleteCartItem(event)" class="icon-close"></i></button>
     </td>
 </tr>`
 }
@@ -87,19 +87,24 @@ function getShipping(e) {
     if (e.target.id) {
         cart['shipping'] = e.target.id;
         cart['shippingCharge'] = shippingCharge[e.target.id];
-        cart_summary.children[5].children[1].textContent = `₹${cart['totalAmount'] + cart['shippingCharge']}`
+        cart_summary.children[6].children[1].textContent = `₹${cart['totalAmount'] + cart['shippingCharge']}`
     }
 }
 
-/*========================RESPONSE HELPER FUNCTION==========================*/
+/*========================RESPONSE HANDLER==========================*/
+function handleEmptySection(msg) {
+    cart_products.classList.toggle('empty');
+    cart_products.innerHTML = msg;
+}
+
 function fillCart() {
     let table_rows = "";
     if (cart['products'].length) {
-        cart_products.innerHTML = table_rows;
+        handleEmptySection('');
         cart['products'].forEach(product => table_rows += cart_product_temp(product))
         cart_products.innerHTML = table_rows;
     } else {
-        cart_products.innerHTML = "<tr><td>No products added in your cart</td></tr>"
+        handleEmptySection(`<tr><td>No products added in your cart</td></tr>`);
     }
 }
 
@@ -109,9 +114,8 @@ function fillSummary() {
     cart_summary.children[6].children[1].textContent = `₹${cart['totalAmount'] + cart['shippingCharge']}`
 }
 
-function removeItemFromCart(e) {
-    const itemId = e.target.id;
-    const index = cart['products'].findIndex(product => product._id == itemId);
+function removeItemFromCart(itemId) {
+    const index = cart['products'].findIndex(product => product.productId == itemId);
     const item = cart['products'][index];
     //update cart state
     cart['totalAmount'] -= item.quantity * (item.price - item.discount);
@@ -119,41 +123,88 @@ function removeItemFromCart(e) {
     cart['totalProducts'] -= 1;
     //remove item from cart
     cart['products'].splice(index, 1);
-
     //update UI
     fillCart();
     fillSummary();
 }
 
-function updateItemFromCart(itemId, qty) {
-    const item = cart['products'].find(product => product._id == itemId);
+function updateItemQuantity(itemId, qty) {
+    const item = cart['products'].find(product => product.productId == itemId);
     //update item state
     item['quantity'] += qty; //1 || -1;
     //update summary state
     cart['totalAmount'] += qty * (item.price - item.discount);
     cart['totalSavings'] += qty * item.discount;
-
     //update UI
     fillCart();
     fillSummary();
 }
-/*========================RESPONSE HANDLER==========================*/
 
 
-/*========================REQUEST==========================*/
+/*========================API REQUESTS==========================*/
+const origin = origins.getApi('prod', true);
+
 function getCartData() {
-    xhr.open('GET', `${origins.getApi('api')[1]}/api/v1/cart`);
+    xhr.open('GET', `${origin}/api/v1/cart`);
     xhr.send();
 }
 
-function updateCartQuantity() {
-
+function updateCartQuantity(e) {
+    const productId = e.target.id;
+    xhr.open('PATCH', `${origin}/api/v1/cart/${productId}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ inc }));
 }
 
-fillCart();
-fillSummary();
+function deleteCartItem(e) {
+    const productId = e.target.id;
+    console.log(productId);
+    xhr.open('DELETE', `${origin}/api/v1/cart/${productId}`);
+    xhr.send();
+}
+
+function proceedToCheckout() {
+    xhr.open('POST', `${origin}/api/v1/checkout`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ shipping: cart['shipping'] }));
+}
 
 
 /*========================RESPONSE==========================*/
-xhr.onload = function () { }
+xhr.onload = function () {
+    console.log(this.responseText);
+    const res = JSON.parse(this.responseText);
 
+    //if any error occured;
+    if (res.status === 'fail' || res.status === 'error') {
+        showStatus(res);
+        return
+    }
+
+    //if cart data present
+    if (res.data['cart']) {
+        cart = { ...cart, ...res.data.cart };
+        res.data.cart = null;
+        fillCart();
+        fillSummary();
+        return
+    }
+
+    //if related to item
+    if (res.data['quantity']) {
+        updateItemQuantity(res.data.productId, req.data.quantity);
+        showStatus(res);
+        return;
+    }
+
+    if (res.data['productId']) {
+        removeItemFromCart(res.data.productId);
+        showStatus(res);
+        return;
+    }
+
+    //else checkout page
+    //window.location.href = "/checkout";
+}
+
+window.addEventListener('DOMContentLoaded', () => getCartData());
