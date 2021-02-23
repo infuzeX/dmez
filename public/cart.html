@@ -103,6 +103,59 @@
 										</tr>
 										<!--dumy product1-->
 
+										<tr>
+											<td class="product-col no-products">
+											<div class="product">
+											<figure class="product-media">
+											<a href="#">
+											<img src="/public/images/default.png" alt="Product image">
+											</a>
+											</figure>
+											<h3 class="product-title">
+											<a href="#">Product Name</a>
+											</h3><!-- End .product-title -->
+											</div><!-- End .product -->
+											</td>
+											<td class="price-col">₹00.00</td>
+											<td class="price-col">₹00.00</td>
+
+											<td class="quantity-col">
+											
+												<input id="qty" value="0" />
+												<button class="dec" onclick="modify_qty(-1)">-</button>
+												<button class="inc" onclick="modify_qty(+1)">+</button>s
+											</td>
+											<script>
+												function modify_qty(val){
+  															var qty = document.getElementById('qty').value;
+  															var new_qty = parseInt(qty,10) + val;
+ 
+  
+   															 if(new_qty < 0){
+  															    new_qty = 0;
+   																 }
+ 																document.getElementById('qty').value = new_qty;
+													  return new_qty;
+														}
+											</script>
+											<style>
+												#qty{
+													border: black 2px solid;
+  														width: 35px;
+  															height: 25px;
+  															text-align: center;
+												}
+											</style>
+
+
+											<td class="total-col">₹00.00</td>
+											<td class="remove-col">
+											<button class="btn-remove"><i class="icon-close"></i>
+											</button>
+											</td>
+											</tr>
+											
+
 									</tbody>
 									<!--END PRODUCT DETAILS-->
 								</table>
