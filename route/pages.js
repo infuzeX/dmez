@@ -3,6 +3,9 @@ const router = require("express").Router();
 const { verifyToken, preventPageAccess } = require("../controller/authController");
 const { renderStaticPage } = require("../controller/pageController");
 
+router.get('/login', (req, res) => renderStaticPage(res, 'login.html'));
+router.get('/register', (req, res) => renderStaticPage(res, 'register.html'));
+
 router.get('/', (req, res) => renderStaticPage(res, 'index.html'));
 router.get('/home', (req, res) => renderStaticPage(res, 'home.html'));
 router.get('/cart', (req, res) => renderStaticPage(res, 'cart.html'));

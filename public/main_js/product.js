@@ -75,13 +75,14 @@ function formatInfo(sideEffects, ingredients) {
 
 }
 
+const origin = origins['shop'][1]
 function getProductDetails() {
-    xhr.open('GET', `${origins.getApi('prod', 1)}/api/v1/products/${productId}`);
+    xhr.open('GET', `${origin}/api/v1/products/${productId}`);
     xhr.send();
 }
 
 function addToCart() {
-    xhr.open('PATCH', `${origins.getApi("prod", 1)}/api/v1/cart/${productId}`);
+    xhr.open('PATCH', `${origin}/api/v1/cart/${productId}`);
     xhr.send();
 }
 

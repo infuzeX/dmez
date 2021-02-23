@@ -142,7 +142,7 @@ function updateItemQuantity(itemId, qty) {
 
 
 /*========================API REQUESTS==========================*/
-const origin = origins.getApi('prod', true);
+const origin = origins['shop'][1];
 
 function getCartData() {
     xhr.open('GET', `${origin}/api/v1/cart`);

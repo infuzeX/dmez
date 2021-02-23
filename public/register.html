@@ -1,118 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMEZ | Register</title>
-    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DMEZ | Register</title>
+
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="stylesheet" href="/public/css/header.css">
+  <link rel="stylesheet" href="/public/css/status.css">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
+
 <body>
-    <header>
-        <nav>
-          <div id="navbar">
-            <div id="logo" class="reverse">
-              <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;</div>
-              <div class="logo"><a href="index.html" ><img src="dmez.png"  width="45" height="64"></img> </div>
-    
-            </div>
-            <div id="links">
-              <a href="index.html">Home</a>
-              <a href="shop.html">Shop</a>
-              <a href="login.html">Account</a>
-              <a href="checkout.html"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
-      
-            </div>
+
+  <!--status-->
+  <div style="background-color:brown" class="status">
+    <p></p>
+    <span onclick="closeStatus(event)">CLOSE</span>
+  </div>
+  <!--status-->
+
+  <header>
+    <nav>
+      <div id="navbar">
+        <div id="logo" class="reverse">
+          <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;
           </div>
-    
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mySidenav" class="sidenav">
-          <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#">Home</a>
-          <a href="#">Gallery</a>
-          <a href="#">Blog</a>
-          <a href="#">Portfolio</a>
-          <a href="#">Contact</a>
+          <div class="logo">
+            <a href="/"><img src="/public/images/dmez.png" width="45" height="64"></img>
+          </div>
+
         </div>
-      </header>
-<sub-header>
+        <div id="links">
+          <a href="/">Home</a>
+          <a href="/products">Shop</a>
+          <a href="/account">Account</a>
+          <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
+
+        </div>
+      </div>
+
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mySidenav" class="sidenav">
+      <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">Home</a>
+      <a href="#">Gallery</a>
+      <a href="#">Blog</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Contact</a>
+    </div>
+  </header>
+  <sub-header>
     <div class="top-bar">
-      <a href="login.html"> <span class="select">Login</span></a> 
-      <a href="register.html"> <span class="select" style="color: #588D45;">Register</span></a> 
+      <a href="/login"> <span class="select">Login</span></a>
+      <a href=""> <span class="select" style="color: #588D45;">Register</span></a>
       <hr class="f1">
     </div>
-</sub-header>
+  </sub-header>
 
 
-    <main>
-        <!-- <div class="box1">
-            <img src="assests/images/logo.jpg" width="350" height="350">
-        </div> -->
+  <main>
 
-        <div class="box2">
-           
-
-                <div class="join">Join DMEZ</div>
-                <hr class="f2">
-            <form>
-                <div class="name space">
-                    <span class="l1">Full Name</span><br>
-                    <input  type="text" class="fname input" placeholder="Full Name" required>
-                </div>
-                <div class="number space">
-                    <span class="l1">Mobile Number</span><br>
-                    <input type="text" class="number input" placeholder="Mobile Number" required>
-                </div>
-                <div class="email space">
-                    <span class="l1">Email</span><br>
-                    <input type="email" class="email input" placeholder="Email" required>
-                </div>
-               
-                <div class="email space">
-                    <span class="l1">Create Password</span><br>
-                    <input type="password" class="email input" placeholder="Password" required>
-                </div>
-                <div class="cbox space">
-                
-                    <input type="checkbox" class="check" name="term" value="term">
-                    <label for="sign" class="sign"> By signing up, I agree to terms</label><br>
-                </div>
-
-                <div class="space">
-                <button class="btn">
-                    Send OTP
-                </button>
-            </div>
+    <div class="box2">
 
 
-            </form>
+      <div class="join">Join DMEZ</div>
 
-            
+      <hr class="f2">
+
+      <form id="register">
+
+        <div class="name space">
+          <span class="l1">Full Name</span><br>
+          <input minlength="3" maxlength="20" type="text" name="name" class="fname input" placeholder="Full Name" required>
         </div>
 
-    </main>
+        <div class="number space">
+          <span class="l1">Mobile Number</span><br>
+          <input type="number" min="10" max="10" name="contact" class="number input" placeholder="Mobile Number" required>
+        </div>
+
+        <div class="email space">
+          <span class="l1">Email</span><br>
+          <input type="email" name="email" class="email input" placeholder="Email" required>
+        </div>
+
+        <div class="email space">
+          <span class="l1">Create Password</span><br>
+          <input type="password" name="password" class="email input" placeholder="Password" required>
+        </div>
+
+        <div class="space">
+          <button class="btn">Register</button>
+        </div>
+
+      </form>
 
 
+    </div>
 
- 
-    
-    
-    <script>
-        function openNav() {
+  </main>
+
+  <script>
+    function openNav() {
       document.getElementById("mySidenav").style.width = "250px";
     }
-    
+
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
     }
-    
+  </script>
+
+  <script defer src="/public/main_js/status.js"></script>
+  <script defer src="/public/main_js/auth.js"></script>
 
 </body>
+
 </html>
