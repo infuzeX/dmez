@@ -18,51 +18,66 @@
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
 <body>
   <header>
-    <nav>
-      <div id="navbar">
-        <div id="logo" class="reverse">
-          <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;</div>
-          <div class="logo"><a href="/" ><img src="/public/images/dmez.png"  width="45" height="64"></img> </div>
+		<nav>
+			<div id="navbar">
+				<div id="logo" class="reverse">
+					<div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
+						onclick="openNav()">&#9776;</div>
+					
+					<div class="logo" style="margin-left: 15px;" ><a href="/home" ><img src="public/images/dmez.png" width="45" height="64"></img>
+						</a></div>
 
-        </div>
+
+				</div>
 
 
-        <sub-header id="links">
-          <br>
-          
-          <div class="search-bar">
-          
-              <div class="search">
-                  <form class="search-container">
-                      <input type="text" id="search-bar" placeholder="Search for medicines">
-                      <a href="#"><i id="icon" class="fas fa-search"></i></a>
-                    </form>
-                    
-              </div>
-      
-              
-          </div>
-      </sub-header>
-      
-        <div id="links">
-          <a href="/">Home</a>
-          <a href="/products">Shop</a>
-          <a href="/account">Account</a>
-          <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
-  
-        </div>
-      </div>
+				<sub-header id="links">
+					<br>
+					<div class="search-bar">
+			
+						<div class="search">
+							<form class="search-container">
+								<input type="text" id="search-bar" placeholder="Search for medicines">
+								<a href="#"><i id="icon" class="fas fa-search"></i></a>
+							</form>
+			
+						</div>
+			
+			
+					</div>
+				</sub-header>
 
-    </nav>
-    <!-- Mobile Menu -->
-    <div id="mySidenav" class="sidenav">
-      <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="/">Home</a>
-          <a href="/products">Shop</a>
-          <a href="/account">Account</a>
-          <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
-    </div>
-  </header>
+
+
+
+
+
+				<div id="links">
+
+					<a href="/products">Shop</a>
+					<a href="/account"><i class="fas fa-user-circle"></i> Account</a>
+					<a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
+
+				</div>
+			</div>
+
+		</nav>
+		<!-- Mobile Menu -->
+		<div id="mySidenav" class="sidenav">
+			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+
+			<a href="/products">Shop</a>
+			<a href="/account">Account</a>
+			<a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Casrt</a>
+			<div class="search">
+				<form class="search-container">
+					<input type="text" id="search-bar" placeholder="Search for medicines">
+					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+				</form>
+
+			</div>
+		</div>
+	</header>
       
 
 
