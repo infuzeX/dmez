@@ -161,7 +161,7 @@ height: 720px;
 .items
 {
   background-color: #fff;
-justify-content: space-around;
+justify-content: space-between;
   
   display: flex;
 padding: 30px;
@@ -170,5 +170,8 @@ padding: 30px;
   text-align: center;
   padding: 20px;
 }
+.p{
+ text-align: center;
+  }
 
 /***************************************************************************************************/
