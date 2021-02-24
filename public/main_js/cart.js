@@ -1,7 +1,9 @@
 const xhr = new XMLHttpRequest();
 
+const cartLoader = document.querySelector('.cart-loader');
 const cart_products = document.querySelector('#products-list');
-const cart_summary = document.querySelector('.cart-summary')
+const cart_summary = document.querySelector('.cart-summary');
+
 let cart = {
     /*products: [
         {
@@ -62,10 +64,12 @@ function cart_product_temp({ productId, title, brand, coverImage, price, discoun
     <td class="price-col">₹${discount}</td>
    
     <td class="quantity-col">
-        <div class="cart-product-quantity">
-            <input type="number" class="form-control" value="${quantity}" min="1" max="10"
-                step="1" data-decimals="0" required>
-        </div><!-- End .cart-product-quantity -->
+     
+    <div class="cart-product-quantity">
+    <button id="dec_${productId}" style="font: size 1.3rem;" onclick="modify_qty(event)">-</button>
+    <span id="qty">${quantity}</span>
+    <button id="inc_${productId}" style="font: size 1.3rem;" onclick="modify_qty(event)">+</button>
+</div>
 
     </td>
 
@@ -92,19 +96,19 @@ function getShipping(e) {
 }
 
 /*========================RESPONSE HANDLER==========================*/
-function handleEmptySection(msg) {
-    cart_products.classList.toggle('empty');
+function handleEmptySection(msg, isEmpty) {
+    cart_products.classList[isEmpty ? 'add' : 'remove']('empty');
     cart_products.innerHTML = msg;
 }
 
-function fillCart() {
+function fillCart(isEmpty) {
     let table_rows = "";
     if (cart['products'].length) {
-        handleEmptySection('');
+        handleEmptySection('', isEmpty);
         cart['products'].forEach(product => table_rows += cart_product_temp(product))
         cart_products.innerHTML = table_rows;
     } else {
-        handleEmptySection(`<tr><td>No products added in your cart</td></tr>`);
+        handleEmptySection(`<tr><td>No products added in your cart</td></tr>`, true);
     }
 }
 
@@ -124,14 +128,26 @@ function removeItemFromCart(itemId) {
     //remove item from cart
     cart['products'].splice(index, 1);
     //update UI
-    fillCart();
+    fillCart(false);
     fillSummary();
 }
 
+
+function modify_qty(e) {
+    const pdata = e.target.id.split('_');
+    updateCartQuantity({ "inc": pdata[0] === "inc" }, pdata[1])
+}
+
+
 function updateItemQuantity(itemId, qty) {
     const item = cart['products'].find(product => product.productId == itemId);
+    //delete item if quantity 0
+    if (item['quantity'] === 1 && qty === -1) {
+        removeItemFromCart(itemId);
+        return;
+    }
     //update item state
-    item['quantity'] += qty; //1 || -1;
+    item['quantity'] += qty;
     //update summary state
     cart['totalAmount'] += qty * (item.price - item.discount);
     cart['totalSavings'] += qty * item.discount;
@@ -145,25 +161,27 @@ function updateItemQuantity(itemId, qty) {
 const origin = origins['shop'][1];
 
 function getCartData() {
+    //handleLoader(cartLoader, 'fetching cart item', 'active')
     xhr.open('GET', `${origin}/api/v1/cart`);
     xhr.send();
 }
 
-function updateCartQuantity(e) {
-    const productId = e.target.id;
-    xhr.open('PATCH', `${origin}/api/v1/cart/${productId}`);
+function updateCartQuantity(data, productId) {
+    handleLoader(cartLoader, 'updating item quantity', 'active')
+    xhr.open('PUT', `${origin}/api/v1/cart/${productId}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ inc }));
+    xhr.send(JSON.stringify(data));
 }
 
 function deleteCartItem(e) {
+    handleLoader(cartLoader, 'deleting item from cart', 'active')
     const productId = e.target.id;
-    console.log(productId);
     xhr.open('DELETE', `${origin}/api/v1/cart/${productId}`);
     xhr.send();
 }
 
 function proceedToCheckout() {
+    handleLoader(cartLoader, 'proceeding to cart', 'active')
     xhr.open('POST', `${origin}/api/v1/checkout`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({ shipping: cart['shipping'] }));
@@ -174,7 +192,9 @@ function proceedToCheckout() {
 xhr.onload = function () {
     console.log(this.responseText);
     const res = JSON.parse(this.responseText);
-
+    
+    //close loader
+    closeLoader(cartLoader);
     //if any error occured;
     if (res.status === 'fail' || res.status === 'error') {
         showStatus(res);
@@ -185,14 +205,14 @@ xhr.onload = function () {
     if (res.data['cart']) {
         cart = { ...cart, ...res.data.cart };
         res.data.cart = null;
-        fillCart();
+        fillCart(false);
         fillSummary();
         return
     }
 
     //if related to item
     if (res.data['quantity']) {
-        updateItemQuantity(res.data.productId, req.data.quantity);
+        updateItemQuantity(res.data.productId, res.data.quantity);
         showStatus(res);
         return;
     }

@@ -28,3 +28,13 @@ function showEmpty(el, bool, message) {
         el.innerHTML = `<p>${message}</p>`;
     }
 }
+
+function handleLoader(loader, msg) {
+    console.log("called");
+    loader.classList.toggle('cart-active');
+    loader.innerHTML = `<p style="font-size:1.2rem !important;">${msg}</p>`
+}
+
+function closeLoader(loader){
+    loader.classList.remove('cart-active');
+}

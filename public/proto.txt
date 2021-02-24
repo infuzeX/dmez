@@ -21,7 +21,6 @@
 ||------------------------------------------------------||		
 
 || cart.html product design prototype ||
-
 <tr>
 <td class="product-col no-products">
 <div class="product">
@@ -39,9 +38,10 @@
 <td class="price-col">₹00.00</td>
 <td class="quantity-col">
 <div class="cart-product-quantity">
-<input type="number" class="form-control" value="1" min="1" max="10"
-step="1" data-decimals="0" required>
-</div><!-- End .cart-product-quantity -->
+<button id="dec" style="font: size 1.3rem;" onclick="modify_qty(-1)">-</button>
+<span id="qty">0</span>
+<button id="inc" style="font: size 1.3rem;" onclick="modify_qty(1)">+</button>
+</div>
 </td>
 <td class="total-col">₹00.00</td>
 <td class="remove-col">
