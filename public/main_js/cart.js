@@ -227,4 +227,9 @@ xhr.onload = function () {
     //window.location.href = "/checkout";
 }
 
+xhr.onerror = function() {
+    closeLoader(cartLoader);
+    showStatus({status:'error', message:'something went wrong'});
+}
+
 window.addEventListener('DOMContentLoaded', () => getCartData());

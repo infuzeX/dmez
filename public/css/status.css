@@ -46,7 +46,7 @@
   background-color: rgba(128, 128, 128, 0.719);
   z-index:10;
 }
-.active > p {
+.cart-active > p {
   margin: auto;
   color: white;
 }
