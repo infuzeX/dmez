@@ -146,13 +146,14 @@ display: hidden;
 /***************************************CATEGORIES****************************************************/
 .categories{
 background-color:#CFD7C0 ;
-height: 720px;
+
 }
 .categories .head{
-  padding: 70px;
+text-align: center;
+padding: 10px;
 }
 .categories .head p{
- font-size: 24px;
+ font-size: 20px;
  font-weight: 700;
  
  color: #000;
@@ -163,7 +164,7 @@ height: 720px;
   background-color: #fff;
 justify-content: space-between;
   
-  display: flex;
+
 padding: 30px;
 }
 .items p{
@@ -173,5 +174,7 @@ padding: 30px;
 .p{
  text-align: center;
   }
-
+.p img{
+  width: 100%;
+}
 /***************************************************************************************************/
