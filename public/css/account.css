@@ -44,6 +44,7 @@ background-color: #EEEEEE;
    justify-content:center;
    border-bottom: 1px #ddd solid;
    padding: 10px;
+   flex-wrap: wrap;
    
 }
 .controls p a{
@@ -51,19 +52,20 @@ background-color: #EEEEEE;
     font-size: 20px;
     font-weight: 700;
     text-decoration: none;
-    color: #8472C2;
+    color: black;
 
 }
-.active{
-    border-bottom:3px solid #A1B985 ;
+#active{
+    color:#76ada8 ;
 }
 .controls p a:hover{
-   color:#A1B985 ;
+    color:#76ada8 ;
 }
 .orders-panel{
     width: 60%;
     margin: 0 auto;
     margin-top: 20px;
+
    
 }
 .panel{
@@ -71,7 +73,7 @@ background-color: #EEEEEE;
    
 }
 .panel1{
-    background-color: rgb(161,185,133);
+    background-color: #76ada8;
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -83,7 +85,9 @@ background-color: #EEEEEE;
 .panel2{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
+
 .action{
     margin: 30px
 }
@@ -95,7 +99,7 @@ button{
     border:  1px solid #A1B985;
     background-color: white;
     width: 100%;
-    padding: 10px 30px 10px 30px;
+    padding: 5px 50px 5px 50px;
     font-size: 16px;
         margin-bottom: 10px;
     white-space: nowrap;
@@ -138,4 +142,30 @@ width: 200px;
    .search{
        display: hidden;
    }
+  }
+  @media only screen and (max-width: 600px) {
+    .orders-panel{
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 20px;
+       
+    }
+    .panel2{
+        display: flex;
+        justify-content: space-between;
+    }
+    .product{
+        padding: 10px;
+    }
+    button{
+        border-radius: 20px;
+        border:  1px solid #A1B985;
+        background-color: white;
+        width: 100%;
+        padding: 5px 30px 5px 30px;
+        font-size: 10px;
+            margin-bottom: 5px;
+        white-space: nowrap;
+      
+    }
   }
