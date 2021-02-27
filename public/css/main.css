@@ -9,6 +9,7 @@ body {
   font-family: "Roboto", sans-serif;
   position: relative;
   font-weight: 400px;
+
 }
 
 ul li {
@@ -561,6 +562,7 @@ ul.sub-menu {
 
 .carousel-indicators li {
   background: #c4c4be;
+  z-index: -100;
 }
 
 .carousel-indicators li.active {
