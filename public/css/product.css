@@ -73,14 +73,14 @@ a {
   }
 }
 /************************************************************************************/
-.item {
+/* .item {
   width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 50px;
-}
+} */
 .content {
   width: 65%;
   margin: 0 auto;
@@ -222,7 +222,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #ffff;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -232,13 +232,13 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: rgb(51,51,51);
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #fff;
+  color: #A1B985;
 }
 
 .sidenav .closebtn {
