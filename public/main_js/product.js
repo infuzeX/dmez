@@ -75,7 +75,6 @@ function formatInfo(sideEffects, ingredients) {
 
 }
 
-const origin = origins['shop'][1]
 function getProductDetails() {
     xhr.open('GET', `${origin}/api/v1/products/${productId}`);
     xhr.send();

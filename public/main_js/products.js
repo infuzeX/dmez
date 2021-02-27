@@ -84,7 +84,6 @@ function parseString(temp) {
 }
 
 //API REQUESTS
-const origin = origins['shop'][1];
 function getProducts() {
   const queryString = new URLSearchParams(state['settings']).toString();
   xhr.open('GET', `${origin}/api/v1/products?${queryString}`);

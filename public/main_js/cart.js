@@ -5,40 +5,7 @@ const cart_products = document.querySelector('#products-list');
 const cart_summary = document.querySelector('.cart-summary');
 
 let cart = {
-    /*products: [
-        {
-            _id: 1,
-            title: "dhdjgdf-1",
-            brand: "ikon",
-            coverImage: "",
-            price: 60,
-            discount: 0,
-            quantity: 5
-        },
-        {
-            _id: 2,
-            title: "dhdjgdf-2",
-            brand: "ikon",
-            coverImage: "",
-            price: 250,
-            discount: 100,
-            quantity: 3
-        },
-        {
-            _id: 3,
-            title: "dhdjgdf-3",
-            brand: "ikon",
-            coverImage: "",
-            price: 150,
-            discount: 25,
-            quantity: 2
-        }
-    ],
-    totalAmount: 1000,
-    totalSavings: 350,
-    totalProducts: 3,*/
-    shipping: 'free-shipping',
-    shippingCharge: 0
+    charge: 80
 }
 
 /*========================TEMPLATES==========================*/
@@ -81,19 +48,6 @@ function cart_product_temp({ productId, title, brand, coverImage, price, discoun
 </tr>`
 }
 
-/*========================DOM FUNCTION==========================*/
-function getShipping(e) {
-    const shippingCharge = {
-        'free-shipping': 0,
-        'standart-shipping': 50,
-        'express-shipping': 100
-    }
-    if (e.target.id) {
-        cart['shipping'] = e.target.id;
-        cart['shippingCharge'] = shippingCharge[e.target.id];
-        cart_summary.children[6].children[1].textContent = `₹${cart['totalAmount'] + cart['shippingCharge']}`
-    }
-}
 
 /*========================RESPONSE HANDLER==========================*/
 function handleEmptySection(msg, isEmpty) {
@@ -113,9 +67,11 @@ function fillCart(isEmpty) {
 }
 
 function fillSummary() {
+    cart['charge'] = cart['totalAmount'] >= 400 ? 0 : 80;
     cart_summary.children[0].children[1].textContent = `₹${cart['totalAmount']}`;
     cart_summary.children[1].children[1].textContent = `₹${cart['totalSavings']}`;
-    cart_summary.children[6].children[1].textContent = `₹${cart['totalAmount'] + cart['shippingCharge']}`
+    cart_summary.children[2].children[1].textContent = `₹${cart['charge']}`
+    cart_summary.children[3].children[1].textContent = `₹${cart['totalAmount'] + cart['charge']}`
 }
 
 function removeItemFromCart(itemId) {
@@ -138,7 +94,6 @@ function modify_qty(e) {
     updateCartQuantity({ "inc": pdata[0] === "inc" }, pdata[1])
 }
 
-
 function updateItemQuantity(itemId, qty) {
     const item = cart['products'].find(product => product.productId == itemId);
     //delete item if quantity 0
@@ -156,9 +111,7 @@ function updateItemQuantity(itemId, qty) {
     fillSummary();
 }
 
-
 /*========================API REQUESTS==========================*/
-const origin = origins['shop'][1];
 
 function getCartData() {
     //handleLoader(cartLoader, 'fetching cart item', 'active')
@@ -184,7 +137,7 @@ function proceedToCheckout() {
     handleLoader(cartLoader, 'proceeding to cart', 'active')
     xhr.open('POST', `${origin}/api/v1/checkout`);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ shipping: cart['shipping'] }));
+    xhr.send(JSON.stringify({ offer_id: null }));
 }
 
 
@@ -192,7 +145,7 @@ function proceedToCheckout() {
 xhr.onload = function () {
     console.log(this.responseText);
     const res = JSON.parse(this.responseText);
-    
+
     //close loader
     closeLoader(cartLoader);
     //if any error occured;
@@ -202,34 +155,37 @@ xhr.onload = function () {
     }
 
     //if cart data present
-    if (res.data['cart']) {
+    if (!res.data) {
+        window.location.href = "/checkout";
+        return;
+    }
+
+    if (res.data.cart) {
         cart = { ...cart, ...res.data.cart };
         res.data.cart = null;
         fillCart(false);
         fillSummary();
-        return
+        return;
     }
 
     //if related to item
-    if (res.data['quantity']) {
+    if (res.data.quantity) {
         updateItemQuantity(res.data.productId, res.data.quantity);
         showStatus(res);
         return;
     }
 
-    if (res.data['productId']) {
+    if (res.data.productId) {
         removeItemFromCart(res.data.productId);
         showStatus(res);
         return;
     }
 
-    //else checkout page
-    //window.location.href = "/checkout";
 }
 
-xhr.onerror = function() {
+xhr.onerror = function () {
     closeLoader(cartLoader);
-    showStatus({status:'error', message:'something went wrong'});
+    showStatus({ status: 'error', message: 'something went wrong' });
 }
 
 window.addEventListener('DOMContentLoaded', () => getCartData());

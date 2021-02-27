@@ -5,6 +5,7 @@ const pages = require('./route/pages');
 const app = express();
 
 app.use(cookieParser());
+
 app.use('/public', express.static('public'))
 
 app.use('/', pages);
