@@ -30,7 +30,6 @@ function showEmpty(el, bool, message) {
 }
 
 function handleLoader(loader, msg) {
-    console.log("called");
     loader.classList.toggle('cart-active');
     loader.innerHTML = `<p style="font-size:1.2rem !important;">${msg}</p>`
 }

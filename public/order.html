@@ -1,197 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMEZ | Order</title>
-    <link rel="stylesheet" href="/public/css/product.css">
-    <link rel="stylesheet" href="/public/css/account.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMEZ | Order</title>
+  <link rel="stylesheet" href="/public/css/status.css">
+  <link rel="stylesheet" href="/public/css/product.css">
+  <link rel="stylesheet" href="/public/css/account.css">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
+
 <body>
   <header>
-		<nav>
-			<div id="navbar">
-				<div id="logo" class="reverse">
-					<div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
-						onclick="openNav()">&#9776;</div>
-					
-					<div class="logo" style="margin-left: 15px;" ><a href="/home" ><img src="/public/images/dmez.png" width="45" height="64"></img>
-						</a></div>
+    <nav>
+      <div id="navbar">
+        <div id="logo" class="reverse">
+          <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
+            onclick="openNav()">&#9776;</div>
+
+          <div class="logo" style="margin-left: 15px;"><a href="/home"><img src="/public/images/dmez.png" width="45"
+                height="64"></img>
+            </a></div>
 
 
-				</div>
-
-
-				<sub-header id="links">
-					<br>
-					<div class="search-bar">
-			
-						<div class="search">
-							<form class="search-container">
-								<input type="text" id="search-bar" placeholder="Search for medicines">
-								<a href="#"><i id="icon" class="fas fa-search"></i></a>
-							</form>
-			
-						</div>
-			
-			
-					</div>
-				</sub-header>
-
-
-
-
-
-
-				<div id="links">
-
-					<a href="/products">Shop</a>
-					
-					<a href="/account"><i class="fas fa-user-circle"></i> Account</a>
-					<a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
-
-				</div>
-			</div>
-
-		</nav>
-		<!-- Mobile Menu -->
-		<div id="mySidenav" class="sidenav">
-			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-			<a style="color: #A1B985;">Howdy!</a>
-			<a href="/">Home</a>
-			<a href="/products">Shop</a>
-			<a href="/account"> Account</a>
-			<a href="/cart">  Cart</a>
-			<a href="/products">Contact</a>
-			<div class="search">
-				<form class="search-container">
-					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
-					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
-				</form>
-
-			</div>
-		</div>
-	</header>
-
-
-
-
-<section>
-    <p style="margin: 10px;"><a href="/account" style="text-decoration: none;">Account</a> > <a href="/account/orders" style="text-decoration: none;color: #C47584;">Your Orders</a> </p>  
-<div class="head1">
-  
-    Your Orders
-</div>
-
-</section>
-
-
-<div class="controls">
-  <p><a href=""  id="active">Orders</a></p>  <p> <a href="" class="" id="" >Cancelled Orders</a></p>  <p><a href="" class="" id="">Return Orders</a></p>
-</div>
-
-<div class="orders-panel">
-<div class="panel">
-    <div class="panel1">
-        <div class="">  <p>ORDER PLACED</p><br><p>Date</p></div>
-        <div class="">  <P>TOTAL</P><br>   <p>₹500</p></div>
-        <div class=""><P>SHIP TO</P><br>  <p>Address</p></div>
-        <div class=""></div>
-      
-      
-        
-        <P>ORDER ID</P>
-    </div>
-   
-    <div class="panel2">
-
-      <div class="product">
-        <p>Order Details ***************************</p>
-        <br>
-        <img src=""> order image</img>
-      </div>
-
-      <div class="action">
-        <button>Track Package</button><br>
-        <button>Return</button><br>
-        <button>Cancel</button>
-      </div>
-
-    </div>
-</div>
-</div>
-
-<div class="orders-panel">
-  <div class="panel">
-      <div class="panel1">
-          <div class="">  <p>ORDER PLACED</p><br><p>Date</p></div>
-          <div class="">  <P>TOTAL</P><br>   <p>₹500</p></div>
-          <div class=""><P>SHIP TO</P><br>  <p>Address</p></div>
-          <div class=""></div>
-        
-        
-          
-          <P>ORDER ID</P>
-      </div>
-     
-      <div class="panel2">
-  
-        <div class="product">
-          <p>Order Details ***************************</p>
-          <br>
-          <img src=""> order image</img>
         </div>
-  
+
+        <sub-header id="links">
+          <br>
+          <div class="search-bar">
+
+            <div class="search">
+
+              <form class="search-container">
+                <input type="text" id="search-bar" placeholder="Search for medicines">
+                <a href="#"><i id="icon" class="fas fa-search"></i></a>
+              </form>
+
+            </div>
+
+          </div>
+        </sub-header>
+
+
+        <div id="links">
+
+          <a href="/products">Shop</a>
+
+          <a href="/account"><i class="fas fa-user-circle"></i> Account</a>
+          <a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
+
+        </div>
+      </div>
+
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mySidenav" class="sidenav">
+
+      <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+      <a style="color: #A1B985;">Howdy!</a>
+      <a href="/">Home</a>
+      <a href="/products">Shop</a>
+      <a href="/account"> Account</a>
+      <a href="/cart"> Cart</a>
+      <a href="/products">Contact</a>
+
+      <div class="search">
+
+        <form class="search-container">
+          <input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
+          <a href="#"><i id="icon" class="fas fa-search"></i></a>
+        </form>
+
+      </div>
+    </div>
+
+  </header>
+
+  <section>
+    <p style="margin: 10px;">
+      <a href="/account" style="text-decoration: none;">Account</a>
+      <a href="/account/orders" style="text-decoration: none;color: #C47584;">Your Orders</a>
+    </p>
+    <div class="head1">Your Orders</div>
+  </section>
+
+  <!--order navigations-->
+  <div class="controls">
+    <p><a class="all" id="active">Orders</a></p>
+    <p><a class="canceled">Cancelled Orders</a></p>
+    <p><a class="returned">Return Orders</a></p>
+  </div>
+
+  <!--ordes-->
+  <div class="orders-panel">
+
+    <div class="panel">
+
+      <div class="panel1">
+        <div class="">
+          <p>ORDER PLACED</p>
+          <p>1614528784029</p>
+        </div>
+        <div>
+          <p>TOTAL</p>
+          <p>₹600</p>
+        </div>
+        <div>
+          <p>SHIP TO</p>
+          <p>8A/3D/K kareli Allahabad Uttar pradesh</p>
+        </div>
+        <div>
+          <p>ORDER ID</p>
+          <p>Ref:6039018f3bab401055c3c552</p>
+        </div>
+      </div>
+      <div class="panel2" style="border-top: 1px solid grey;">
+
+        <div class="product">
+          <p>ACECLOFENAC 100MG 10'S</p>
+          <img style="width:80px;" src="/public/images/default.png">
+        </div>
+
         <div class="action">
           <button>Track Package</button><br>
           <button>Return</button><br>
           <button>Cancel</button>
         </div>
-  
+
       </div>
+      <div class="panel2" style="border-top: 1px solid grey;">
+
+        <div class="product">
+          <p>ACECLOFENAC 100MG 10'S</p>
+          <img style="width:80px;" src="/public/images/default.png">
+        </div>
+
+        <div class="action">
+          <button>Track Package</button><br>
+          <button>Return</button><br>
+          <button>Cancel</button>
+        </div>
+
+      </div>
+    </div>
   </div>
-  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
+  <script>
     function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
+      document.getElementById("mySidenav").style.width = "250px";
+    }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-
-</script>
-
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
 
 </body>
+
+<script defer src="/public/main_js/status.js"></script>
+<script defer src="/public/main_js/order.js"></script>
+<script defer src="/public/main_js/order.js"></script>
 
 </html>

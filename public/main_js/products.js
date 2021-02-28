@@ -41,7 +41,6 @@ function productTemp({ _id, title, price, discount, discountInPer, coverImage })
 }
 
 /*==========DOM MANIPULATORS==========*/
-
 function handleEmptySection(msg, add) {
   products_Div.innerHTML = msg;
   products_Div.classList[add ? 'add' : 'remove']('empty');

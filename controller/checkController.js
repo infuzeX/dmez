@@ -7,7 +7,7 @@ const razorpay = new Razorpay({
 
 exports.verifyOrder = async (req, res, next) => {
 
-    const orderId = req.cookies['order'];
+    const orderId = req.params.id;
     if (!orderId)
         return res.redirect('/cart');
 

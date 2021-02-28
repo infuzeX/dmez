@@ -154,12 +154,6 @@ xhr.onload = function () {
         return
     }
 
-    //if cart data present
-    if (!res.data) {
-        window.location.href = "/checkout";
-        return;
-    }
-
     if (res.data.cart) {
         cart = { ...cart, ...res.data.cart };
         res.data.cart = null;
@@ -178,6 +172,12 @@ xhr.onload = function () {
     if (res.data.productId) {
         removeItemFromCart(res.data.productId);
         showStatus(res);
+        return;
+    }
+
+     //if cart data present
+     if (res.data) {
+        window.location.href = `/cart/${res.data}`;
         return;
     }
 

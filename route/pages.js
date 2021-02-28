@@ -15,15 +15,14 @@ router.get('/products/:id', (req, res) => renderStaticPage(res, 'product.html'))
 
 //PROTECTED ROUTES
 router.get('/cart', (req, res) => renderStaticPage(res, 'cart.html'));
-
-router.get('/checkout', verifyOrder, (req, res) => {
+router.get('/cart/:id', verifyOrder, (req, res) => {
     const data = JSON.stringify(req.order)
     res.cookie('order', data, {
-        secure:true,
-        domain: 'https://herokuapp.com',
+        secure: false,
         httpOnly: true,
+        maxAge: 15 * 60 * 1000,
+        domain: '127.0.0.1',
         path: '/',
-        sameSite:"none"
     })
     renderStaticPage(res, 'checkout.html')
 });
