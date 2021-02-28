@@ -1,0 +1,26 @@
+.shopping-btn{
+    background-color:rgb(161,185,133);
+    color:white;
+    font-size:18px;
+    border-radius:7px;
+    margin-top:20px;
+  }
+  .shopping-btn:hover{
+    background-color:white;
+    color:rgb(161,185,133);
+    border: 1px solid rgb(161,185,133)
+  
+  }
+
+  #order-placed{
+    margin-left:100px;
+    height:100px;
+  }
+
+
+  @media screen and (min-width: 992px) {
+    #order-placed{
+      margin-left:500px;
+      height:100px;
+    }
+  }
