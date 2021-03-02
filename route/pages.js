@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const { verifyToken, preventPageAccess } = require("../controller/authController");
-const { verifyOrder } = require('../controller/checkController');
+ const { verifyOrder } = require('../controller/checkoutController');
 const { renderStaticPage } = require("../controller/pageController");
 
 router.get('/login', (req, res) => renderStaticPage(res, 'login.html'));
