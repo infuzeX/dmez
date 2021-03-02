@@ -125,14 +125,15 @@ a {
   flex-wrap: wrap;
 }
 .links a{
-  color: #000;
-  font-size: 16px;
+  color: #789461;
+  font-size: 18px;
   line-height: 24px;
-  font-weight: 600;
+  font-weight: bolder;
   text-decoration: none;
 }
 .links a:hover{
- color: coral;
+ color: black;
+ text-decoration:underline
  
 }
 
