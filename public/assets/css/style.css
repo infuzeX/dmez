@@ -16809,3 +16809,10 @@ button:focus {
 /* '' */
 
 /*# sourceMappingURL=style.css.map */
+/******************************************bulk-order**********************************/
+.bulk{
+  background-image: url("/public/images/banner.png") ;
+  background-position: center;
+background-size: cover;
+
+}
