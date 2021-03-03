@@ -97,9 +97,9 @@
 
             <div class="page-content">
                 <div class="container get-container">
-                    <div class="loader-wrapper empty">
+                    <!-- <div class="loader-wrapper empty">
                         <div class="loader"></div>
-                    </div>
+                    </div> -->
                     <div class="product-details-top">
                         <div class="row">
                             <div class="col-md-6">
@@ -160,7 +160,15 @@
                                     <!--product-title -->
                                     <h1 class="product-title product-element">PRODUCT NAME</h1>
                                     <!--product-price -->
-                                    <div class="product-price product-element">₹00.00</div>
+                                    
+                                    <div class="discounts">
+                                        <div class="product-price product-element">₹000.00</div> <h5 style="color: #9797A3;"><del>₹98</del></h5> <p id="off" style="color: #00A500;"> 15%off</p>
+                                    </div>
+                                    <style>
+                                        .discounts div,h5, #off{
+                                        display: inline-block;
+                                        }
+                                    </style>
                                     <!--product-description -->
                                     <div class="product-content product-element">
                                         <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
