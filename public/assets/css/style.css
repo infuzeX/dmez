@@ -16811,8 +16811,27 @@ button:focus {
 /*# sourceMappingURL=style.css.map */
 /******************************************bulk-order**********************************/
 .bulk{
-  background-image: url("/public/images/banner.png") ;
-  background-position: center;
-background-size: cover;
+ background-color: #e5a99f;
+text-align: center;
+width: 50%;
+margin: 0 auto;
 
+}
+.bulk p{
+  padding: 30px;
+  font-size: 25px;
+  color: black;
+  font-weight: 400;
+}
+.bulk button{
+  margin-left: 30px;
+}
+@media only screen and (max-width: 600px) {
+  .bulk{
+    background-color: #e5a99f;
+   text-align: center;
+  width: 100%;
+   
+   }
+  
 }
