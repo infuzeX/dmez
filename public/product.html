@@ -26,7 +26,14 @@
             height: 100%;
             position: absolute;
             background-color: white;
-            z-index:100;
+            z-index: 100;
+        }
+    </style>
+    <style>
+        .discounts div,
+        h5,
+        #off {
+            display: inline-block;
         }
     </style>
     <!-- Plugins CSS File -->
@@ -92,9 +99,6 @@
         </div>
     </header>
 
-
-
-
     <div class="page-wrapper">
 
 
@@ -113,9 +117,9 @@
 
             <div class="page-content">
                 <div class="container get-container">
-                    <!-- <div class="loader-wrapper empty">
+                    <div class="loader-wrapper empty">
                         <div class="loader"></div>
-                    </div> -->
+                    </div>
                     <div class="product-details-top">
                         <div class="row">
                             <div class="col-md-6">
@@ -176,15 +180,9 @@
                                     <!--product-title -->
                                     <h1 class="product-title product-element">PRODUCT NAME</h1>
                                     <!--product-price -->
-                                    
-                                    <div class="discounts">
-                                        <div class="product-price product-element">₹000.00</div> <h5 style="color: #9797A3;"><del>₹98</del></h5> <p id="off" style="color: #00A500;"> 15%off</p>
+                                    <div class="discounts product-element">
+
                                     </div>
-                                    <style>
-                                        .discounts div,h5, #off{
-                                        display: inline-block;
-                                        }
-                                    </style>
                                     <!--product-description -->
                                     <div class="product-content product-element">
                                         <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
@@ -517,11 +515,10 @@
     <!-- Other JS File -->
     <script src="/public/assets/js/main.js"></script>
 
-    <!--Main JS File
+    <!--Main JS File-->
     <script defer src="/public/main_js/status.js"></script>
     <script defer src="/public/main_js/origins.js"> </script>
     <script defer src="/public/main_js/product.js"></script>
-    -->
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";

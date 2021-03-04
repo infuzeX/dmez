@@ -38,7 +38,7 @@
 						<div class="search">
 							<form class="search-container">
 								<input type="text" id="search-bar" placeholder="Search for medicines">
-								<a href="#"><i id="icon" class="fas fa-search"></i></a>
+								<a onclick="searchProduct(event)"><i id="icon" class="fas fa-search"></i></a>
 							</form>
 			
 						</div>
@@ -46,11 +46,6 @@
 			
 					</div>
 				</sub-header>
-
-
-
-
-
 
 				<div id="links">
 
@@ -72,7 +67,7 @@
 			<div class="search">
 				<form class="search-container">
 					<input type="text" id="search-bar" placeholder="Search for medicines">
-					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+					<a onclick="searchProduct(event)"><i id="icon" class="fas fa-search" ></i></a>
 				</form>
 
 			</div>
@@ -215,13 +210,6 @@
   </div>
 </footer>
 
-
-
-
-
-
-
-
 <script>
     function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -235,5 +223,6 @@ function closeNav() {
 
 
 </body>
+<script defer src="/public/main_js/search.js"></script>
 
 </html>
