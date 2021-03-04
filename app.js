@@ -1,8 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const pages = require('./route/pages');
+const AppError = require("./utils/appError");
 //controller modules
 const globalErrorHandler = require('./controller/errorController');
+const pages = require('./route/pages');
 const app = express();
 app.use(cookieParser());
 

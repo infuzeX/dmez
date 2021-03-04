@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMEZ | Setting</title>
+  <link rel="stylesheet" href="/public/css/status.css">
   <link rel="stylesheet" href="/public/css/product.css">
   <link href="/public/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/css/footer1.css">
@@ -22,6 +23,12 @@
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
 
 <body>
+  <!--status-->
+  <div style="background-color:brown" class="status">
+    <p></p>
+    <span onclick="closeStatus(event)">CLOSE</span>
+  </div>
+  <!--status-->
   <header>
     <nav>
       <div id="navbar">
@@ -170,8 +177,12 @@
 
 </body>
 
+<script defer src="/public/main_js/status.js"></script>
 <script defer src="/public/main_js/search.js"></script>
 <script defer src="/public/main_js/origins.js"></script>
 <script defer src="/public/main_js/user.js"></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', () => getUserData());
+</script>
 
 </html>

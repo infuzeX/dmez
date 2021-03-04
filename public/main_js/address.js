@@ -15,7 +15,7 @@ xhr.onload = function () {
 
   const res = JSON.parse(this.responseText);
 
-  if (res.status === "error" || res.status === "fail" || !res.data) {
+  if (res.status === "error" || res.status === "fail") {
     showStatus(res);
     return;
   }
@@ -27,6 +27,11 @@ xhr.onload = function () {
       field.children[1].textContent =
         res.data.address[field.id] || "mere dil mei";
     }
+  }
+
+  if (!res.data) {
+    window.location.href = '/account/address';
+    return;
   }
 
 };
