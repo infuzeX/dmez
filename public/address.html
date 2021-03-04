@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMEZ | Addresses</title>
-    <link rel="stylesheet" href="/public/css/product.css">
-    <link rel="stylesheet" href="/public/css/account.css">
-    <link rel="stylesheet" href="css\footer.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/public/css/footer1.css">
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMEZ | Addresses</title>
+  <link rel="stylesheet" href="/public/css/status.css">
+  <link rel="stylesheet" href="/public/css/product.css">
+  <link rel="stylesheet" href="/public/css/account.css">
+  <link rel="stylesheet" href="css\footer.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="/public/css/footer1.css">
+  <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
+
 <body>
+  <!--status-->
+  <div style="background-color:brown" class="status">
+    <p></p>
+    <span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
+  </div>
+  <!--status-->
   <header>
     <nav>
       <div id="navbar">
@@ -81,75 +92,91 @@
 
   </header>
 
+  <section>
+    <p style="margin: 10px;"><a href="/account" style="text-decoration: none;">Account</a> > <a href="/account/address"
+        style="text-decoration: none;color: #C47584;">Addresses</a> </p>
+    <div class="head1">
 
+      Your Addresses
+    </div>
+    <div class="part">
 
+      <div class="bx" href="setting.html" style="text-decoration: none;">
 
-<section>
-    <p style="margin: 10px;"><a href="/account" style="text-decoration: none;">Account</a> > <a href="/account/address" style="text-decoration: none;color: #C47584;">Addresses</a> </p>  
-<div class="head1">
-  
-    Your Addresses
-</div>
-<div class="part">
-   
-    <div class="bx" href="setting.html" style="text-decoration: none;">
-        <p>Default: </p><br>
-        <hr>
-        <br>
-        <p class="top-head" id="name"> user name</p>
-        <br>
-        <p id="address">user address 211002</p><br>
+        <p class="top-head" id="name"></p>
+        <ul class="address">
+          <li id="state">
+            <span>State :</span>
+            <span></span>
+          </li>
+          <li id="city">
+            <span>City :</span>
+            <span></span>
+          </li>
+          <li id="zipcode">
+            <span>Zipcode :</span>
+            <span></span>
+          </li>
+          <li id="area">
+            <span>Area :</span>
+            <span></span>
+          </li>
+          <li id="flatnumber">
+            <span>Flat Number :</span>
+            <span></span>
+          </li>
+          <li id="landmark">
+            <span>Landmark :</span>
+            <span></span>
+          </li>
+          <li id="contact">
+            <span>Contact :</span>
+            <span></span>
+          </li>
+        </ul>
+        <hr />
+        <p><a href="/account/address/edit" style="color: #A1B985;">change address</a></p>
 
-            <p id="number">Phone number: 9999999999‬</p><br>
+      </div>
 
-            <p><a href="/account/address/edit" style="color: #A1B985;">Edit</a></p>
-            
-            <br>
-           
-        </div>
-   
-</div>
-</section>
-<br><br>
+    </div>
+  </section>
+  <style>
+    ul {
+      padding: 0;
+      margin: 0;
+      font-size: 1.4rem;
+      list-style: none;
+    }
 
+    ul>li {
+      margin: 15px 0;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
+    ul>li>span:nth-child(1) {
+      color: grey;
+    }
+  </style>
+  <script>
     function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
+      document.getElementById("mySidenav").style.width = "250px";
+    }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
 
-</script>
+  </script>
 
 
 </body>
+
+<script defer src="/public/main_js/status.js"></script>
 <script defer src="/public/main_js/search.js"></script>
+<script defer src="/public/main_js/origins.js"></script>
+<script defer src="/public/main_js/address.js"></script>
+<script defer>
+  window.addEventListener("DOMContentLoaded",() => getAddress());
+</script>
+
 </html>

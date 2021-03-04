@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMEZ | Setting</title>
+  <link rel="stylesheet" href="/public/css/status.css">
   <link rel="stylesheet" href="/public/css/product.css">
   <link rel="stylesheet" href="/public/css/account.css">
   <link rel="stylesheet" href="css\footer.css">
@@ -12,14 +13,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
     crossorigin="anonymous" />
-    <link rel="stylesheet" href="/public/css/footer1.css">
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/footer1.css">
+  <link href="/public/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
 
 <body>
+  <!--status-->
+  <div style="background-color:brown" class="status">
+    <p></p>
+    <span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
+  </div>
+  <!--status-->
   <header>
     <nav>
       <div id="navbar">
@@ -110,35 +117,28 @@
     <div class="panel">
 
       <div class="panel2" id="editing">
-        <form>
-        <div class="product">
-          <p>Edit your address</p>
 
-          <br>
-         
+        <form class="address-form">
           <p class="new-name">Full name (First and Last name)</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="name"></input><br>
           <p class="new-name">PIN code</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="zipcode"></input><br>
           <p class="new-name">Flat, House no., Building, Company, Apartment</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="flatnumber"></input><br>
           <p class="new-name">Area, Colony, Street, Sector, Village</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="area"></input><br>
           <p class="new-name">Landmark</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="landmark"></input><br>
           <p class="new-name">Town/City</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="city"></input><br>
           <p class="new-name">State / Province / Region</p>
-          <input id="" class="name"></input><br>
+          <input class="name" name="state"></input><br>
+          <p class="new-name">Contact</p>
+          <input class="name" name="contact"></input><br>
           <button id="btn">Save Changes</button>
-       
-        </div>
-      </form>
+        </form>
 
       </div>
-
-
-
 
     </div>
   </div>
@@ -158,5 +158,15 @@
 
 
 </body>
+
 <script defer src="/public/main_js/search.js"></script>
+<script defer src="/public/main_js/status.js"></script>
+<script defer src="/public/main_js/origins.js"></script>
+<script defer src="/public/main_js/address.js"></script>
+<script defer>
+  const form = document.querySelector(".address-form");
+  console.log(form);
+  form.addEventListener("submit", (e) => getFormData(e));
+</script>
+
 </html>
