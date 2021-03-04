@@ -60,8 +60,9 @@
 				<div id="logo" class="reverse">
 					<div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
 						onclick="openNav()">&#9776;</div>
-					
-					<div class="logo" style="margin-left: 15px;" ><a href="/home" ><img src="public/images/dmez.png" width="45" height="64"></img>
+
+					<div class="logo" style="margin-left: 15px;"><a href="/home"><img src="public/images/dmez.png"
+								width="45" height="64"></img>
 						</a></div>
 
 
@@ -71,16 +72,14 @@
 				<sub-header id="links">
 					<br>
 					<div class="search-bar">
-			
+
 						<div class="search">
 							<form class="search-container">
-								<input type="text" id="search-bar" placeholder="Search for medicines">
-								<a href="#"><i id="icon" class="fas fa-search"></i></a>
+								<input type="text" id="search-bar" name="data" placeholder="Search for medicines">
+								<button><i id="icon" class="fas fa-search"></i></button>
 							</form>
-			
 						</div>
-			
-			
+
 					</div>
 				</sub-header>
 
@@ -108,8 +107,8 @@
 			<a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Casrt</a>
 			<div class="search">
 				<form class="search-container">
-					<input type="text" id="search-bar" placeholder="Search for medicines">
-					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+					<input type="text" id="search-bar" name="data" placeholder="Search for medicines">
+					<a href="#"><i id="icon" class="fas fa-search"></i></a>
 				</form>
 
 			</div>
@@ -265,39 +264,45 @@
 			<div class="col-sm-12 padding-right" id="main_container">
 				<h2 class="title text-center">Features Items</h2>
 				<!--features_items-->
-				<div class="features_items">
+				<div class="features_items empty">
 
+					<!---->
+					<div class="loader">
+
+					</div>
 					<!--
-						<div class="loader">
-
-					</div>-->
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="images\medicine.jpg" alt="" />
-								
+									<img src="/public/images/medicine.jpg" alt="" />
+
 									<div class="discounts">
-									<h2>₹84 </h2> <h5 style="color: #9797A3;"><del>₹98</del></h5> <p id="off" style="color: #00A500;"> 15%off</p>
-								</div>
-								<p>Medicine</p>
-									<span onclick="addToCart(event)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</span>
+										<h2>₹84 </h2>
+										<h5 style="color: #9797A3;"><del>₹98</del></h5>
+										<p id="off" style="color: #00A500;"> 15%off</p>
+									</div>
+									<p>Medicine</p>
+									<span onclick="addToCart(event)" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>Add to cart</span>
 								</div>
 							</div>
 							<br>
 							<style>
-								.discounts h2,h5, #off{
-								display: inline-block;
+								.discounts h2,
+								h5,
+								#off {
+									display: inline-block;
 								}
 							</style>
-						   <!-- <div class="choose">
+							<div class="choose">
 								<ul class="nav nav-pills nav-justified">
 								   <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 								</ul>
-						   </div> -->
+						   </div> 
 						</div>
-					</div>
-					
+					</div>-->
+
 
 				</div>
 
@@ -426,10 +431,10 @@
 	<script src="public/js/jquery.prettyPhoto.js"></script>
 	<script src="public/js/main.js"></script>
 
-	<!--main_js
+	<!--main_js-->
 	<script defer src="/public/main_js/status.js"></script>
 	<script defer src="/public/main_js/origins.js"></script>
-	<script defer src="/public/main_js/products.js"></script>-->
+	<script defer src="/public/main_js/products.js"></script>
 </body>
 
 </html>

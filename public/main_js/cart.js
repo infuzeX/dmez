@@ -135,7 +135,7 @@ function deleteCartItem(e) {
 
 function proceedToCheckout() {
     handleLoader(cartLoader, 'proceeding to cart', 'active')
-    xhr.open('POST', `${origin}/api/v1/checkout`);
+    xhr.open('POST', `api/v1/checkout`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({ offer_id: null }));
 }
@@ -153,7 +153,7 @@ xhr.onload = function () {
         showStatus(res);
         return
     }
-
+   
     if (res.data.cart) {
         cart = { ...cart, ...res.data.cart };
         res.data.cart = null;
@@ -174,13 +174,11 @@ xhr.onload = function () {
         showStatus(res);
         return;
     }
-
-     //if cart data present
-     if (res.data) {
-        window.location.href = `/cart/${res.data}`;
-        return;
+   
+    if (!res.data) {
+       window.location.href = `/cart/${res.data}`;
+       return;
     }
-
 }
 
 xhr.onerror = function () {
