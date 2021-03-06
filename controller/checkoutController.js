@@ -21,6 +21,7 @@ exports.verifyCart = catchAsync(async (req, res, next) => {
 
 //CREATE PAYMENT ORDER IN RAZORPAY
 exports.createOrder = catchAsync(async (req, res, next) => {
+    const domain = ['127.0.0.1', 'https://dmezshop.herokuapp' ]
     //CHECK DELIVERY CHARGES
     req.cart["charge"] = req.cart["totalAmount"] >= 400 ? 0 : 80;
     //CREATE ORDER
@@ -30,14 +31,14 @@ exports.createOrder = catchAsync(async (req, res, next) => {
         //offer_id: req['body'] || req['body']['offer_id'] || null,
         notes: req.cart,
     });
-
+    const isProd = (process.env.NODE_ENV === "production");
     res
         .status(200)
         .cookie("order", order.id, {
             maxAge: 15 * 60 * 1000,
-            domain: "127.0.0.1",
+            domain: domain[(isProd + 0)],
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: isProd,
         })
         .json({ status: "success", path:'/cart/checkout' });
 });
