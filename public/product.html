@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/public/css/footer1.css">
     <link rel="stylesheet" href="/public/css/product.css">
     <link rel="stylesheet" href="/public/css/status.css">
+    <link rel="stylesheet" href="public/css/header.css">
     <style>
         .container {
             position: relative;
@@ -25,7 +26,14 @@
             height: 100%;
             position: absolute;
             background-color: white;
-            z-index:100;
+            z-index: 100;
+        }
+    </style>
+    <style>
+        .discounts div,
+        h5,
+        #off {
+            display: inline-block;
         }
     </style>
     <!-- Plugins CSS File -->
@@ -43,7 +51,7 @@
     <!--status-->
     <div style="background-color:brown" class="status">
         <p></p>
-        <span onclick="closeStatus(event)">CLOSE</span>
+        <span onclick="closeStatus(event)"><i class="fas-fa-window-close"></i></span>
     </div>
     <!--status-->
     <header>
@@ -52,14 +60,29 @@
                 <div id="logo" class="reverse">
                     <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;"
                         onclick="openNav()">&#9776;</div>
-                    <div class="logos"><a href="/"><img src="/public/images/dmez.png" width="45" height="30"></img></a>
+                    <div class="logos"><a href="/"><img src="/public/images/dmez.png" width="45" height="20"></img></a>
                     </div>
 
                 </div>
+
+                <sub-header id="links">
+                    <br>
+                    <div class="search-bar">
+
+                        <div class="search">
+                            <form class="search-container">
+                                <input type="text" id="search-bar" placeholder="Search for medicines">
+                                <a><i id="icon" class="fas fa-search"></i></a>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </sub-header>
                 <div id="links">
-                    <a href="/">Home</a>
                     <a href="/products">Shop</a>
-                    <a href="/account">Account</a>
+                    <a href="/account"><i class="fas fa-user-circle"></i> Account</a>
                     <a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
 
                 </div>
@@ -75,9 +98,6 @@
             <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
         </div>
     </header>
-
-
-
 
     <div class="page-wrapper">
 
@@ -160,7 +180,9 @@
                                     <!--product-title -->
                                     <h1 class="product-title product-element">PRODUCT NAME</h1>
                                     <!--product-price -->
-                                    <div class="product-price product-element">₹00.00</div>
+                                    <div class="discounts product-element">
+
+                                    </div>
                                     <!--product-description -->
                                     <div class="product-content product-element">
                                         <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
@@ -228,17 +250,35 @@
                                 aria-labelledby="product-shipping-link">
                                 <div class="product-desc-content">
                                     <h3>Delivery & returns</h3>
-                                    <p>We deliver to over 100 countries around the world. For full details of the
-                                        delivery options we offer, please view our <a href="#">Delivery
-                                            information</a><br>
-                                        We hope you’ll love every purchase, but if you ever need to return an item you
-                                        can do so within a month of receipt. For full details of how to make a return,
-                                        please view our <a href="#">Returns information</a></p>
+                                    <p>Serving across an entire nation with 28 states, 8 union territories, more than 46
+                                        million cities and a family of 130 crore people, we strongly believe in the
+                                        ideology of 'Vasudhaiv Kutumbakam'. The health and happiness of our people is
+                                        the vision of our brand.<br>
+                                        Our deliveries reach all corners of India. So fear not before ordering. We will
+                                        be there knocking at your doors soon !</p>
                                 </div><!-- End .product-desc-content -->
                             </div><!-- .End .tab-pane -->
 
                         </div><!-- End .tab-content -->
                     </div><!-- End .product-details-tab -->
+
+
+
+
+                    <div class="bulk">
+
+
+                        <p>Contact for bulk order</p>
+                        <button type="button" class="btn btn-light"><img
+                                src="https://img.icons8.com/android/24/000000/right.png" /></button>
+                    </div>
+
+
+
+                    <br><br>
+
+
+
 
                     <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
 
@@ -453,6 +493,7 @@
 
 
     </div><!-- End .page-wrapper -->
+
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
     <script>
         function openNav() {
@@ -479,11 +520,11 @@
     <!-- Other JS File -->
     <script src="/public/assets/js/main.js"></script>
 
-    <!--Main JS File
+    <!--Main JS File-->
     <script defer src="/public/main_js/status.js"></script>
     <script defer src="/public/main_js/origins.js"> </script>
+    <script defer src="/public/main_js/search.js"></script>
     <script defer src="/public/main_js/product.js"></script>
-    -->
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";

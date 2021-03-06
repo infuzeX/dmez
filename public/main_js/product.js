@@ -1,7 +1,7 @@
 const xhr = new XMLHttpRequest();
 const productId = window.location.pathname.split('/')[2];
 const productEl = document.querySelectorAll('.product-element');
-const [photo, gallery, title, price, description, information] = productEl;
+const [photo, gallery, title, discounts, description, information] = productEl;
 
 function removeLoader() {
     const container = document.querySelector('.get-container');
@@ -31,10 +31,20 @@ function formatImage(coverImage, images) {
     images.children[1].classList.add('active');
 }
 
-function formatProductData(_title, _price, _description) {
+function formatProductData(_title, _description) {
     title.textContent = _title;
-    price.textContent = `₹${_price}`;
     description.textContent = _description;
+}
+function formatPrice(price, discount) {
+    if (discount) {
+        discounts.innerHTML = `<div class="product-price product-element">₹${price - discount}</div> 
+        <h5 style="color: #9797A3;"><del>₹${price}</del></h5> 
+        <p id="off" style="color: #00A500;">${(discount / price) * 100}%off</p>`;
+    }
+    else {
+        discounts.innerHTML = `<div class="product-price product-element">₹${price - discount}</div>`
+    }
+
 }
 function formatInfo(sideEffects, ingredients) {
 
@@ -92,8 +102,9 @@ xhr.onload = function () {
         return;
     }
     if (res.data) {
-        const { title, price, description, sideEffects, ingredients } = res.data.product;
-        formatProductData(title, price, description);
+        const { title, price, discount, description, sideEffects, ingredients } = res.data.product;
+        formatProductData(title, description);
+        formatPrice(price, discount)
         formatInfo(sideEffects, ingredients);
         removeLoader();
     } else
