@@ -5,7 +5,8 @@ const PORT = process.env.PORT || 3001;
 
 mongoose.connect(process.env.MONGOURI || "mongodb://127.0.0.1:27017/dmez", {
   useNewUrlParser: true,
-  useUnifiedTopology:true
+  useUnifiedTopology:true,
+  useCreateIndex:true
 })
   .then(() => console.log("connected"))
   .catch(err => console.log(err.message))

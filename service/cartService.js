@@ -58,16 +58,7 @@ exports.cartDetails = async (customerId) => {
 };
 
 exports.cartDetails_new = async (customerId) => {
-  return await Cart.findOne(
-    {
-      customerId,
-    },
-    {
-      __v: 0,
-    }
-  )
-    .populate({
-      path: "customerId",
-    })
+  return await Cart.findOne({ customerId }, { __v: 0 })
+    .populate("customerId")
     .lean();
 };

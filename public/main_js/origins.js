@@ -4,4 +4,4 @@ const origins = {
    auth: ["http://127.0.0.1:8000", "https://dmezauth.herokuapp.com"],
 }
 
-const origin = origins['shop'][1]
+const origin = origins['shop'][1];

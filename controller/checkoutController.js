@@ -8,7 +8,7 @@ const cartService = require("../service/cartService");
 exports.verifyCart = catchAsync(async (req, res, next) => {
     const cart = (await cartService.cartSummary(req.userId))[0];
 
-    if (!cart && !cart.totalProducts)
+    if (!cart)
         return next(new AppError("No Item added in cart", 404));
 
     cart["customerId"] = req.userId.toString();
@@ -77,7 +77,7 @@ exports.verifyOrder = catchAsync(async (req, res, next) => {
 //PREVENT ILLEGAL MODIFICATION OF CART
 exports.verifyCheckout = catchAsync(async (req, res, next) => {
     //CART PROP SHOULD MATCH ORDER PROP
-    const verifyUser = req.order.customerId == req.cart.customerId._id;
+    const verifyUser = req.order.customerId == req.userId;
     const verifyCart = req.order.cartId == req.cart.cartId;
     const verifyCartAmount = req.order.totalAmount == req.cart.totalAmount;
     const verifyProducts = req.order.totalProducts == req.cart.totalProducts;
