@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const { verifyToken, preventPageAccess } = require("../controller/authController");
- const { verifyOrder } = require('../controller/checkoutController');
+const auth = require("../controller/authController");
+const checkout = require('../controller/checkoutController');
 const { renderStaticPage } = require("../controller/pageController");
 
 router.get('/login', (req, res) => renderStaticPage(res, 'login.html'));
@@ -12,13 +12,21 @@ router.get('/home', (req, res) => renderStaticPage(res, 'home.html'));
 router.get('/career', (req, res) => renderStaticPage(res, 'career.html'));
 router.get('/contact', (req, res) => renderStaticPage(res, 'contact.html'));
 router.get('/term&conditions', (req, res) => renderStaticPage(res, 'tnc.html'));
+router.get('/privacy&policy', (req, res) => renderStaticPage(res, 'privacy-policy.html'))
 
 router.get('/products', (req, res) => renderStaticPage(res, 'shop.html'));
 router.get('/products/:id', (req, res) => renderStaticPage(res, 'product.html'));
 
 //PROTECTED ROUTES
 router.get('/cart', (req, res) => renderStaticPage(res, 'cart.html'));
-router.get('/cart/checkout', verifyOrder, (req, res) => renderStaticPage(res, 'checkout.html'));
+router.get('/cart/checkout',
+    auth.verifyToken,
+    auth.preventApiAccess,
+    checkout.verifyGETCart,
+    checkout.verifyOrder,
+    checkout.verifyCheckout,
+    checkout.renderCheckoutPage
+);
 
 router.get('/account', (req, res) => renderStaticPage(res, 'account.html'));
 

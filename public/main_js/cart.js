@@ -135,7 +135,7 @@ function deleteCartItem(e) {
 
 function proceedToCheckout() {
     handleLoader(cartLoader, 'proceeding to cart', 'active')
-    xhr.open('POST', `api/v1/checkout`);
+    xhr.open('POST', '/api/v1/checkout');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({ offer_id: null }));
 }
@@ -154,6 +154,11 @@ xhr.onload = function () {
         return
     }
    
+    if (res.path) {
+        window.location.href = res.path;
+        return;
+    }
+
     if (res.data.cart) {
         cart = { ...cart, ...res.data.cart };
         res.data.cart = null;
@@ -175,10 +180,6 @@ xhr.onload = function () {
         return;
     }
    
-    if (!res.data) {
-       window.location.href = `/cart/${res.data}`;
-       return;
-    }
 }
 
 xhr.onerror = function () {

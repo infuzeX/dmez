@@ -11,13 +11,5 @@ router
     checkout.verifyCart,
     checkout.createOrder
   )
-  .get(
-    auth.verifyToken,
-    auth.preventApiAccess,
-    checkout.verifyCart,
-    checkout.verifyOrder,
-    checkout.verifyCheckout,
-    checkout.renderCheckoutPage
-  );
 
 module.exports = router;
