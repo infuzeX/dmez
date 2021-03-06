@@ -21,7 +21,6 @@ exports.verifyCart = catchAsync(async (req, res, next) => {
 
 //CREATE PAYMENT ORDER IN RAZORPAY
 exports.createOrder = catchAsync(async (req, res, next) => {
-    const domain = ['127.0.0.1', 'https://dmezshop.herokuapp.com' ]
     //CHECK DELIVERY CHARGES
     req.cart["charge"] = req.cart["totalAmount"] >= 400 ? 0 : 80;
     //CREATE ORDER
@@ -36,7 +35,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
         .status(200)
         .cookie("order", order.id, {
             maxAge: 15 * 60 * 1000,
-            domain: domain[(isProd + 0)],
+            domain: process.env.DOMAIN,
             httpOnly: true,
             secure: isProd,
         })
