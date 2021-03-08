@@ -37,13 +37,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-	<link rel="shortcut icon" href="public/images/ico/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" sizes="144x144"
-		href="public/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114"
-		href="public/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="public/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="/public/images/ico/apple-touch-icon-57-precomposed.png">
+
 </head>
 <!--/head-->
 
@@ -51,17 +45,18 @@
 	<!--status-->
 	<div style="background-color:brown" class="status">
 		<p></p>
-		<span onclick="closeStatus(event)">CLOSE</span>
-	</div>
-	<!--status-->
+		<span onclick="closeStatus(event)"><i class="fas-fa-window-close"></i></span>
+	  </div>
+	  <!--status-->
 	<header>
 		<nav>
 			<div id="navbar">
 				<div id="logo" class="reverse">
 					<div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
 						onclick="openNav()">&#9776;</div>
-					
-					<div class="logo" style="margin-left: 15px;" ><a href="/home" ><img src="public/images/dmez.png" width="45" height="64"></img>
+
+					<div class="logo" style="margin-left: 15px;"><a href="/home"><img src="public/images/dmez.png"
+								width="45" height="64"></img>
 						</a></div>
 
 
@@ -71,16 +66,14 @@
 				<sub-header id="links">
 					<br>
 					<div class="search-bar">
-			
+
 						<div class="search">
 							<form class="search-container">
-								<input type="text" id="search-bar" placeholder="Search for medicines">
-								<a href="#"><i id="icon" class="fas fa-search"></i></a>
+								<input type="text" id="search-bar" name="data" placeholder="Search for medicines">
+								<button><i id="icon" class="fas fa-search"></i></button>
 							</form>
-			
 						</div>
-			
-			
+
 					</div>
 				</sub-header>
 
@@ -108,8 +101,8 @@
 			<a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Casrt</a>
 			<div class="search">
 				<form class="search-container">
-					<input type="text" id="search-bar" placeholder="Search for medicines">
-					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+					<input type="text" id="search-bar" name="data" placeholder="Search for medicines">
+					<a href="#"><i id="icon" class="fas fa-search"></i></a>
 				</form>
 
 			</div>
@@ -265,30 +258,45 @@
 			<div class="col-sm-12 padding-right" id="main_container">
 				<h2 class="title text-center">Features Items</h2>
 				<!--features_items-->
-				<div class="features_items">
+				<div class="features_items empty">
 
+					<!---->
+					<div class="loader">
+
+					</div>
 					<!--
-						<div class="loader">
-
-					</div>-->
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="images\medicine.jpg" alt="" />
-									<h2>$56</h2>
-									<p>medicine</p>
-									<span onclick="addToCart(event)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</span>
+									<img src="/public/images/medicine.jpg" alt="" />
+
+									<div class="discounts">
+										<h2>₹84 </h2>
+										<h5 style="color: #9797A3;"><del>₹98</del></h5>
+										<p id="off" style="color: #00A500;"> 15%off</p>
+									</div>
+									<p>Medicine</p>
+									<span onclick="addToCart(event)" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>Add to cart</span>
 								</div>
 							</div>
-						   <div class="choose">
+							<br>
+							<style>
+								.discounts h2,
+								h5,
+								#off {
+									display: inline-block;
+								}
+							</style>
+							<div class="choose">
 								<ul class="nav nav-pills nav-justified">
 								   <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 								</ul>
-						   </div>
+						   </div> 
 						</div>
-					</div>
-					
+					</div>-->
+
 
 				</div>
 
@@ -313,23 +321,23 @@
 	<footer class="site-footer">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12 col-md-3">
+				<div class="col-lg-3 col-md-12 ">
 					<h4><span style="color: #E5CAAF;">Guaranteed 100%</span> Orginal items</h4>
 					<br>
 					<h6>Company</h6>
 					<ul class="footer-links">
-						<li><a href="">Career</a></li>
-						<li><a href="">About Us</a></li>
-						<li><a href="">Partner with DMEZ</a></li>
+						<li><a href="career.html">Career</a></li>
+						<li><a href="about-us.html">About Us</a></li>
+						<li><a href="partner-dmez.html">Partner with DMEZ</a></li>
 						<h6>Our Services</h6>
-						<li><a href="">our Medicine</a></li>
+						<li><a href="">Our Medicine</a></li>
 						<li><a href="">Ayurvedic Products</a></li>
 						<li><a href="">Organic Food</a></li>
 
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-md-3">
+				<div class="col-lg-3 col-md-12 ">
 					<h4> <span style="color: #E5CAAF;">Easy Returns</span> on each damaged items</h4>
 					<br>
 					<h6>Featured Categories</h6>
@@ -346,23 +354,23 @@
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-md-3">
+				<div class="col-lg-3 col-md-12 ">
 					<h4> <span style="color: #E5CAAF;">Free delivery for every</span> order more than Rs400</h4>
 					<br>
 					<h6>Need Help</h6>
 					<ul class="footer-links">
 						<li><a href="">Browse All Medicines</a></li>
-						<li><a href="">Browse All Molecules</a></li>
-						<li><a href="">FAQs</li>
+						<!-- <li><a href="">Browse All Molecules</a></li> -->
+						<!-- <li><a href="">FAQs</li> -->
 						<li><a href="">Contact</a></li>
 						<h6>Policy Info</h6>
-						<li><a href="">Editorial Policy</a></li>
-						<li><a href="">Privacy Policy</li>
-						<li><a href="">Terms and condition</a></li>
+						<!-- <li><a href="">Editorial Policy</a></li> -->
+						<li><a href="privacy-policy.html">Privacy Policy</li>
+						<li><a href="tnc.html">Terms and condition</a></li>
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-md-3">
+				<div class="col-lg-3 col-md-12 ">
 					<h4><span style="color: #E5CAAF;">Guaranteed discount</span> on every products</h4>
 					<br>
 					<h6>Dmez</h6>
@@ -417,10 +425,10 @@
 	<script src="public/js/jquery.prettyPhoto.js"></script>
 	<script src="public/js/main.js"></script>
 
-	<!--main_js
+	<!--main_js-->
 	<script defer src="/public/main_js/status.js"></script>
 	<script defer src="/public/main_js/origins.js"></script>
-	<script defer src="/public/main_js/products.js"></script>-->
+	<script defer src="/public/main_js/products.js"></script>
 </body>
 
 </html>

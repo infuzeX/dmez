@@ -7699,9 +7699,9 @@ a:focus {
   align-items: center;
   flex-flow: wrap;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 1.25;
-  color: #A1B985;
+  color: black;
   margin-bottom: 1.3rem; }
 
 .new-price {
@@ -16809,3 +16809,29 @@ button:focus {
 /* '' */
 
 /*# sourceMappingURL=style.css.map */
+/******************************************bulk-order**********************************/
+.bulk{
+ background-color: #e5a99f;
+text-align: center;
+width: 50%;
+margin: 0 auto;
+
+}
+.bulk p{
+  padding: 30px;
+  font-size: 25px;
+  color: black;
+  font-weight: 400;
+}
+.bulk button{
+  margin-left: 30px;
+}
+@media only screen and (max-width: 600px) {
+  .bulk{
+    background-color: #e5a99f;
+   text-align: center;
+  width: 100%;
+   
+   }
+  
+}

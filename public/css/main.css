@@ -570,7 +570,7 @@ ul.sub-menu {
 }
 
 .item {
-  padding-left: 100px;
+ 
 }
 
 .pricing {
@@ -984,18 +984,20 @@ h2.title {
 }
 
 .category-tab ul {
-  background: #40403e;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
   border-bottom: 1px solid #a1b985;
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
-  width: 100%;
+ 
 }
 
 .category-tab ul li a {
   border: 0 none;
   border-radius: 0;
-  color: white;
+  color: black;
+  font-weight: 700;
   display: block;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
