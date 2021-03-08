@@ -12,7 +12,9 @@ router.get('/home', (req, res) => renderStaticPage(res, 'home.html'));
 router.get('/career', (req, res) => renderStaticPage(res, 'career.html'));
 router.get('/contact', (req, res) => renderStaticPage(res, 'contact.html'));
 router.get('/term&conditions', (req, res) => renderStaticPage(res, 'tnc.html'));
-router.get('/privacy&policy', (req, res) => renderStaticPage(res, 'privacy-policy.html'))
+router.get('/privacy&policy', (req, res) => renderStaticPage(res, 'privacy-policy.html'));
+router.get('/partner-dmez', (req, res) => renderStaticPage(res, 'partner-dmez.html'));
+router.get('/aboutus', (req, res) => renderStaticPage(res, 'aboutus.html'));
 
 router.get('/products', (req, res) => renderStaticPage(res, 'shop.html'));
 router.get('/products/:id', (req, res) => renderStaticPage(res, 'product.html'));
@@ -41,6 +43,12 @@ router.get('/account/orders', (req, res) => renderStaticPage(res, 'order.html'))
 
 router.get('/account/address', (req, res) => renderStaticPage(res, 'address.html'));
 router.get('/account/address/edit', (req, res) => renderStaticPage(res, 'newaddress.html'));
+
+
+router.get('/career', (req, res) => renderStaticPage(res, 'career.html'));
+
+router.get('/aboutus', (req, res) => renderStaticPage(res, 'aboutus.html'));
+
 
 router.get('*', (req, res) => renderStaticPage(res, '404.html'));
 
