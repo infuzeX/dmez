@@ -8,7 +8,7 @@ router
   .post(
     auth.verifyToken,
     auth.preventApiAccess,
-    checkout.verifyCart,
+    checkout.checkCart,
     checkout.createOrder
   )
 

@@ -27,7 +27,7 @@
 			key: "<%=data.key%>",
 			orderId: "<%=data.order%>",
 			name: 'Dmez',
-			amount: '<%=data.amount%>',
+			amount: '<%=data.total%>' * 100,
 			currency: "INR",
 			prefill: {
 				name: "<%=user.name%>",
@@ -122,40 +122,40 @@
 									<div class="row">
 										<div class="col-sm-6 col-ms-6">
 											<label id="fname">Name:</label>
-											<span><%= data.customerId.address.name%></span>
+											<span><%= address.name%></span>
 										</div><!-- End .col-sm-6 -->
 
 
 									</div><!-- End .row -->
 
 									<label id="street">house/flat number:
-										<span><%= data.customerId.address.flatnumber%></span></label>
+										<span><%= address.flatnumber%></span></label>
 
 									<div class="row">
 										<div class="col-sm-6">
 											<label id="city">Town / City: <%= data.customerId.address.city%> </label>
-											<span><%= data.customerId.address.city%></span>
+											<span><%= address.city%></span>
 										</div><!-- End .col-sm-6 -->
 
 										<div class="col-sm-6">
 											<label id="state">State:</label>
-											<span><%= data.customerId.address.state%></span>
+											<span><%= address.state%></span>
 										</div><!-- End .col-sm-6 -->
 									</div><!-- End .row -->
 
 									<div class="row">
 										<div class="col-sm-6">
 											<label id="zip">Postcode / ZIP:</label>
-											<span><%= data.customerId.address.zipcode%></span>
+											<span><%= address.zipcode%></span>
 										</div><!-- End .col-sm-6 -->
 
 										<div class="col-sm-6">
 											<label id="phone">Phone:</label>
-											<span><%= data.customerId.address.contact%></span>
+											<span><%= address.contact%></span>
 										</div><!-- End .col-sm-6 -->
 									</div><!-- End .row -->
 
-									<label id="emailadd">Email address: <span><%=data.customerId.email%></span> </label>
+									<label id="emailadd">Email address: <span><%=user.email%></span> </label>
 
 
 
@@ -189,7 +189,7 @@
 												</tr><!-- End .summary-subtotal -->
 												<tr>
 													<td>Shipping:</td>
-													<% if(data.totalAmount >= 400) {%>
+													<% if(!data.charge) {%>
 													<td>Free shipping</td>
 													<%} else {%>
 													<td>₹80</td>
@@ -197,13 +197,14 @@
 												</tr>
 												<tr class="summary-total">
 													<td>Total:</td>
-													<td>₹<%= data.totalAmount + (data.totalAmount >= 400 ? 0: 80) %></td>
+													<td>₹<%= data.total %></td>
 												</tr><!-- End .summary-total -->
 											</tbody>
 										</table><!-- End .table table-summary -->
 
-										<button onclick="initPayment()" type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-											<span class="btn-text">Place Order</span>
+										
+										<button onclick="initPayment()" class="btor ">
+											<span class="btn-text" >Place Order</span>
 										</button>
 									</div><!-- End .summary -->
 								</aside><!-- End .col-lg-3 -->
