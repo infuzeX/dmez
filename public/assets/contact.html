@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMEZ | Contact</title>
@@ -17,41 +18,94 @@
     crossorigin="anonymous" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMEZ | Contact</title>
+    <link rel="stylesheet" href="css\footer.css">
+    <link rel="stylesheet" href="/public/css/footer1.css">
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
 
 <body>
-  <header>
-    <nav>
-      <div id="navbar">
-        <div id="logo" class="reverse">
-          <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;
-          </div>
-          <div class="logo"><a href="index.html"><img src="/public/images/dmez.png" width="45" height="64"></img> </div>
-
-        </div>
-        <div id="links">
-          <a href="index.html">Home</a>
-          <a href="shop.html">Shop</a>
-          <a href="login.html">Account</a>
-          <a href="checkout.html"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
-
-        </div>
-      </div>
-
-    </nav>
-    <!-- Mobile Menu -->
-    <div id="mySidenav" class="sidenav">
-      <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Home</a>
-      <a href="#">Gallery</a>
-      <a href="#">Blog</a>
-      <a href="#">Portfolio</a>
-      <a href="#">Contact</a>
-    </div>
-  </header>
+  
   <sub-header>
+
+		<nav>
+			<div id="navbar">
+				<div id="logo" class="reverse">
+					<div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
+						onclick="openNav()">&#9776;</div>
+					
+					<div class="logo" style="margin-left: 15px;" ><a href="/home" ><img src="/public/images/dmez.png" width="45" height="64"></img>
+						</a></div>
+
+
+				</div>
+
+
+				<sub-header id="links">
+					<br>
+					<div class="search-bar">
+			
+						<div class="search">
+							<form class="search-container">
+								<input type="text" id="search-bar" placeholder="Search for medicines">
+								<a href="#"><i id="icon" class="fas fa-search"></i></a>
+							</form>
+			
+						</div>
+			
+			
+					</div>
+				</sub-header>
+
+
+
+
+
+
+				<div id="links">
+
+					<a href="/products">Shop</a>
+					
+					<a href="/account"><i class="fas fa-user-circle"></i> Account</a>
+					<a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
+
+				</div>
+			</div>
+
+		</nav>
+		<!-- Mobile Menu -->
+		<div id="mySidenav" class="sidenav">
+			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+			<a style="color: #A1B985;">Howdy!</a>
+			<a href="/">Home</a>
+			<a href="/products">Shop</a>
+			<a href="/account"> Account</a>
+			<a href="/cart">  Cart</a>
+			<a href="/products">Contact</a>
+			<div class="search">
+				<form class="search-container">
+					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
+					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+				</form>
+
+			</div>
+		</div>
+	</header>
+<sub-header>
+
     <div class="top-bar">
       <a href=""> <span class="select-1" style="color: white;">Contact Us</span></a> <br>
       <span class="select" style="color: BLACK;">Have questions about our products, support services, or anything else?
@@ -69,6 +123,7 @@
     <div class="contact">
       <!--<h2>Contact Us <i class="far fa-envelope"></i></h2><br>
       <div class="box2">
+
 
 
 
@@ -94,16 +149,46 @@
 
 
           <div class="space">
+
+           
+        
+       <form>
+            <div class="name space">
+                <span class="l1">Full Name</span><br>
+                <input  type="text" class="fname input" placeholder="Full Name" required>
+            </div>
+            <div class="number space">
+                <span class="l1">Mobile Number</span><br>
+                <input type="text" class="number input" placeholder="Mobile Number" required>
+            </div>
+            <div class="email space">
+                <span class="l1">Email</span><br>
+                <input type="email" class="email input" placeholder="Email" required>
+            </div>
+            <div class="email space">
+                <span class="l1">Message</span><br>
+                <input type="text" class="email input" placeholder="Message" required>
+            </div>
+          
+         
+
+  
+            
+
             <button class="btn">
               Submit
             </button>
+
           </div>
 
+       
 
-        </form>
 
 
-      </div> -->
+        </form> -->
+
+
+      </div> 
 
       <div class="row">
         <div class="col-12 col-md-8 col-md-offset-2" style="margin-top: 20px; margin-bottom: 20px;">

@@ -7321,19 +7321,12 @@ a:focus {
     background-color: transparent; }
 
 .btn-outline-primary-2 {
-  color: #A1B985;
+  color: black;
   background-color: transparent;
   background-image: none;
   border-color: #A1B985;
   box-shadow: none; }
-  .btn-outline-primary-2:hover, .btn-outline-primary-2:focus, .btn-outline-primary-2.focus, .btn-outline-primary-2:not(:disabled):not(.disabled):active, .btn-outline-primary-2:not(:disabled):not(.disabled).active, .show > .btn-outline-primary-2.dropdown-toggle {
-    color: #fff;
-    background-color: #A1B985;
-    border-color: #A1B985;
-    box-shadow: none; }
-  .btn-outline-primary-2.disabled, .btn-outline-primary-2:disabled {
-    color: #A1B985;
-    background-color: transparent; }
+
 
 .btn-outline-light {
   color: #fff;
@@ -16834,4 +16827,17 @@ margin: 0 auto;
    
    }
   
+}
+
+/*********************************************************07-03-2021**********************/
+.btor{
+  border-radius: 20px;
+  border: 1px solid #A1B985;
+  background-color: #A1B985;
+  width: 100%;
+  padding: 5px 50px 5px 50px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  color: white;
 }
