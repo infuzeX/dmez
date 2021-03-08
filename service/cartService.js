@@ -26,7 +26,7 @@ exports.cartSummary = async (customerId) => {
   ]);
 };
 
-exports.cartDetails = async (customerId) => {
+/*exports.cartDetails = async (customerId) => {
   return await Cart.aggregate([
     {
       $match: { customerId: mongoose.Types.ObjectId(customerId) },
@@ -55,10 +55,8 @@ exports.cartDetails = async (customerId) => {
       },
     },
   ]);
-};
+};*/
 
-exports.cartDetails_new = async (customerId) => {
-  return await Cart.findOne({ customerId }, { __v: 0 })
-    .populate("customerId")
-    .lean();
+exports.cartDetails = async (customerId) => {
+  return await Cart.findOne({ customerId }, { __v: 0 }).populate("customerId");
 };

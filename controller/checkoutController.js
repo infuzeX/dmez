@@ -2,9 +2,11 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const razorpay = require("../utils/pay").razorpayConfig();
 const jwt = require("../utils/jwt");
+
 const cartService = require("../service/cartService");
+
 //ENVIRONMENT VARIABLES
-const { NODE_ENV, SECRET, KEYID, DOMAIN } = process.env;
+const { NODE_ENV, ORDER_SECRET, KEY_ID, DOMAIN } = process.env;
 
 exports.checkCart = catchAsync(async (req, res, next) => {
   const cart = (await cartService.cartSummary(req.userId))[0];
@@ -16,17 +18,18 @@ exports.checkCart = catchAsync(async (req, res, next) => {
   next();
 });
 
+//HANDLERS
 exports.createOrder = catchAsync(async (req, res, next) => {
-  if (req.body.cod) return next();
-
   req.cart["charge"] = req.cart["totalAmount"] >= 400 ? 0 : 80;
-
   const order = await razorpay.orders.create({
     amount: (req.cart["totalAmount"] + req.cart["charge"]) * 100,
     currency: "INR",
   });
 
-  const token = await jwt.sign(req.cart, SECRET);
+  req.cart["orderId"] = order.id;
+
+  console.log(req.cart);
+  const token = await jwt.sign(req.cart, ORDER_SECRET);
   res
     .status(200)
     .cookie("_ciic_", token, {
@@ -37,55 +40,47 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     .json({ status: "success", path: "/cart/checkout" });
 });
 
-//PREVENT EMPTY CART FOR GET ORDER
-exports.verifyGETCart = catchAsync(async (req, res, next) => {
-  const cart = await cartService.cartDetails_new(req.userId);
-
-  if (!cart) res.redirect("/cart");
-
-  cart["totalAmount"] = 0;
-  cart["totalProducts"] = 0;
-
-  cart.products.forEach(({ price, discount, quantity }) => {
-    cart["totalAmount"] += quantity * (price - discount);
-    cart["totalProducts"] += 1;
-  });
-
-  cart["cartId"] = cart["_id"].toString();
-  delete cart["_id"];
-  req.cart = cart;
-  next();
-});
-
 //VERIFY ORDER BEFORE RENDERING CHECKOUT PAGE
-exports.verifyOrder = catchAsync(async (req, res, next) => {
-  const token = req.cookies._ciic_;
-  const checkout = jwt.verify(token, SECRET);
-  req.checkout = checkout;
-  next();
-});
+exports.verifyOrder = async (req, res, next) => {
+  console.log("in verify order");
+  try {
+    const token = req.cookies._ciic_;
+    if (!token) throw "err";
+    req.checkout = await jwt.verify(token, ORDER_SECRET);
+    next();
+  } catch (err) {
+    res.redirect("/cart");
+  }
+};
 
-//PREVENT ILLEGAL MODIFICATION OF CART
+//VERIFY CART BEFORE RENDERING CHECKOUT PAGE
+exports.verifyGETCart = async (req, res, next) => {
+  console.log("In verify get cart");
+  const cart = await cartService.cartDetails(req.userId);
+  if (!cart) return res.redirect("/cart");
+  cart["_id"] = cart["_id"].toString();
+  req.cart = cart.toJSON();
+  next();
+};
+
 exports.verifyCheckout = catchAsync(async (req, res, next) => {
-  //CART PROP SHOULD MATCH ORDER PROP
-  const verifyUser = req.checkout.customerId == req.userId;
-  const verifyCart = req.checkout.cartId == req.cart.cartId;
-  const verifyCartAmount = req.order.totalAmount == req.cart.totalAmount;
-  const verifyProducts = req.order.totalProducts == req.cart.totalProducts;
-
-  if (!verifyUser || !verifyCart || !verifyCartAmount || !verifyProducts)
-    return res.redirect("/cart");
-
-  next();
+  const { _id, customerId, totalAmount } = req.checkout;
+  if (
+    customerId == req.userId &&
+    _id == req.cart.id &&
+    totalAmount == req.cart.totalAmount
+  ) {
+    return next();
+  }
+  res.redirect("/cart");
 });
 
-exports.renderCheckoutPage = (req, res) => {
-  res.render("checkout.ejs", {
-    data: {
+exports.renderCheckoutPage = (req, res) => { 
+  res.render("checkout.ejs", {data: {
       ...req.cart,
       key: KEY_ID,
-      amount: req.order.amount,
-      order: req.order.orderId,
-    },
-  });
+      order: req.checkout.orderId,
+      charge:req.checkout.charge,
+      total:(req.checkout.charge + req.checkout.totalAmount)
+  }});
 };
