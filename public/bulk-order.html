@@ -26,6 +26,16 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+	<script>
+		function green(event) {
+		  event.target.style.borderColor = "#789461";
+		  event.target.style.borderWidth = "2px";
+		}
+	  </script>
+	
+	  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 </head>
 <!--/head-->
 
@@ -119,43 +129,43 @@
                         <form class="form-signin">
 
                             <div class="form-label-group" style="margin-top: 60px;">
-                                <input type="text" id="med-name" class="form-control" placeholder="Medicine Name" required
+                                <input type="text" id="med_name" class="form-control" placeholder="Medicine Name" required onfocus="green(event)"
                                      autofocus style=" border: 2px solid #789461;"/>
-                                <label id="labelMedName" for="med-name">Medicine Name</label>
+                                <label id="labelMedName" for="med_name">Medicine Name</label>
                             </div>
 
-                            <div class="form-label-group" style="margin-top: 20px;">
-                                <input type="text" id="quantity" class="form-control" placeholder="Quantity" required
+                            <div  class="form-label-group" style="margin-top: 20px;">
+                                <input type="number" id="quan" class="form-control" placeholder="Quantity" required onfocus="green(event)"
                                      autofocus style=" border: 2px solid #789461;"/>
-                                <label id="labelQuantity" for="quantity">Quantity</label>
+                                <label id="labelQuan" for="quan">Quantity</label>
                             </div>
                              
                             <div class="form-label-group" style="margin-top: 20px;">
-                                <input type="text" id="name" class="form-control" placeholder="User Name" required
+                                <input type="text" id="name" class="form-control" placeholder="User Name" required onfocus="green(event)"
                                      autofocus style=" border: 2px solid #789461;"/>
                                 <label id="labelName" for="name">User Name</label>
                             </div>
                              
                             <div class="form-label-group" style="margin-top: 20px;">
-                                <input type="email" id="email" class="form-control" placeholder="Email address"
+                                <input type="email" id="email" class="form-control" placeholder="Email address" onfocus="green(event)"
                                      required style=" border: 2px solid #789461;"/>
                                 <label id="labelEmail" for="email">Email Address</label>
                             </div>
                              
                             <div class="form-label-group" style="margin-top: 20px;">
-                                <input type="tel" id="phone" class="form-control" placeholder="Contact Number"
+                                <input type="tel" id="phone" class="form-control" placeholder="Contact Number" onfocus="green(event)"
                                     required style=" border: 2px solid #789461;"/>
                                 <label id="labelPhone" for="phone">Contact Number</label>
                             </div>
 
                             <div class="form-label-group" style="margin-top: 20px;">
-                                <input type="text" id="address" class="form-control" placeholder="Address"
+                                <input type="text" id="address" class="form-control" placeholder="Address" onfocus="green(event)"
                                      required style=" border: 2px solid #789461;"/>
                                 <label id="labelAddress" for="address">Address</label>
                             </div>
                              
                             <div style="text-align: center; margin-bottom: 20px;">
-                                <input class="btn btn-lg text-uppercase" value="Submit" id="sub" type="button" />
+                                <input class="btn btn-lg text-uppercase" value="Submit" id="submit-btn" type="button" />
                             </div>
                         </form>
                     </div>
@@ -276,5 +286,136 @@
 	<!--main_js-->
 	<script defer src="/public/main_js/search.js"></script>
 </body>
+
+
+<script>
+	window.onload = function () {
+		document.getElementById("submit-btn").addEventListener("click", () => {
+		var med_name = document.getElementById("med_name").value;
+		var quan = document.getElementById("quan").value;
+        var name = document.getElementById("name").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;
+        var address = document.getElementById("address").value;
+
+        let status = [];
+        let re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+		if (med_name.length <= 1) {
+          document.getElementById("med_name").style.borderColor = "red";
+          document.getElementById("med_name").value = "";
+          document.getElementById("labelMedName").innerHTML = "Please enter medicine name";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+
+		if (quan < 1) {
+          document.getElementById("quan").style.borderColor = "red";
+          document.getElementById("quan").value = "";
+          document.getElementById("labelQuan").innerHTML = "Please enter medicine quantity";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+        
+		
+		if (name.length <= 1) {
+          document.getElementById("name").style.borderColor = "red";
+          document.getElementById("name").value = "";
+          document.getElementById("labelName").innerHTML = "Please enter your name";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+
+        if (phone.length !== 10) {
+          document.getElementById("phone").style.borderColor = "red";
+          document.getElementById("phone").value = "";
+          document.getElementById("labelPhone").innerHTML = 
+            "Please enter valid Phone Number";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+
+		if (address.length <= 1) {
+          document.getElementById("address").style.borderColor = "red";
+          document.getElementById("address").value = "";
+          document.getElementById("labelAddress").innerHTML = "Please enter your address";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+
+        if (re.test(email.trim())) {
+          status.push("true");
+        } else {
+          document.getElementById("email").style.borderColor = "red";
+          document.getElementById("email").value = "";
+          document.getElementById("labelEmail").innerHTML =
+            "Please enter valid email";
+          status.push("false");
+        }
+
+
+
+
+        if (status.includes("false")) {
+          return false;
+        } else {
+
+
+          document.getElementById("submit-btn").value = "Please wait...";
+
+          
+          fetch("https://dmezapi.herokuapp.com/api/v1/form/bulkorders", {
+            method: "POST",
+            headers: new Headers({ "content-type": "application/json" }),
+            body: JSON.stringify({
+				title:med_name,
+     			quantity:quan,
+     			name:name,
+     			email:email, 
+     			contact:phone,
+     			address:address
+            }),
+          })
+            .then(function (response) {
+              return response.json();
+            })
+            .then((res) => {
+              console.log(res);
+              if (res.status === "success") {
+                Swal.fire({
+                  icon: "success",
+                  title: "Yayyy",
+                  text: "You have successfully submitted your details! We will contact you soon!",
+                });
+
+                document.getElementById("submit-btn").value = "Submit";
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops..",
+                  text: "There was some error. Please try again!",
+                });
+                document.getElementById("submit-btn").value = "Submit";
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "There was some error from our side. Please try again later",
+              });
+              document.getElementById("submit-btn").value = "Submit";
+            });
+        }
+      });
+	}
+
+</script>
 
 </html>
