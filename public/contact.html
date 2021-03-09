@@ -117,38 +117,38 @@
           <div class="card card-signin" style="background-color: white;">
             <div class="card-body">
               <h5 class="card-title text-center mt-5">Contact Us<br><i class="ml-2 far fa-envelope"></i></h5>
-              <form class="col-12 col-md-6 form-signin">
+              <form id="contact" class="col-12 col-md-6 form-signin">
 
                 <div class="form-label-group" style="margin-top: 60px; width: 100%;">
-                  <input type="text" id="name" class="form-control" placeholder="Full Name" required autofocus
+                  <input type="text" id="name" class="contact-name form-control" placeholder="Full Name" required autofocus
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelName" for="name">Full Name</label>
+                  <label id="labelName" class="contact-name" for="name">Full Name</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="email" id="email" class="form-control" placeholder="Email address" required
+                  <input type="email" id="email" class="contact-email form-control" placeholder="Email address" required
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelEmail" for="email">Email Address</label>
+                  <label id="labelEmail" class="contact-email" for="email">Email Address</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="tel" id="phone" class="form-control" placeholder="Contact Number" required
+                  <input type="tel" id="phone" class="contact-phone form-control" placeholder="Contact Number" required
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelPhone" for="phone">Contact Number</label>
+                  <label id="labelPhone" class="contact-phone" for="phone">Contact Number</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="text" id="message" class="form-control" placeholder="Message" required
+                  <input type="text" id="message" class="contact-message form-control" placeholder="Message" required
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelMessage" for="message">Message</label>
+                  <label id="labelMessage" class="contact-message" for="message">Message</label>
                 </div>
-
-
+            
               </form>
               <div style="text-align: center; margin-bottom: 60px;">
                 <input class="btn btn-lg text-uppercase" value="Submit" id="submit-btn" type="button"
                   style="width:50%" />
               </div>
+              
             </div>
           </div>
         </div>
@@ -179,7 +179,6 @@
         <div>
           <label id="labelSuggestName" for="sugg_name">Name</label>
           <input type="text" class="form-control input" id="sugg_name" placeholder="Enter Your name" onfocus="green(event)">
-          
         </div>
   
         <div>
