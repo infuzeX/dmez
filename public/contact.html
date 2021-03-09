@@ -20,10 +20,10 @@
 
   <script>
     function green(event) {
-        event.target.style.borderColor = "#789461";
-        event.target.style.borderWidth = "2px";
+      event.target.style.borderColor = "#789461";
+      event.target.style.borderWidth = "2px";
     }
-</script>
+  </script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -120,26 +120,26 @@
               <form class="col-12 col-md-6 form-signin">
 
                 <div class="form-label-group" style="margin-top: 60px; width: 100%;">
-                  <input type="text" id="name" class="form-control" placeholder="Full Name" required autofocus onfocus="green(event)"
-                    style=" border: 2px solid #789461;" />
+                  <input type="text" id="name" class="form-control" placeholder="Full Name" required autofocus
+                    onfocus="green(event)" style=" border: 2px solid #789461;" />
                   <label id="labelName" for="name">Full Name</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="email" id="email" class="form-control" placeholder="Email address" required onfocus="green(event)"
-                    style=" border: 2px solid #789461;" />
+                  <input type="email" id="email" class="form-control" placeholder="Email address" required
+                    onfocus="green(event)" style=" border: 2px solid #789461;" />
                   <label id="labelEmail" for="email">Email Address</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="tel" id="phone" class="form-control" placeholder="Contact Number" required onfocus="green(event)"
-                    style=" border: 2px solid #789461;" />
+                  <input type="tel" id="phone" class="form-control" placeholder="Contact Number" required
+                    onfocus="green(event)" style=" border: 2px solid #789461;" />
                   <label id="labelPhone" for="phone">Contact Number</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="text" id="message" class="form-control" placeholder="Message" required onfocus="green(event)"
-                    style=" border: 2px solid #789461;" />
+                  <input type="text" id="message" class="form-control" placeholder="Message" required
+                    onfocus="green(event)" style=" border: 2px solid #789461;" />
                   <label id="labelMessage" for="message">Message</label>
                 </div>
 
@@ -174,22 +174,24 @@
 
       <h3 class="branch-name">For Suggestion write to us!</h3>
 
+      <form>
 
+        <div>
+          <label id="labelSuggestName" for="sugg_name">Name</label>
+          <input type="text" class="form-control input" id="sugg_name" placeholder="Enter Your name" onfocus="green(event)">
+          
+        </div>
+  
+        <div>
+        <label id="labelSuggestion" for="suggestion">Suggestion</label>
+        <textarea class="suggestion form-control" id="suggestion" placeholder="Enter Suggestion" onfocus="green(event)"></textarea>
+        </div>
+  
+        <input class="btn-2" value="Submit" id="suggest-btn" type="button" style="width:50%" />
 
-      <input type="text" class="input" placeholder="Enter Your name">
-
-      <textarea class="suggestion"></textarea>
-      <button class="btn-2">
-        Submit
-      </button>
-
-
-
+      </form>
 
     </div>
-
-
-
 
   </div>
   <footer class="site-footer">
@@ -342,20 +344,15 @@
 
           document.getElementById("submit-btn").value = "Please wait...";
 
-          console.log({
-            name: name,
-            email: email,
-            contact: phone,
-            message: message
-          })
+          
           fetch("https://dmezapi.herokuapp.com/api/v1/form/contacts", {
             method: "POST",
             headers: new Headers({ "content-type": "application/json" }),
             body: JSON.stringify({
               name: name,
-            email: email,
-            contact: phone,
-            message: message
+              email: email,
+              contact: phone,
+              message: message
             }),
           })
             .then(function (response) {
@@ -369,7 +366,7 @@
                   title: "Yayyy",
                   text: "You have successfully submitted your details! We will contact you soon!",
                 });
-                
+
                 document.getElementById("submit-btn").value = "Submit";
               } else {
                 Swal.fire({
@@ -388,6 +385,83 @@
                 text: "There was some error from our side. Please try again later",
               });
               document.getElementById("submit-btn").value = "Submit";
+            });
+        }
+      });
+
+      //Suggestion Form 
+
+      document.getElementById("suggest-btn").addEventListener("click", () => {
+        var name = document.getElementById("sugg_name").value;
+        var suggestion = document.getElementById("suggestion").value;
+
+        let status = [];
+
+        if (name.length <= 1) {
+          document.getElementById("sugg_name").style.borderColor = "red";
+          document.getElementById("sugg_name").value = "";
+          document.getElementById("labelSuggestName").innerHTML = "Please enter your name";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+
+        if (suggestion.length < 10) {
+          document.getElementById("suggestion").style.borderColor = "red";
+          document.getElementById("suggestion").value = "";
+          document.getElementById("labelSuggestion").innerHTML = "Please enter suggestion of more than 10 characters";
+          status.push("false");
+        } else {
+          status.push("true");
+        }
+
+
+        if (status.includes("false")) {
+          return false;
+        } else {
+
+
+          document.getElementById("suggest-btn").value = "Please wait...";
+
+          
+          fetch("https://dmezapi.herokuapp.com/api/v1/form/suggestions", {
+            method: "POST",
+            headers: new Headers({ "content-type": "application/json" }),
+            body: JSON.stringify({
+              name: name,
+              suggestion: suggestion
+            }),
+          })
+            .then(function (response) {
+              return response.json();
+            })
+            .then((res) => {
+              console.log(res);
+              if (res.status === "success") {
+                Swal.fire({
+                  icon: "success",
+                  title: "Yayyy",
+                  text: "Thank you for your valuable suggestion!",
+                });
+
+                document.getElementById("suggest-btn").value = "Submit";
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops..",
+                  text: "There was some error. Please try again!",
+                });
+                document.getElementById("suggest-btn").value = "Submit";
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "There was some error from our side. Please try again later",
+              });
+              document.getElementById("suggest-btn").value = "Submit";
             });
         }
       });

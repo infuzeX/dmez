@@ -312,11 +312,6 @@
 
           document.getElementById("submit-btn").value = "Please wait...";
 
-          console.log({
-            name: name,
-            email: email,
-            contact: phone,
-          })
           fetch("https://dmezapi.herokuapp.com/api/v1/form/partners ", {
             method: "POST",
             headers: new Headers({ "content-type": "application/json" }),

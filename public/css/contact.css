@@ -142,10 +142,9 @@ hr.f1 {
 .suggestion{
     font-size: 20px;
    padding: 5px;
-   padding-left: 25px;
+ 
    padding-right: 95px;
    border-radius: 3px;
-   border: none;
    padding-bottom: 150px;
 }
 .btn-2{
@@ -178,7 +177,6 @@ hr.f1 {
     .suggestion{
         font-size: 20px;
        padding: 5px;
-       padding-left: 25px;
        padding-right: 15px;
        border-radius: 3px;
        border: none;
