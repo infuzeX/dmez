@@ -2428,3 +2428,11 @@ textarea {
 .contact-info .social-networks ul li a:hover {
   color: #a1b985;
 }
+/************************************************************************************************/
+.problem{
+  background-color: #e5caaf;
+  text-align: center;
+
+  padding: 20px;
+}
+
