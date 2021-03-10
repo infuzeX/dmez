@@ -1,7 +1,4 @@
 
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800");
-/* font-family: 'Poppins', sans-serif; */
-/*--------------------- 1.General Styles ---------- */
 html {
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
@@ -540,7 +537,7 @@ blockquote {
     text-transform: uppercase; }
     .header-dropdown > a::after,
     .header-dropdown > span::after {
-      font-family: "molla";
+      font-family: "";
       content: '\f110';
       position: absolute;
       right: 0;
@@ -1233,7 +1230,7 @@ blockquote {
         padding-left: 0;
         padding-right: 0; }
       .top-menu:not(.top-link-menu) > li::after {
-        font-family: "molla";
+        font-family: "";
         content: '\f110';
         position: absolute;
         right: 0;
@@ -1451,7 +1448,7 @@ blockquote {
   .menu.sf-arrows .sf-with-ul {
     position: relative; }
     .menu.sf-arrows .sf-with-ul::after {
-      font-family: 'molla';
+      font-family: '';
       content: '\f110';
       position: absolute;
       right: 0;
@@ -1665,7 +1662,7 @@ blockquote {
     transition: background .4s,  color .1s; }
     .category-dropdown .dropdown-toggle:after {
       content: '\f131';
-      font-family: 'molla';
+      font-family: '';
       border: none;
       font-size: 2.3rem;
       line-height: 1;
@@ -1810,7 +1807,7 @@ blockquote {
     position: relative; }
     .menu-vertical.sf-arrows .sf-with-ul::after {
       display: block;
-      font-family: 'molla';
+      font-family: '';
       content: '\f112';
       position: absolute;
       right: 1.8rem;
@@ -2066,7 +2063,7 @@ blockquote {
   outline: none;
   transition: color 0.35s; }
   .mmenu-btn::after {
-    font-family: "molla";
+    font-family: "";
     content: '\f110';
     display: inline-block; }
   .mmenu-btn:hover, .mmenu-btn:focus {
@@ -3244,7 +3241,7 @@ p {
     display: block;
     height: auto;
     content: '';
-    font-family: 'molla';
+    font-family: '';
     content: '\f110';
     position: absolute;
     left: auto;
@@ -6626,7 +6623,7 @@ a:focus {
     .breadcrumb-item + .breadcrumb-item:before {
       color: #999999;
       content: '\f112';
-      font-family: "molla";
+      font-family: "";
       padding-right: .7rem;
       font-size: 1.1rem;
       vertical-align: middle;
@@ -6866,7 +6863,7 @@ a:focus {
       right: 1.2rem;
       top: 50%;
       color: #A1B985;
-      font-family: "molla";
+      font-family: "";
       line-height: 1;
       transform: translateY(-50%);
       -ms-transform: translateY(-50%);
@@ -7789,7 +7786,7 @@ a:focus {
   font-size: 1.4rem;
   letter-spacing: 0.1em;
   line-height: 1;
-  font-family: "molla"; }
+  font-family: ""; }
   .ratings:before,
   .ratings-val:before {
     content: "\f318" "\f318" "\f318" "\f318" "\f318"; }
@@ -7862,7 +7859,7 @@ a:focus {
   .btn-product + .btn-product {
     border-left: .1rem dotted #e5e5e5; }
   .btn-product:before {
-    font-family: "molla";
+    font-family: "";
     margin-right: .9rem; }
   .btn-product span {
     color: #666666;
@@ -7917,7 +7914,7 @@ a:focus {
   color: #A1B985;
   background-color: #fff; }
   .btn-product-icon:before {
-    font-family: "molla"; }
+    font-family: ""; }
   .btn-product-icon span {
     display: none; }
   .btn-product-icon:hover, .btn-product-icon:focus {
@@ -9255,7 +9252,7 @@ a:focus {
 /*--------------------- 4.13.Testimonials -------------------- */
 /* Testimonials */
 .testimonial-icon:before {
-  font-family: 'molla';
+  font-family: '';
   content: '\f10d';
   display: inline-block;
   font-style: normal;
@@ -9374,7 +9371,7 @@ small.form-text {
     -webkit-appearance: none;
     appearance: none; }
   .select-custom::after {
-    font-family: "molla";
+    font-family: "";
     content: '\f110';
     position: absolute;
     display: inline-block;
@@ -9441,7 +9438,7 @@ small.form-text {
   color: #fff;
   background-image: none;
   font-size: 1rem;
-  font-family: 'molla';
+  font-family: '';
   content: '\ec2d';
   line-height: 1;
   text-align: center;
@@ -10111,7 +10108,7 @@ small.form-text {
     height: 5rem;
     margin-top: -2.5rem;
     margin-left: -2.5rem;
-    font-family: "molla";
+    font-family: "";
     position: absolute;
     left: 50%;
     top: 50%;
@@ -10841,7 +10838,7 @@ button:focus {
     color: #333333;
     content: '\f110';
     display: block;
-    font-family: 'molla';
+    font-family: '';
     font-size: 1.4rem;
     line-height: 1;
     position: absolute;
@@ -10915,7 +10912,7 @@ button:focus {
     transition: box-shadow .35s ease; }
     .filter-colors a:after {
       color: #fff;
-      font-family: 'molla';
+      font-family: '';
       content: '\ec2d';
       font-size: 1rem;
       line-height: 1;
@@ -11743,7 +11740,7 @@ button:focus {
 
 .entry-video a:after {
   content: '\ec2c';
-  font-family: "molla";
+  font-family: "";
   display: -ms-inline-flexbox;
   display: inline-flex;
   align-items: center;
@@ -11824,7 +11821,7 @@ button:focus {
   padding-bottom: .1rem;
   transition: all .3s ease; }
   .read-more:after {
-    font-family: 'molla';
+    font-family: '';
     content: '\f274';
     font-size: 1.5rem;
     line-height: 1;
@@ -11943,7 +11940,7 @@ button:focus {
   color: #fff;
   position: absolute;
   content: '\f24d';
-  font-family: "molla";
+  font-family: "";
   top: 2.6rem; }
 .entry-mask .entry-body {
   position: absolute;
@@ -12223,7 +12220,7 @@ button:focus {
     font-weight: normal;
     font-size: 3rem;
     line-height: 1;
-    font-family: 'molla';
+    font-family: '';
     position: absolute;
     left: 3rem;
     top: 4rem;
@@ -12346,7 +12343,7 @@ button:focus {
   .pager-link:after {
     color: #333;
     display: block;
-    font-family: 'molla';
+    font-family: '';
     font-size: 1.5rem;
     line-height: 1;
     position: absolute;
@@ -12457,7 +12454,7 @@ button:focus {
   padding-bottom: .4rem;
   transition: all .35s ease; }
   .comment-reply:after {
-    font-family: 'molla';
+    font-family: '';
     content: '\f279';
     font-size: 1.5rem;
     margin-left: .7rem; }
@@ -13767,7 +13764,7 @@ button:focus {
     color: #333333;
     border-bottom: .1rem solid #ebebeb; }
     .nav-dashboard .nav-link:before {
-      font-family: "molla";
+      font-family: "";
       content: '\f274';
       display: block;
       font-size: 1.5rem;
@@ -14704,14 +14701,14 @@ button:focus {
 /*--------------------- 7.Font Icons -------------------- */
 /* Font Icons */
 @font-face {
-  font-family: 'molla';
-  src: url("../fonts/molla0ab2.eot?74273691");
-  src: url("../fonts/molla0ab2.eot?74273691#iefix") format("embedded-opentype"), url("../fonts/molla0ab2.woff2?74273691") format("woff2"), url("../fonts/molla0ab2.woff?74273691") format("woff"), url("../fonts/molla0ab2.ttf?74273691") format("truetype"), url("../fonts/molla0ab2.svg?74273691#molla") format("svg");
+  font-family: '';
+  src: url("../fonts/0ab2.eot?74273691");
+  src: url("../fonts/0ab2.eot?74273691#iefix") format("embedded-opentype"), url("../fonts/0ab2.woff2?74273691") format("woff2"), url("../fonts/0ab2.woff?74273691") format("woff"), url("../fonts/0ab2.ttf?74273691") format("truetype"), url("../fonts/0ab2.svg?74273691#") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "molla";
+  font-family: "";
   font-style: normal;
   font-weight: normal;
   speak: none;
