@@ -3,7 +3,7 @@ body{
 }
 .track{
     background-color: #FFFFFF;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     display: flex;
     margin-top: 30px;
@@ -11,6 +11,7 @@ body{
     justify-content: space-around;
     flex-wrap: wrap;
     box-shadow: 10px 10px 15px rgb(73 78 92 / 10%);
+    margin-bottom: 100px;
 }
 .product-detail img{
     width: 150px;
@@ -33,4 +34,23 @@ span h4{
 }
 .status h3{
     color: #26A541;
+}
+/************************************************************************************************/
+.order-details{
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+  padding-top: 20px;
+  border-bottom: 1px solid black;
+}
+.delivery{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding-bottom: 20px;
+  
+}
+.address{
+    padding-left: 50px;
 }
