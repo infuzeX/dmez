@@ -5,7 +5,7 @@ const cart_products = document.querySelector('#products-list');
 const cart_summary = document.querySelector('.cart-summary');
 
 let cart = {
-    charge: 80
+  charge:0
 }
 
 /*========================TEMPLATES==========================*/
@@ -67,7 +67,14 @@ function fillCart(isEmpty) {
 }
 
 function fillSummary() {
-    cart['charge'] = cart['totalAmount'] >= 400 ? 0 : 80;
+    if(cart['totalAmount'] <= 200) {
+        cart["charge"] = 100;
+    }
+    if(cart['totalAmount'] > 200 && cart['totalAmount'] <= 400){
+       cart["charge"] = 50; 
+    }else{
+        cart["charge"] = 0;
+    }
     cart_summary.children[0].children[1].textContent = `₹${cart['totalAmount']}`;
     cart_summary.children[1].children[1].textContent = `₹${cart['totalSavings']}`;
     cart_summary.children[2].children[1].textContent = `₹${cart['charge']}`

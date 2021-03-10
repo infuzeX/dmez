@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <!-- Mirrored from portotheme.com/html/molla/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Feb 2021 18:51:14 GMT -->
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -184,14 +182,14 @@
 												<% }) %>
 												<tr class="summary-subtotal">
 													<td>Subtotal:</td>
-													<td>₹<%= data.totalAmount%></td>
+													<td>₹<%=data.totalAmount%></td>
 												</tr><!-- End .summary-subtotal -->
 												<tr>
 													<td>Shipping:</td>
 													<% if(!data.charge) {%>
 													<td>Free shipping</td>
 													<%} else {%>
-													<td>₹80</td>
+													<td>₹<%=data.charge%></td>
 													<%}%>
 												</tr>
 												<tr class="summary-total">
@@ -243,7 +241,6 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
-
 	</script>
 
 </body>

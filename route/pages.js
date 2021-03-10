@@ -21,6 +21,14 @@ router.get('/bulk-order', (req, res) => renderStaticPage(res, 'bulk-order.html')
 router.get('/products', (req, res) => renderStaticPage(res, 'shop.html'));
 router.get('/products/:id', (req, res) => renderStaticPage(res, 'product.html'));
 
+router.get('/success', (req, res) => {
+res.cookies('ciic_', '',{
+   domain:process.env.DOMAIN,
+   maxAge:0,
+   httpOnly:true
+})
+renderStaticPage(res, 'order-success.html')
+});
 //PROTECTED ROUTES
 router.get('/cart', (req, res) => renderStaticPage(res, 'cart.html'));
 router.get('/cart/checkout',
@@ -31,6 +39,7 @@ router.get('/cart/checkout',
     checkout.verifyCheckout,
     checkout.renderCheckoutPage
 );
+router.get('/success', (req, res) => renderStaticPage('order-success.html'));
 
 router.get('/account', (req, res) => renderStaticPage(res, 'account.html'));
 

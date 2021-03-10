@@ -20,15 +20,18 @@ exports.checkCart = catchAsync(async (req, res, next) => {
 
 //HANDLERS
 exports.createOrder = catchAsync(async (req, res, next) => {
-  req.cart["charge"] = req.cart["totalAmount"] >= 400 ? 0 : 80;
+  //SET DELIVERY CHARGE
+  const totalAmount = req.cart["totalAmount"];
+  if (totalAmount <= 200) req.cart["charge"] = 100;
+  if (totalAmount > 200 && totalAmount <= 400) req.cart["charge"] = 50;
+  else req.cart["charge"] = 0;
+
   const order = await razorpay.orders.create({
     amount: (req.cart["totalAmount"] + req.cart["charge"]) * 100,
     currency: "INR",
   });
-
   req.cart["orderId"] = order.id;
 
-  console.log(req.cart);
   const token = await jwt.sign(req.cart, ORDER_SECRET);
   res
     .status(200)
@@ -42,10 +45,8 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 
 //VERIFY ORDER BEFORE RENDERING CHECKOUT PAGE
 exports.verifyOrder = async (req, res, next) => {
-  console.log("in verify order");
   try {
     const token = req.cookies._ciic_;
-    if (!token) throw "err";
     req.checkout = await jwt.verify(token, ORDER_SECRET);
     next();
   } catch (err) {
@@ -55,7 +56,6 @@ exports.verifyOrder = async (req, res, next) => {
 
 //VERIFY CART BEFORE RENDERING CHECKOUT PAGE
 exports.verifyGETCart = async (req, res, next) => {
-  console.log("In verify get cart");
   const cart = await cartService.cartDetails(req.userId);
   if (!cart) return res.redirect("/cart");
   cart["_id"] = cart["_id"].toString();
@@ -63,24 +63,26 @@ exports.verifyGETCart = async (req, res, next) => {
   next();
 };
 
-exports.verifyCheckout = catchAsync(async (req, res, next) => {
+exports.verifyCheckout = async (req, res, next) => {
   const { _id, customerId, totalAmount } = req.checkout;
   if (
     customerId == req.userId &&
-    _id == req.cart.id &&
+    _id == req.cart._id &&
     totalAmount == req.cart.totalAmount
   ) {
     return next();
   }
   res.redirect("/cart");
-});
+};
 
-exports.renderCheckoutPage = (req, res) => { 
-  res.render("checkout.ejs", {data: {
+exports.renderCheckoutPage = (req, res) => {
+  res.render("checkout.ejs", {
+    data: {
       ...req.cart,
       key: KEY_ID,
       order: req.checkout.orderId,
-      charge:req.checkout.charge,
-      total:(req.checkout.charge + req.checkout.totalAmount)
-  }});
+      charge: req.checkout.charge,
+      total: req.checkout.charge + req.checkout.totalAmount,
+    },
+  });
 };
