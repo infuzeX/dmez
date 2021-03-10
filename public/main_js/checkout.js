@@ -3,6 +3,7 @@ const xhr = new XMLHttpRequest();
 function placeOrder(res) {
   xhr.open("POST", `${origin}/api/v1/orders`);
   xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.withCredentials = true;
   xhr.send(
     JSON.stringify({
       address,

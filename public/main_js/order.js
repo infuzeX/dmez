@@ -7,7 +7,7 @@ const state = {
   query: {
     page: 1,
     limit: 10,
-    status: "",
+    status: "placed",
   },
   /*orders: [{
         "_id": "6039018f3bab401055c3c552",
@@ -45,32 +45,30 @@ const state = {
         "__v": "0"
     }]*/
 };
-
 function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
-  return `<div class="panel">
-
-<div class="panel1">
-  <div class="">
-    <p>ORDER PLACED</p>
-    <p>${Date.now(createdAt)}</p>
+  console.log(address)
+  return `
+  <div class="panel1">
+    <div class="">
+      <p>ORDER PLACED</p>
+      <p>${createdAt}</p>
+    </div>
+    <div>
+      <p>TOTAL</p>
+      <p>₹${totalAmount}</p>
+    </div>
+    <div>
+      <p>SHIP TO</p>
+      <p>${address.flatnumber} ${address.area} ${address.city} 
+      ${address.state}</p>
+    </div>
+    <div>
+      <p>ORDER ID</p>
+      <p>Ref:${_id}</p>
+    </div>
   </div>
-  <div>
-    <P>TOTAL</P>
-    <p>₹${totalAmount}</p>
-  </div>
-  <div>
-    <P>SHIP TO</P>
-    <p>${address.flatnumber} ${address.area} ${address.city} ${
-    address.state
-  }</p>
-  </div>
-  <div>
-    <p>ORDER ID</p>
-    <p>Ref:${_id}</p>
-  </div>
-</div>
-${popuplateProducts(products)}
-</div>`;
+  ${popuplateProducts(products)}
+</div>`
 }
 
 function popuplateProducts(products) {
@@ -82,20 +80,20 @@ function popuplateProducts(products) {
 function orderedProductTemp({ title, coverImage }) {
   const imgUrl = coverImage ? coverImage : "/public/images/default.png";
 
-  return `<div class="panel2" style="border-top: 1px solid grey;">
+  return `  <div class="panel2" style="border-top: 1px solid grey;">
 
-    <div class="product">
-      <p>${title}</p>
-      <img style="width:80px;" src="${imgUrl}"></img>
-    </div>
-  
-    <div class="action">
-      <button>Track Package</button><br>
-      <button>Return</button><br>
-      <button>Cancel</button>
-    </div>
-  
-  </div>`;
+  <div class="product">
+    <p>${title}</p>
+    <img style="width:80px;" src=${imgUrl}>
+  </div>
+
+  <div class="action">
+    <button><a href="/track">Track Package</a></button><br>
+    <button>Return</button><br>
+    <button>Cancel</button>
+  </div>
+
+</div>`;
 }
 
 function handleEmptySection(msg, add) {
@@ -105,7 +103,7 @@ function handleEmptySection(msg, add) {
 
 function fillOrder(orders, add) {
   let lists = "";
-  if (!order.length) {
+  if (!orders.length) {
     handleEmptySection("<p>No order found</p>", true);
     return;
   }
@@ -129,63 +127,12 @@ function getOrders() {
 }
 
 xhr.onload = function () {
-  console.log(this.responseText);
   const res = JSON.parse(this.responseText);
   if (res.status === "success") {
-    fillOrders(res.data.orders);
+    fillOrder(res.data.orders);
+    return;
   }
+  showStatus(res);
 };
 
 getOrders();
-
-/**
- *  <div class="panel">
-
-      <div class="panel1">
-        <div class="">
-          <p>ORDER PLACED</p>
-          <p>1614528784029</p>
-        </div>
-        <div>
-          <p>TOTAL</p>
-          <p>₹600</p>
-        </div>
-        <div>
-          <p>SHIP TO</p>
-          <p>8A/3D/K kareli Allahabad Uttar pradesh</p>
-        </div>
-        <div>
-          <p>ORDER ID</p>
-          <p>Ref:6039018f3bab401055c3c552</p>
-        </div>
-      </div>
-      <div class="panel2" style="border-top: 1px solid grey;">
-
-        <div class="product">
-          <p>ACECLOFENAC 100MG 10'S</p>
-          <img style="width:80px;" src="/public/images/default.png">
-        </div>
-
-        <div class="action">
-          <button>Track Package</button><br>
-          <button>Return</button><br>
-          <button>Cancel</button>
-        </div>
-
-      </div>
-      <div class="panel2" style="border-top: 1px solid grey;">
-
-        <div class="product">
-          <p>ACECLOFENAC 100MG 10'S</p>
-          <img style="width:80px;" src="/public/images/default.png">
-        </div>
-
-        <div class="action">
-          <button>Track Package</button><br>
-          <button>Return</button><br>
-          <button>Cancel</button>
-        </div>
-
-      </div>
-    </div>
- */
