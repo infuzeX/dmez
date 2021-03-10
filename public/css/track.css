@@ -42,6 +42,7 @@ span h4{
     background-color: #fff;
   padding-top: 20px;
   border-bottom: 1px solid black;
+  flex-wrap: wrap;
 }
 .delivery{
     display: flex;
