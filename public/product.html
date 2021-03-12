@@ -91,12 +91,22 @@
         </nav>
         <!-- Mobile Menu -->
         <div id="mySidenav" class="sidenav">
-            <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/">Home</a>
-            <a href="/products">Shop</a>
-            <a href="/account">Account</a>
-            <a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
-        </div>
+			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+			<a style="color: #A1B985;">Howdy!</a>
+			<a href="/">Home</a>
+			<a href="/products">Shop</a>
+			<a href="/cart">  Cart</a>
+			<a href="/account"> Account</a>
+			
+			<a href="/products">Contact</a>
+			<div class="search">
+				<form class="search-container">
+					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
+					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+				</form>
+
+			</div>
+		</div>
     </header>
 
     <div class="page-wrapper">
@@ -117,9 +127,9 @@
 
             <div class="page-content">
                 <div class="container get-container">
-                    <div class="loader-wrapper empty">
+                    <!-- <div class="loader-wrapper empty">
                         <div class="loader"></div>
-                    </div>
+                    </div> -->
                     <div class="product-details-top">
                         <div class="row">
                             <div class="col-md-6">
@@ -268,9 +278,9 @@
                     <div class="bulk">
 
 
-                        <p>Contact for bulk order</p>
-                        <button type="button" class="btn btn-light"><img
-                                src="https://img.icons8.com/android/24/000000/right.png" /></button>
+                      <a href="/bulk-order"> <p>Contact for bulk order</p>
+                      <button type="button" class="btn btn-light"><img
+                                src="https://img.icons8.com/android/24/000000/right.png" /></button></a> 
                     </div>
 
 
@@ -280,9 +290,9 @@
 
 
 
-                    <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
+                    <!-- <h2 class="title text-center mb-4">You May Also Like</h2> -->
 
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                    <!-- <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
                         data-owl-options='{
                             "nav": false, 
                             "dots": true,
@@ -323,26 +333,26 @@
                                         title="Quick view"><span>Quick view</span></a>
                                     <a href="#" class="btn-product-icon btn-compare"
                                         title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
+                                </div>
 
                                 <div class="product-action">
                                     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
+                                </div>
+                            </figure>
 
                             <div class="product-body">
                                 <div class="product-cat">
 
-                                </div><!-- End .product-cat -->
+                                </div>
                                 <h3 class="product-title"><a href="product.html">product name</a></h3>
-                                <!-- End .product-title -->
+                        
                                 <div class="product-price">
                                     $60.00
-                                </div><!-- End .product-price -->
+                                </div>
 
 
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
+                            </div>
+                        </div>
 
                         <div class="product product-7 text-center">
                             <figure class="product-media">
@@ -359,28 +369,28 @@
                                         title="Quick view"><span>Quick view</span></a>
                                     <a href="#" class="btn-product-icon btn-compare"
                                         title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
+                                </div>
 
                                 <div class="product-action">
                                     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
+                                </div>
+                            </figure>
 
                             <div class="product-body">
                                 <div class="product-cat">
 
-                                </div><!-- End .product-cat -->
+                                </div>
                                 <h3 class="product-title"><a href="product.html">product name</a></h3>
-                                <!-- End .product-title -->
+                          
                                 <div class="product-price">
                                     <span class="out-price">$120.00</span>
-                                </div><!-- End .product-price -->
+                                </div>
                                 <div class="ratings-container">
 
 
-                                </div><!-- End .rating-container -->
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="product product-7 text-center">
                             <figure class="product-media">
@@ -397,26 +407,26 @@
                                         title="Quick view"><span>Quick view</span></a>
                                     <a href="#" class="btn-product-icon btn-compare"
                                         title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
+                                </div>
 
                                 <div class="product-action">
                                     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
+                                </div>
+                            </figure>
 
                             <div class="product-body">
                                 <div class="product-cat">
 
-                                </div><!-- End .product-cat -->
+                                </div>
                                 <h3 class="product-title"><a href="product.html">product name</a></h3>
-                                <!-- End .product-title -->
+                               
                                 <div class="product-price">
                                     $110.00
-                                </div><!-- End .product-price -->
+                                </div>
 
 
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
+                            </div>
+                        </div>
 
                         <div class="product product-7 text-center">
                             <figure class="product-media">
@@ -432,26 +442,26 @@
                                         title="Quick view"><span>Quick view</span></a>
                                     <a href="#" class="btn-product-icon btn-compare"
                                         title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
+                                </div>
 
                                 <div class="product-action">
                                     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
+                                </div>
+                            </figure>
 
                             <div class="product-body">
                                 <div class="product-cat">
 
-                                </div><!-- End .product-cat -->
+                                </div>
                                 <h3 class="product-title"><a href="product.html">product name</a></h3>
-                                <!-- End .product-title -->
+                              
                                 <div class="product-price">
                                     $56.00
-                                </div><!-- End .product-price -->
+                                </div>
 
 
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
+                            </div>
+                        </div>
 
                         <div class="product product-7 text-center">
                             <figure class="product-media">
@@ -467,28 +477,28 @@
                                         title="Quick view"><span>Quick view</span></a>
                                     <a href="#" class="btn-product-icon btn-compare"
                                         title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
+                                </div>
 
                                 <div class="product-action">
                                     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
+                                </div>
+                            </figure>
 
                             <div class="product-body">
                                 <div class="product-cat">
 
-                                </div><!-- End .product-cat -->
+                                </div>
                                 <h3 class="product-title"><a href="product.html">product name</a></h3>
-                                <!-- End .product-title -->
+                             
                                 <div class="product-price">
                                     $76.00
-                                </div><!-- End .product-price -->
+                                </div>
 
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-                    </div><!-- End .owl-carousel -->
-                </div><!-- End .container -->
-            </div><!-- End .page-content -->
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
         </main><!-- End .main -->
 
 
