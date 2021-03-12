@@ -76,7 +76,7 @@ a#scrollUp i {
 .contactinfo ul li a {
   font-size: 12px;
   color: #696763;
-  font-family: "Roboto", sans-serif;
+
 }
 
 .contactinfo ul li a:hover {
@@ -177,7 +177,7 @@ a#scrollUp i {
 .dropdown-menu li a:focus {
   background-color: #a1b985;
   color: #ffffff;
-  font-family: "Roboto", sans-serif;
+ 
   text-decoration: none;
 }
 
