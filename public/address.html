@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/public/css/status.css">
   <link rel="stylesheet" href="/public/css/product.css">
   <link rel="stylesheet" href="/public/css/account.css">
-  <link rel="stylesheet" href="css\footer.css">
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
@@ -71,24 +71,22 @@
     </nav>
     <!-- Mobile Menu -->
     <div id="mySidenav" class="sidenav">
+			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+			<a style="color: #A1B985;">Howdy!</a>
+			<a href="/">Home</a>
+			<a href="/products">Shop</a>
+			<a href="/cart">  Cart</a>
+			<a href="/account"> Account</a>
+			
+			<a href="/products">Contact</a>
+			<div class="search">
+				<form class="search-container">
+					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
+					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+				</form>
 
-      <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-      <a style="color: #A1B985;">Howdy!</a>
-      <a href="/">Home</a>
-      <a href="/products">Shop</a>
-      <a href="/account"> Account</a>
-      <a href="/cart"> Cart</a>
-      <a href="/products">Contact</a>
-
-      <div class="search">
-
-        <form class="search-container">
-          <input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
-          <a href="#"><i id="icon" class="fas fa-search"></i></a>
-        </form>
-
-      </div>
-    </div>
+			</div>
+		</div>
 
   </header>
 
@@ -135,7 +133,7 @@
           </li>
         </ul>
         <hr />
-        <p><a href="/account/address/edit" style="color: #A1B985;">change address</a></p>
+        <p><a href="/account/address/edit" style="color: #A1B985;">Change address</a></p>
 
       </div>
 
