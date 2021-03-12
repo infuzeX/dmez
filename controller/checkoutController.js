@@ -36,10 +36,8 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   res
     .status(200)
     .cookie("_ciic_", token, {
-      domain: DOMAIN,
       httpOnly: true,
       secure: (NODE_ENV === "production"),
-      sameSite:"None"
     })
     .json({ status: "success", path: "/cart/checkout" });
 });

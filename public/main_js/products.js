@@ -151,7 +151,7 @@ xhr.onerror = function () {
 //INIT PRODUCTS API CALL
 function updateSearchSetting(search) {
   state["settings"].page = 1;
-  state["settings"].search = search;
+  state["settings"].search = search.split(" ").join("_");
 }
 
 //GET PRODUCTS
