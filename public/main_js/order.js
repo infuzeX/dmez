@@ -1,5 +1,3 @@
-const xhr = new XMLHttpRequest();
-
 const orderEl = document.querySelector(".orders-panel");
 const controls = document.querySelector(".controls");
 
@@ -46,7 +44,7 @@ const state = {
     }]*/
 };
 function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
-  console.log(address)
+  console.log(address);
   return `
   <div class="panel1">
     <div class="">
@@ -68,7 +66,7 @@ function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
     </div>
   </div>
   ${popuplateProducts(products)}
-</div>`
+</div>`;
 }
 
 function popuplateProducts(products) {
@@ -101,17 +99,6 @@ function handleEmptySection(msg, add) {
   orderEl.classList[add ? "add" : "remove"]("empty");
 }
 
-function fillOrder(orders, add) {
-  let lists = "";
-  if (!orders.length) {
-    handleEmptySection("<p>No order found</p>", true);
-    return;
-  }
-  handleEmptySection("", false);
-  orders.forEach((order) => (lists += orderTemplate(order)));
-  orderEl.innerHTML = lists;
-}
-
 //NAVIGATE
 controls.addEventListener("click", (e) => {
   if (e.target.className) {
@@ -120,19 +107,40 @@ controls.addEventListener("click", (e) => {
 });
 
 //API REQUEST
-function getOrders() {
+async function fetchOrders() {
   const query = new URLSearchParams(state["query"]).toString();
-  xhr.open("GET", `${origin}/api/v1/orders?${query}`);
-  xhr.send();
+  const rawResponse = await fetch(
+    `http://127.0.0.1:3001/api/v1/orders?${query}`,
+    {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+  return rawResponse.json();
 }
 
-xhr.onload = function () {
-  const res = JSON.parse(this.responseText);
-  if (res.status === "success") {
-    fillOrder(res.data.orders);
-    return;
-  }
-  showStatus(res);
-};
+window.onload = function () {
+  fetchOrders()
+    .then((response) => {
+      if (response.status === "success") {
+        const orders = response.data.orders;
+        let lists = "";
+        if (!orders.length) {
+          handleEmptySection("<p>No order found</p>", true);
+          return;
+        }
+        handleEmptySection("", false);
+        orders.forEach((order) => (lists += orderTemplate(order)));
+        orderEl.innerHTML = lists;
+        return;
+      }
 
-getOrders();
+      showStatus(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      showStatus({ status: "error", message: err.message });
+    });
+};

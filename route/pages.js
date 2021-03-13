@@ -1,8 +1,15 @@
 const router = require("express").Router();
 
-const auth = require("../controller/authController");
-const checkout = require("../controller/checkoutController");
-const { renderStaticPage } = require("../controller/pageController");
+//MIDDLEWARES
+const checkoutMiddleware = require("../middleware/checkout");
+//CONTROLLERS
+const authController = require("../controller/authController");
+const checkoutController = require("../controller/checkoutController");
+const {
+  renderStaticPage,
+  renderCheckoutPage,
+  renderOrderPage,
+} = require("../controller/pageController");
 
 router.get("/login", (req, res) => renderStaticPage(res, "login.html"));
 router.get("/register", (req, res) => renderStaticPage(res, "register.html"));
@@ -31,59 +38,110 @@ router.get("/products/:id", (req, res) =>
 
 router.get("/success", (req, res) => {
   res.cookie("_ciic_", "", {
-    domain: process.env.DOMAIN,
     maxAge: 0,
     httpOnly: true,
-    secure:process.env.NODE_ENV === "production"
+    secure: process.env.NODE_ENV === "production",
   });
   renderStaticPage(res, "order-success.html");
 });
+
 //PROTECTED ROUTES
-router.get("/cart", (req, res) => renderStaticPage(res, "cart.html"));
+
+router.get(
+  "/cart",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "cart.html")
+);
 router.get(
   "/cart/checkout",
-  auth.verifyToken,
-  auth.preventApiAccess,
-  checkout.verifyGETCart,
-  checkout.verifyOrder,
-  checkout.verifyCheckout,
-  checkout.renderCheckoutPage
-);
-router.get("/success", (req, res) => renderStaticPage("order-success.html"));
-
-router.get("/account", (req, res) => renderStaticPage(res, "account.html"));
-
-router.get("/account/info", (req, res) =>
-  renderStaticPage(res, "setting.html")
+  authController.verifyToken,
+  authController.preventApiAccess,
+  checkoutMiddleware.verifyGETCart,
+  checkoutMiddleware.verifyOrder,
+  checkoutMiddleware.verifyCheckout,
+  renderCheckoutPage
 );
 
-router.get("/account/info/name", (req, res) =>
-  renderStaticPage(res, "name.html")
-);
-router.get("/account/info/email", (req, res) =>
-  renderStaticPage(res, "email.html")
-);
-router.get("/account/info/number", (req, res) =>
-  renderStaticPage(res, "number.html")
-);
-router.get("/account/info/password", (req, res) =>
-  renderStaticPage(res, "password.html")
+router.get(
+  "/account",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "account.html")
 );
 
-router.get("/account/orders", (req, res) =>
-  renderStaticPage(res, "order.html")
+router.get(
+  "/account/info",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "setting.html")
 );
 
-router.get("/account/address", (req, res) =>
-  renderStaticPage(res, "address.html")
+router.get(
+  "/account/info/name",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "name.html")
 );
-router.get("/account/address/edit", (req, res) =>
-  renderStaticPage(res, "newaddress.html")
+router.get(
+  "/account/info/email",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "email.html")
+);
+router.get(
+  "/account/info/number",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "number.html")
+);
+router.get(
+  "/account/info/password",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "password.html")
 );
 
-router.get("/career", (req, res) => renderStaticPage(res, "career.html"));
+router.get(
+  "/account/orders",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "order.html")
+);
 
-router.get("/aboutus", (req, res) => renderStaticPage(res, "aboutus.html"));
+router.get(
+  "/account/orders/:id",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  renderOrderPage
+);
+
+router.get(
+  "/account/address",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "address.html")
+);
+router.get(
+  "/account/address/edit",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "newaddress.html")
+);
+
+router.get(
+  "/career",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "career.html")
+);
+
+router.get(
+  "/aboutus",
+  authController.verifyToken,
+  authController.preventPageAccess,
+  (req, res) => renderStaticPage(res, "aboutus.html")
+);
 
 router.get("*", (req, res) => renderStaticPage(res, "404.html"));
 

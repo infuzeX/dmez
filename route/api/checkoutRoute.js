@@ -1,15 +1,16 @@
 const router = require("express").Router();
 
-const auth = require("../../controller/authController");
-const checkout = require("../../controller/checkoutController");
+const checkoutMiddleware = require('../../middleware/checkout');
+const authController = require("../../controller/authController");
+const checkoutController = require("../../controller/checkoutController");
 
 router
   .route("/")
   .post(
-    auth.verifyToken,
-    auth.preventApiAccess,
-    checkout.checkCart,
-    checkout.createOrder
+    authController.verifyToken,
+    authController.preventApiAccess,
+    checkoutMiddleware.checkCart,
+    checkoutController.createOrder
   )
 
 module.exports = router;
