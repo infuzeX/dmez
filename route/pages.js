@@ -57,8 +57,8 @@ router.get(
   "/cart/checkout",
   authController.verifyToken,
   authController.preventApiAccess,
-  checkoutMiddleware.verifyGETCart,
   checkoutMiddleware.verifyOrder,
+  checkoutMiddleware.verifyGETCart,
   checkoutMiddleware.verifyCheckout,
   renderCheckoutPage
 );
