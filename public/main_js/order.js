@@ -110,7 +110,7 @@ controls.addEventListener("click", (e) => {
 async function fetchOrders() {
   const query = new URLSearchParams(state["query"]).toString();
   const rawResponse = await fetch(
-    `http://127.0.0.1:3001/api/v1/orders?${query}`,
+    `/api/v1/orders?${query}`,
     {
       method: "GET",
       headers: {

@@ -1,7 +1,7 @@
 const xhr = new XMLHttpRequest();
 
 async function placeOrder(res) {
-  const order = await fetch("http://localhost:3001/api/v1/orders", {
+  const order = await fetch("/api/v1/orders", {
     method: "POST",
     headers: {
       "content-type": "application/json",
