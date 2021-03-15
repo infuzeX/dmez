@@ -1,14 +1,13 @@
-const orderEl = document.querySelector('.orders-panel');
-const controls = document.querySelector('.controls');
-const xhr = new XMLHttpRequest();
+const orderEl = document.querySelector(".orders-panel");
+const controls = document.querySelector(".controls");
 
 const state = {
-    query: {
-        page: 1,
-        limit: 10,
-        status: ""
-    },
-    orders: [{
+  query: {
+    page: 1,
+    limit: 10,
+    status: "placed",
+  },
+  /*orders: [{
         "_id": "6039018f3bab401055c3c552",
         "status": "placed",
         "createdAt": "1614348673886",
@@ -42,87 +41,106 @@ const state = {
             "contact": "7618956489"
         },
         "__v": "0"
-    }]
-}
-
+    }]*/
+};
 function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
-        return `<div class="panel">
-
-<div class="panel1">
-  <div class="">
-    <p>ORDER PLACED</p>
-    <p>${Date.now(createdAt)}</p>
+  console.log(address);
+  return `
+  <div class="panel1">
+    <div class="">
+      <p>ORDER PLACED</p>
+      <p>${createdAt}</p>
+    </div>
+    <div>
+      <p>TOTAL</p>
+      <p>₹${totalAmount}</p>
+    </div>
+    <div>
+      <p>SHIP TO</p>
+      <p>${address.flatnumber} ${address.area} ${address.city} 
+      ${address.state}</p>
+    </div>
+    <div>
+      <p>ORDER ID</p>
+      <p>Ref:${_id}</p>
+    </div>
   </div>
-  <div>
-    <P>TOTAL</P>
-    <p>₹${totalAmount}</p>
-  </div>
-  <div>
-    <P>SHIP TO</P>
-    <p>${address.flatnumber} ${address.area} ${address.city} ${address.state}</p>
-  </div>
-  <div>
-    <p>ORDER ID</p>
-    <p>Ref:${_id}</p>
-  </div>
-</div>
-${popuplateProducts(products)}
-</div>`
+  ${popuplateProducts(products)}
+</div>`;
 }
 
 function popuplateProducts(products) {
-    let productsEl = "";
-    products.forEach(product => productsEl += orderedProductTemp(product))
-    return productsEl;
+  let productsEl = "";
+  products.forEach((product) => (productsEl += orderedProductTemp(product)));
+  return productsEl;
 }
 
 function orderedProductTemp({ title, coverImage }) {
-    const imgUrl = coverImage ? coverImage : '/public/images/default.png';
+  const imgUrl = coverImage ? coverImage : "/public/images/default.png";
 
-    return `<div class="panel2" style="border-top: 1px solid grey;">
+  return `  <div class="panel2" style="border-top: 1px solid grey;">
 
-    <div class="product">
-      <p>${title}</p>
-      <img style="width:80px;" src="${imgUrl}"></img>
-    </div>
-  
-    <div class="action">
-      <button>Track Package</button><br>
-      <button>Return</button><br>
-      <button>Cancel</button>
-    </div>
-  
-  </div>`
+  <div class="product">
+    <p>${title}</p>
+    <img style="width:80px;" src=${imgUrl}>
+  </div>
+
+  <div class="action">
+    <button><a href="/track">Track Package</a></button><br>
+    <button>Return</button><br>
+    <button>Cancel</button>
+  </div>
+
+</div>`;
 }
 
 function handleEmptySection(msg, add) {
-    orderEl.innerHTML = msg;
-    orderEl.classList[add ? 'add' : 'remove']('empty');
-  }
-
-function fillOrder(orders, add) {
-    let lists = "";
-    if(!order.length) {
-        handleEmptySection('<p>No order found</p>', true);
-        return;
-    }
-    handleEmptySection('', false)
-    orders.forEach(order => lists += orderTemplate(order))
-    orderEl.innerHTML = lists;
+  orderEl.innerHTML = msg;
+  orderEl.classList[add ? "add" : "remove"]("empty");
 }
 
 //NAVIGATE
-controls.addEventListener('click', (e) => {
-    if (e.target.className) {
-        state['query'].status = e.target.className
-    }
-})
+controls.addEventListener("click", (e) => {
+  if (e.target.className) {
+    state["query"].status = e.target.className;
+  }
+});
 
 //API REQUEST
-function getOrders() {
-    const query = new URLSearchParams(state['query']).toString();
-    xhr.open('GET', `${origin}/api/v1/orders?${query}`);
-    xhr.send();
+async function fetchOrders() {
+  const query = new URLSearchParams(state["query"]).toString();
+  const rawResponse = await fetch(
+    `/api/v1/orders?${query}`,
+    {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+  return rawResponse.json();
 }
 
-//window.addEventListener('DOMContentLoaded', ()=>getOrders())
+window.onload = function () {
+  fetchOrders()
+    .then((response) => {
+      if (response.status === "success") {
+        const orders = response.data.orders;
+        let lists = "";
+        if (!orders.length) {
+          handleEmptySection("<p>No order found</p>", true);
+          return;
+        }
+        handleEmptySection("", false);
+        orders.forEach((order) => (lists += orderTemplate(order)));
+        orderEl.innerHTML = lists;
+        return;
+      }
+
+      showStatus(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      showStatus({ status: "error", message: err.message });
+    });
+};

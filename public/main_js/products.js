@@ -112,60 +112,70 @@ function parseCookie() {
   return search;
 }
 
-//API REQUESTS
-function getProducts() {
-  const queryString = new URLSearchParams(state["settings"]).toString();
-  xhr.open("GET", `${origin}/api/v1/products?${queryString}`);
-  xhr.send();
-}
-
-function addToCart(e) {
-  const productId = e.path[4].id;
-  xhr.open("PATCH", `${origin}/api/v1/cart/${productId}`);
-  xhr.send();
-}
-
-//RESPONSE HANDLER
-xhr.onload = function () {
-  const res = JSON.parse(this.responseText);
-
-  if (res.status === "fail" || res.status === "error") {
-    showStatus(res);
-    return;
-  }
-
-  if (res.data) {
-    state["products"] = res.data.products;
-    state["results"] = res.data.products.length;
-    buildProducts(state["products"]);
-    updateNavigation();
-  } else {
-    showStatus(res);
-  }
-};
-
-xhr.onerror = function () {
-  showStatus({ status: "error", message: "No internet connection" });
-};
-
-//INIT PRODUCTS API CALL
 function updateSearchSetting(search) {
   state["settings"].page = 1;
-  state["settings"].search = search;
+  state["settings"].search = search.split(" ").join("_");
 }
 
-//GET PRODUCTS
-window.addEventListener("DOMContentLoaded", () => {
+
+//GET PRODUCTS API
+async function getProducts() {
+  try {
+    const queryString = new URLSearchParams(state["settings"]).toString();
+    const response = await fetch(`${origin}/api/v1/products?${queryString}`, {
+      method: "GET",
+    });
+    const res = await response.json();
+    if (res.status === "success") {
+      state["products"] = res.data.products;
+      state["results"] = res.data.products.length;
+      buildProducts(state["products"]);
+      updateNavigation();
+      return;
+    }
+    showStatus(res);
+  } catch (err) {
+    showStatus({ status: "error", message: err.message });
+  }
+}
+
+//ADD TO CART API
+function setButtonState(button, state) {
+  button.id = state ? "" : "adding";
+  button.innerHTML = `<i class='fas fa-shopping-cart'></i>${
+    state ? "Add to cart" : "please wait! Adding..."
+  }`;
+}
+
+async function addToCart(e) {
+  try {
+    const button = e.target;
+    if (button.id === "adding") throw { message: "please wait" };
+
+    setButtonState(button, false);
+    const response = await fetch(`${origin}/api/v1/cart/${e.path[4].id}`, {
+      method: "PATCH",
+    });
+    const res = await response.json();
+    setButtonState(button, true);
+    showStatus(res);
+  } catch (err) {
+    setButtonState(button, true);
+    showStatus({ status: "fail", message: err.message });
+  }
+}
+
+//FETCH PRODUCTS
+window.addEventListener("DOMContentLoaded", async () => {
   //check & update search cookie
   const search = parseCookie();
   if (search) updateSearchSetting(search);
-  //check cookie
-  getProducts();
+  await getProducts();
 });
 
-//SEARCH PRODUCTS
+//FETCH SEARCH PRODUCTS
 searchbar.forEach((bar) => {
-  bar.addEventListener("submit", (e) => {
+  bar.addEventListener("submit", async (e) => {
     e.preventDefault();
     const search = e.target.elements.data.value;
     if (!search || search === "") {
@@ -173,6 +183,6 @@ searchbar.forEach((bar) => {
     }
     handleEmptySection("<div class='loader'></div>", true);
     updateSearchSetting(search);
-    getProducts();
+    await getProducts();
   });
 });

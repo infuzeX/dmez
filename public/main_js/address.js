@@ -8,6 +8,7 @@ function getAddress() {
 function editAddress(data) {
   xhr.open("PUT", `${origin}/api/v1/user`);
   xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.withCredentials = true;
   xhr.send(JSON.stringify({ address: data }));
 }
 
@@ -30,7 +31,7 @@ xhr.onload = function () {
   }
 
   if (!res.data) {
-    window.location.href = '/account/address';
+    window.location.href = res.path;
     return;
   }
 

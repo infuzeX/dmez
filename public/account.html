@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
 </head>
 <!-- <body style="
   background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('assests/images/logo.jpg') center ;"> -->
@@ -60,14 +60,17 @@
 		<!-- Mobile Menu -->
 		<div id="mySidenav" class="sidenav">
 			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-
+			<a style="color: #A1B985;">Howdy!</a>
+			<a href="/">Home</a>
 			<a href="/products">Shop</a>
-			<a href="/account">Account</a>
-			<a href=""> <i class="fas fa-shopping-cart"></i> &nbsp; Casrt</a>
+			<a href="/cart">  Cart</a>
+			<a href="/account"> Account</a>
+			
+			<a href="/products">Contact</a>
 			<div class="search">
 				<form class="search-container">
-					<input type="text" id="search-bar" placeholder="Search for medicines">
-					<a onclick="searchProduct(event)"><i id="icon" class="fas fa-search" ></i></a>
+					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
+					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
 				</form>
 
 			</div>
@@ -120,21 +123,21 @@
 
 
 <!-- Site footer -->
-<footer class="site-footer">
+<footer class="site-footer" >
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-12 ">
-        <h4><span style="color: #E5CAAF;">Guaranteed 100%</span> Orginal items</h4>
+        <h4><span style="color: #E5CAAF;" >Guaranteed 100%</span> Orginal items</h4>
         <br>
         <h6>Company</h6>
         <ul class="footer-links">
           <li><a href="/career">Career</a></li>
-          <li><a href="about-us.html">About Us</a></li>
-          <li><a href="partner-dmez.html">Partner with DMEZ</a></li>
+          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="/partner-dmez">Partner with DMEZ</a></li>
           <h6>Our Services</h6>
-          <li><a href="">Our Medicine</a></li>
-          <li><a href="">Ayurvedic Products</a></li>
-          <li><a href="">Organic Food</a></li>
+          <li><a href="/products">Our Medicine</a></li>
+          <li><a href="/products">Ayurvedic Products</a></li>
+          <li><a href="/products">Organic Food</a></li>
 
         </ul>
       </div>
@@ -144,14 +147,14 @@
         <br>
         <h6>Featured Categories</h6>
         <ul class="footer-links">
-          <li><a href="">Personal Care</a></li>
-          <li><a href="">Daily Essentials</a></li>
-          <li><a href="">Ayurvedic Store</a></li>
-          <li><a href="">Mother & Baby care</a></li>
-          <li><a href="">Sexual Wellness</a></li>
-          <li><a href="">Diabetic care</a></li>
-          <li><a href="">Nutrition & Suppliments</a></li>
-          <li><a href="">Proteins & Vitamins</a></li>
+          <li><a href="/products">Personal Care</a></li>
+          <li><a href="/products">Daily Essentials</a></li>
+          <li><a href="/products">Ayurvedic Store</a></li>
+          <li><a href="/products">Mother & Baby care</a></li>
+          <li><a href="/products">Sexual Wellness</a></li>
+          <li><a href="/products">Diabetic care</a></li>
+          <li><a href="/products">Nutrition & Suppliments</a></li>
+          <li><a href="/products">Proteins & Vitamins</a></li>
 
         </ul>
       </div>
@@ -164,11 +167,11 @@
           <li><a href="">Browse All Medicines</a></li>
           <!-- <li><a href="">Browse All Molecules</a></li> -->
           <!-- <li><a href="">FAQs</li> -->
-          <li><a href="">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
           <h6>Policy Info</h6>
           <!-- <li><a href="">Editorial Policy</a></li> -->
-          <li><a href="privacy-policy.html">Privacy Policy</li>
-          <li><a href="tnc.html">Terms and condition</a></li>
+          <li><a href="/privacy&policy">Privacy Policy</li>
+          <li><a href="/term&conditions">Terms and condition</a></li>
         </ul>
       </div>
 

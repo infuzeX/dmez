@@ -1,30 +1,38 @@
 const xhr = new XMLHttpRequest();
 
-function placeOrder(res) {
- alert("payment successful.");
+async function placeOrder(res) {
+  const order = await fetch("/api/v1/orders", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      address,
+      payment: {
+        paymentId: res.razorpay_payment_id,
+        orderId: payload.orderId,
+      },
+    }),
+  });
+  return order.json();
 }
 
-payload['handler'] = placeOrder;
+payload["handler"] = async function (res) {
+  try {
+    const response = await placeOrder(res);
+    if (response.status === "success") window.location.href = response.path;
+    else showStatus(response);
+  } catch (err) {
+    showStatus({ status: "error", message: err.message });
+  }
+};
+
 const razorpay = new Razorpay(payload);
 
-function initPayment() {
-    razorpay.open();
-}
+const initPayment = () => razorpay.open();
 
-razorpay.on('payment.failed', (res) => console.log(res));
-/*========================RESPONSE==========================
-function getUserData() {
-    xhr.open('GET', `${origin}/api/v1/user`);
-    xhr.send();
-}
-
-
-xhr.onload = function () {
-    const res = JSON.parse(this.responseText);
-
-}
-
+razorpay.on("payment.failed", (res) => console.log(res));
+/*========================RESPONSE==========================*/
 xhr.onerror = function () {
-    showStatus({ status: 'error', message: 'something went wrong' });
-}
-*/
+  showStatus({ status: "error", message: "something went wrong" });
+};

@@ -3,6 +3,7 @@ const productId = window.location.pathname.split('/')[2];
 const productEl = document.querySelectorAll('.product-element');
 const [photo, gallery, title, discounts, description, information] = productEl;
 
+
 function removeLoader() {
     const container = document.querySelector('.get-container');
     container.removeChild(container.children[0]);

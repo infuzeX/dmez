@@ -1,5 +1,6 @@
 const AppError = require("../utils/appError");
 const jwt = require("../utils/jwt");
+
 //verify token
 exports.verifyToken_OFF = async (req, res, next) => {
    try {
@@ -23,7 +24,16 @@ exports.verifyToken = (req, res, next) => {
 };
 
 //prevent unauth access to page
-exports.preventPageAccess = async (req, res, next) => req.userId ? next() : res.redirect("/");
+exports.preventPageAccess = async (req, res, next) => {
+   if(req.userId) 
+     return next();
+
+   res
+     .cookie("path", req.originalUrl, {
+      httpOnly:true
+     })
+     .redirect("/");
+} 
 //prevent auth access to login page
 exports.preventLoginAccess = async (req, res, next) => req.userId ? res.redirect("/home") : next();
 //prevent unauth access to api

@@ -1,11 +1,14 @@
-<!DOCTYPE html>
 <html lang="en">
+
+
+<!-- Mirrored from portotheme.com/html//checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Feb 2021 18:51:14 GMT -->
 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>DMEZ</title>
+	<link rel="stylesheet" href="/public/css/status.css">
 	<link rel="stylesheet" href="/public/css/product.css">
 	<!-- Plugins CSS File -->
 	<link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
@@ -17,10 +20,45 @@
 
 	<!--razopay checkout-->
 	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<% const user = data.customerId %>
+	<% const address = data.customerId.address %>
+	<script>
+		const payload = {
+			key: "<%=data.key%>",
+			orderId: "<%=data.order%>",
+			name: 'Dmez',
+			amount: '<%=data.total%>' * 100,
+			currency: "INR",
+			prefill: {
+				name: "<%=user.name%>",
+				contact: "<%=user.contact%>",
+				email: "<%=user.email%>"
+			},
+			theme: {
+				color: "#FFB607"
+			}
+		}
+		const address = {
+			name: "<%= address.name %>",
+			state: "<%= address.state %>",
+			city: "<%= address.city %>",
+			zipcode: "<%= address.zipcode %>",
+			area: "<%= address.area %>",
+			landmark: "<%= address.landmark %>",
+			flatnumber: "<%= address.flatnumber %>",
+			contact: "<%= address.contact %>"
+		}
+	</script>
 
 </head>
 
 <body>
+	<!--status-->
+	<div style="background-color:brown" class="status">
+		<p></p>
+		<span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
+	  </div>
+	  <!--status-->
 	<header>
 		<nav>
 			<div id="navbar">
@@ -34,7 +72,7 @@
 				<div id="links">
 					<a href="/">Home</a>
 					<a href="/products">Shop</a>
-					<a href="/account"><i class="fas fa-user-circle"></i> Account</a>
+					<a href="/account"> <i class="fas fa-user-circle"></i> Account</a>
 					<a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
 
 				</div>
@@ -44,20 +82,10 @@
 		<!-- Mobile Menu -->
 		<div id="mySidenav" class="sidenav">
 			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-			<a style="color: #A1B985;">Howdy!</a>
 			<a href="/">Home</a>
 			<a href="/products">Shop</a>
-			<a href="/cart">  Cart</a>
-			<a href="/account"> Account</a>
-			
-			<a href="/products">Contact</a>
-			<div class="search">
-				<form class="search-container">
-					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
-					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
-				</form>
-
-			</div>
+			<a href="/account"> <i class="fas fa-user-circle"></i> Account</a>
+			<a href="/cart"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
 		</div>
 	</header>
 	<div class="page-wrapper">
@@ -87,48 +115,52 @@
 							<div class="row">
 								<div class="col-lg-9">
 									<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
-									<h6> <a href="" style="color: #A1B985;">Change Billing Address</a></h6>
+									<h6> <a href="/account/address/edit" style="color: #A1B985;">Change Billing Address</a></h6>
+
+									<style>
+										span {
+											color: #333;
+											font-size: 1.5rem;
+										}
+									</style>
+
 									<div class="row">
 										<div class="col-sm-6 col-ms-6">
-											<label id="fname">First Name </label>
-											<label id="lname">Last Name </label>
+											<label id="fname">Name:</label>
+											<span><%= address.name%></span>
 										</div><!-- End .col-sm-6 -->
 
 
 									</div><!-- End .row -->
 
-
-
-
-
-
-									<label id="street">Street address </label>
+									<label id="street">house/flat number:
+										<span><%= address.flatnumber%></span></label>
 
 									<div class="row">
 										<div class="col-sm-6">
-											<label id="city">Town / City </label>
-
+											<label id="city">Town / City: <%= data.customerId.address.city%> </label>
+											<span><%= address.city%></span>
 										</div><!-- End .col-sm-6 -->
 
 										<div class="col-sm-6">
-											<label id="state">State </label>
-
+											<label id="state">State:</label>
+											<span><%= address.state%></span>
 										</div><!-- End .col-sm-6 -->
 									</div><!-- End .row -->
 
 									<div class="row">
 										<div class="col-sm-6">
-											<label id="zip">Postcode / ZIP </label>
-
+											<label id="zip">Postcode / ZIP:</label>
+											<span><%= address.zipcode%></span>
 										</div><!-- End .col-sm-6 -->
 
 										<div class="col-sm-6">
-											<label id="phone">Phone </label>
-
+											<label id="phone">Phone:</label>
+											<span><%= address.contact%></span>
 										</div><!-- End .col-sm-6 -->
 									</div><!-- End .row -->
 
-									<label id="emailadd">Email address </label>
+									<label id="emailadd">Email address: <span><%=user.email%></span> </label>
 
 
 
@@ -147,37 +179,41 @@
 											</thead>
 
 											<tbody>
+												<% data.products.forEach(product => {  %>
 												<tr>
-													<td><a href="#">Beige knitted elastic runner shoes</a></td>
-													<td>₹84.00</td>
+													<td><a
+															href="/products/<%=product.productId%>"><%=product.title%></a>
+													</td>
+													<td>₹<%= (product.price - product.discount) * product.quantity %>
+													</td>
 												</tr>
-
-												<tr>
-													<td><a href="#">Blue utility pinafore denimdress</a></td>
-													<td>₹76,00</td>
-												</tr>
+												<% }) %>
 												<tr class="summary-subtotal">
 													<td>Subtotal:</td>
-													<td>₹160.00</td>
+													<td>₹<%=data.totalAmount%></td>
 												</tr><!-- End .summary-subtotal -->
 												<tr>
 													<td>Shipping:</td>
+													<% if(!data.charge) {%>
 													<td>Free shipping</td>
+													<%} else {%>
+													<td>₹<%=data.charge%></td>
+													<%}%>
 												</tr>
 												<tr class="summary-total">
 													<td>Total:</td>
-													<td>₹160.00</td>
+													<td>₹<%= data.total %></td>
 												</tr><!-- End .summary-total -->
 											</tbody>
 										</table><!-- End .table table-summary -->
 
-
-
-										<button type="submit" class="btor ">
+										
+										<button onclick="initPayment()" class="btor ">
 											<span class="btn-text" >Place Order</span>
 										</button>
 
-										<!-- onclick="placeOrder()" -->
+
+										
 									</div><!-- End .summary -->
 								</aside><!-- End .col-lg-3 -->
 							</div><!-- End .row -->
@@ -202,9 +238,10 @@
 	<!-- Main JS File -->
 	<script src="/public/assets/js/main.js"></script>
 	<!--ABD JS FILE-->
-	<script src="/public/main_js/origins.js"></script>
-	<script src="/public/main_js/checkout.js"></script>
-
+	<script defer src="/public/main_js/status.js"></script>
+	<script defer src="/public/main_js/origins.js"></script>
+	<script defer src="/public/main_js/checkout.js"></script>
+	
 	<script>
 		function openNav() {
 			document.getElementById("mySidenav").style.width = "250px";
@@ -213,11 +250,6 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
-
 	</script>
 
 </body>
-
-
-
-</html>

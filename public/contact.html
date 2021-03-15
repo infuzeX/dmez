@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMEZ | Contact</title>
-  <link rel="stylesheet" href="/public/css\footer.css">
+
   <link rel="stylesheet" href="/public/css/footer1.css">
   <link href="/public/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/css/contact.css">
-  <link rel="stylesheet" href="/public/css/header.css">
+  <link rel="stylesheet" href="/public/css/product.css">
   <link rel="stylesheet" href="/public/css/footer-elements.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
@@ -37,30 +37,67 @@
     <nav>
       <div id="navbar">
         <div id="logo" class="reverse">
-          <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;" onclick="openNav()">&#9776;
-          </div>
-          <div class="logo"><a href="index.html"><img src="/public/images/dmez.png" width="45" height="64"></img> </div>
+          <div class="mobile-btn" style="font-size:30px;cursor:pointer; font-weight:bold;margin-top: 10px;"
+            onclick="openNav()">&#9776;</div>
+
+          <div class="logo" style="margin-left: 15px;"><a href="/home"><img src="/public/images/dmez.png" width="45"
+                height="64"></img>
+            </a></div>
+
 
         </div>
+
+
+        <sub-header id="links">
+          <br>
+          <div class="search-bar">
+
+            <div class="search">
+              <form class="search-container">
+                <input type="text" id="search-bar" placeholder="Search for medicines">
+                <a href="#"><i id="icon" class="fas fa-search"></i></a>
+              </form>
+
+            </div>
+
+
+          </div>
+        </sub-header>
+
+
+
+
+
+
         <div id="links">
-          <a href="index.html">Home</a>
-          <a href="shop.html">Shop</a>
-          <a href="login.html">Account</a>
-          <a href="checkout.html"> <i class="fas fa-shopping-cart"></i> &nbsp; Cart</a>
+
+          <a href="/products">Shop</a>
+
+          <a href="/account"><i class="fas fa-user-circle"></i> Account</a>
+          <a href="/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>
 
         </div>
       </div>
 
     </nav>
     <!-- Mobile Menu -->
-    <div id="mySidenav" class="sidenav">
-      <a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Home</a>
-      <a href="#">Gallery</a>
-      <a href="#">Blog</a>
-      <a href="#">Portfolio</a>
-      <a href="#">Contact</a>
-    </div>
+ <div id="mySidenav" class="sidenav">
+			<a style="cursor:pointer;" class="closebtn" onclick="closeNav()">&times;</a>
+			<a style="color: #A1B985;">Howdy!</a>
+			<a href="/">Home</a>
+			<a href="/products">Shop</a>
+			<a href="/cart">  Cart</a>
+			<a href="/account"> Account</a>
+			
+			<a href="/products">Contact</a>
+			<div class="search">
+				<form class="search-container">
+					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
+					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+				</form>
+
+			</div>
+		</div>
   </header>
   <sub-header>
     <div class="top-bar">
@@ -117,38 +154,38 @@
           <div class="card card-signin" style="background-color: white;">
             <div class="card-body">
               <h5 class="card-title text-center mt-5">Contact Us<br><i class="ml-2 far fa-envelope"></i></h5>
-              <form class="col-12 col-md-6 form-signin">
+              <form id="contact" class="col-12 col-md-6 form-signin">
 
                 <div class="form-label-group" style="margin-top: 60px; width: 100%;">
-                  <input type="text" id="name" class="form-control" placeholder="Full Name" required autofocus
+                  <input type="text" id="name" class="contact-name form-control" placeholder="Full Name" required autofocus
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelName" for="name">Full Name</label>
+                  <label id="labelName" class="contact-name" for="name">Full Name</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="email" id="email" class="form-control" placeholder="Email address" required
+                  <input type="email" id="email" class="contact-email form-control" placeholder="Email address" required
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelEmail" for="email">Email Address</label>
+                  <label id="labelEmail" class="contact-email" for="email">Email Address</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="tel" id="phone" class="form-control" placeholder="Contact Number" required
+                  <input type="tel" id="phone" class="contact-phone form-control" placeholder="Contact Number" required
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelPhone" for="phone">Contact Number</label>
+                  <label id="labelPhone" class="contact-phone" for="phone">Contact Number</label>
                 </div>
 
                 <div class="form-label-group" style="margin-top: 20px; width: 100%;">
-                  <input type="text" id="message" class="form-control" placeholder="Message" required
+                  <input type="text" id="message" class="contact-message form-control" placeholder="Message" required
                     onfocus="green(event)" style=" border: 2px solid #789461;" />
-                  <label id="labelMessage" for="message">Message</label>
+                  <label id="labelMessage" class="contact-message" for="message">Message</label>
                 </div>
-
-
+            
               </form>
               <div style="text-align: center; margin-bottom: 60px;">
                 <input class="btn btn-lg text-uppercase" value="Submit" id="submit-btn" type="button"
                   style="width:50%" />
               </div>
+              
             </div>
           </div>
         </div>
@@ -179,7 +216,6 @@
         <div>
           <label id="labelSuggestName" for="sugg_name">Name</label>
           <input type="text" class="form-control input" id="sugg_name" placeholder="Enter Your name" onfocus="green(event)">
-          
         </div>
   
         <div>
@@ -194,94 +230,96 @@
     </div>
 
   </div>
-  <footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-12 ">
-          <h4><span style="color: #E5CAAF;">Guaranteed 100%</span> Orginal items</h4>
-          <br>
-          <h6>Company</h6>
-          <ul class="footer-links">
-            <li><a href="">Career</a></li>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Partner with DMEZ</a></li>
-            <h6>Our Services</h6>
-            <li><a href="">our Medicine</a></li>
-            <li><a href="">Ayurvedic Products</a></li>
-            <li><a href="">Organic Food</a></li>
+  <footer class="site-footer" >
+		<div class="container">
+		  <div class="row">
+			<div class="col-lg-3 col-md-12 ">
+			  <h4><span style="color: #E5CAAF;" >Guaranteed 100%</span> Orginal items</h4>
+			  <br>
+			  <h6>Company</h6>
+			  <ul class="footer-links">
+				<li><a href="/career">Career</a></li>
+				<li><a href="/aboutus">About Us</a></li>
+				<li><a href="/partner-dmez">Partner with DMEZ</a></li>
+				<h6>Our Services</h6>
+				<li><a href="/products">Our Medicine</a></li>
+				<li><a href="/products">Ayurvedic Products</a></li>
+				<li><a href="/products">Organic Food</a></li>
+	  
+			  </ul>
+			</div>
+	  
+			<div class="col-lg-3 col-md-12 ">
+			  <h4> <span style="color: #E5CAAF;">Easy Returns</span> on each damaged items</h4>
+			  <br>
+			  <h6>Featured Categories</h6>
+			  <ul class="footer-links">
+				<li><a href="/products">Personal Care</a></li>
+				<li><a href="/products">Daily Essentials</a></li>
+				<li><a href="/products">Ayurvedic Store</a></li>
+				<li><a href="/products">Mother & Baby care</a></li>
+				<li><a href="/products">Sexual Wellness</a></li>
+				<li><a href="/products">Diabetic care</a></li>
+				<li><a href="/products">Nutrition & Suppliments</a></li>
+				<li><a href="/products">Proteins & Vitamins</a></li>
+	  
+			  </ul>
+			</div>
+	  
+			<div class="col-lg-3 col-md-12 ">
+			  <h4> <span style="color: #E5CAAF;">Free delivery for every</span> order more than Rs400</h4>
+			  <br>
+			  <h6>Need Help</h6>
+			  <ul class="footer-links">
+				<li><a href="/products">Browse All Medicines</a></li>
+				<!-- <li><a href="">Browse All Molecules</a></li> -->
+				<!-- <li><a href="">FAQs</li> -->
+				<li><a href="/contact">Contact</a></li>
+				<h6>Policy Info</h6>
+				<!-- <li><a href="">Editorial Policy</a></li> -->
+				<li><a href="/privacy&policy">Privacy Policy</li>
+				<li><a href="/term&conditions">Terms and condition</a></li>
+			  </ul>
+			</div>
+	  
+			<div class="col-lg-3 col-md-12 ">
+			  <h4><span style="color: #E5CAAF;">Guaranteed discount</span> on every products</h4>
+			  <br>
+			  <h6>Dmez</h6>
+			  <ul class="footer-links">
+				<p>DMEZ is not just another company in the areas of healthcare as its resolve is to bring a
+				  revolution in the areas of healthcare space to start with. It doesn't want to just deliver
+				  medicines but also want to make you small. </p>
+	  
+			  </ul>
+			</div>
+		  </div>
+		  <hr>
+		</div>
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-8 col-sm-6 col-xs-12">
+			  <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+				<a href="/">Dmez</a>
+			  </p>
+			</div>
+	  
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			  <ul class="social-icons">
+				<li><a class="facebook" href="https://www.facebook.com/dmezhealthcare/"><i
+					  class="fab fa-facebook"></i></a></li>
+				<li><a class="twitter" href="https://twitter.com/dmezhealthcare"><i
+					  class="fab fa-twitter"></i></a></li>
+				<li><a class="dribbble" href="https://www.instagram.com/dmez.healthcare/"><i
+					  class="fab fa-instagram"></i></a></li>
+				<li><a class="linkedin" href="https://www.linkedin.com/company/dmez/"><i
+					  class="fab fa-linkedin"></i></a></li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+	  </footer>
 
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 ">
-          <h4> <span style="color: #E5CAAF;">Easy Returns</span> on each damaged items</h4>
-          <br>
-          <h6>Featured Categories</h6>
-          <ul class="footer-links">
-            <li><a href="">Personal Care</a></li>
-            <li><a href="">Daily Essentials</a></li>
-            <li><a href="">Ayurvedic Store</a></li>
-            <li><a href="">Mother & Baby care</a></li>
-            <li><a href="">Sexual Wellness</a></li>
-            <li><a href="">Diabetic care</a></li>
-            <li><a href="">Nutrition & Suppliments</a></li>
-            <li><a href="">Proteins & Vitamins</a></li>
-
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 ">
-          <h4> <span style="color: #E5CAAF;">Free delivery for every</span> order more than Rs400</h4>
-          <br>
-          <h6>Need Help</h6>
-          <ul class="footer-links">
-            <li><a href="">Browse All Medicines</a></li>
-            <li><a href="">Browse All Molecules</a></li>
-            <li><a href="">FAQs</li>
-            <li><a href="">Contact</a></li>
-            <h6>Policy Info</h6>
-            <li><a href="">Editorial Policy</a></li>
-            <li><a href="">Privacy Policy</li>
-            <li><a href="">Terms and condition</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 ">
-          <h4><span style="color: #E5CAAF;">Guaranteed discount</span> on every products</h4>
-          <br>
-          <h6>Dmez</h6>
-          <ul class="footer-links">
-            <p>DMEZ is not just another company in the areas of healthcare as its resolve is to bring a revolution in
-              the areas of healthcare space to start with. It doesn't want to just deliver medicines but also want to
-              make you small. </p>
-
-          </ul>
-        </div>
-      </div>
-      <hr>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-            <a href="#">Dmez</a>.
-          </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="social-icons">
-            <li><a class="facebook" href="https://www.facebook.com/dmezhealthcare/"><i class="fab fa-facebook"></i></a>
-            </li>
-            <li><a class="twitter" href="https://twitter.com/dmezhealthcare"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="https://www.instagram.com/dmez.healthcare/"><i
-                  class="fab fa-instagram"></i></a></li>
-            <li><a class="linkedin" href="https://www.linkedin.com/company/dmez/"><i class="fab fa-linkedin"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
 
   <script>
     function openNav() {
@@ -294,180 +332,7 @@
 
   </script>
 
-  <script>
-    window.onload = function () {
-
-      document.getElementById("submit-btn").addEventListener("click", () => {
-        var name = document.getElementById("name").value;
-        var phone = document.getElementById("phone").value;
-        var email = document.getElementById("email").value;
-        var message = document.getElementById("message").value;
-
-        let status = [];
-        let re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-
-        if (name.length <= 1) {
-          document.getElementById("name").style.borderColor = "red";
-          document.getElementById("name").value = "";
-          document.getElementById("labelName").innerHTML = "Please enter your name";
-          status.push("false");
-        } else {
-          status.push("true");
-        }
-
-        if (phone.length !== 10) {
-          document.getElementById("phone").style.borderColor = "red";
-          document.getElementById("phone").value = "";
-          document.getElementById("labelPhone").innerHTML =
-            "Please enter valid Phone Number";
-          status.push("false");
-        } else {
-          status.push("true");
-        }
-
-        if (re.test(email.trim())) {
-          status.push("true");
-        } else {
-          document.getElementById("email").style.borderColor = "red";
-          document.getElementById("email").value = "";
-          document.getElementById("labelEmail").innerHTML =
-            "Please enter valid email";
-          status.push("false");
-        }
-
-
-        if (status.includes("false")) {
-          return false;
-        } else {
-
-
-          document.getElementById("submit-btn").value = "Please wait...";
-
-          
-          fetch("https://dmezapi.herokuapp.com/api/v1/form/contacts", {
-            method: "POST",
-            headers: new Headers({ "content-type": "application/json" }),
-            body: JSON.stringify({
-              name: name,
-              email: email,
-              contact: phone,
-              message: message
-            }),
-          })
-            .then(function (response) {
-              return response.json();
-            })
-            .then((res) => {
-              console.log(res);
-              if (res.status === "success") {
-                Swal.fire({
-                  icon: "success",
-                  title: "Yayyy",
-                  text: "You have successfully submitted your details! We will contact you soon!",
-                });
-
-                document.getElementById("submit-btn").value = "Submit";
-              } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "Oops..",
-                  text: "There was some error. Please try again!",
-                });
-                document.getElementById("submit-btn").value = "Submit";
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "There was some error from our side. Please try again later",
-              });
-              document.getElementById("submit-btn").value = "Submit";
-            });
-        }
-      });
-
-      //Suggestion Form 
-
-      document.getElementById("suggest-btn").addEventListener("click", () => {
-        var name = document.getElementById("sugg_name").value;
-        var suggestion = document.getElementById("suggestion").value;
-
-        let status = [];
-
-        if (name.length <= 1) {
-          document.getElementById("sugg_name").style.borderColor = "red";
-          document.getElementById("sugg_name").value = "";
-          document.getElementById("labelSuggestName").innerHTML = "Please enter your name";
-          status.push("false");
-        } else {
-          status.push("true");
-        }
-
-        if (suggestion.length < 10) {
-          document.getElementById("suggestion").style.borderColor = "red";
-          document.getElementById("suggestion").value = "";
-          document.getElementById("labelSuggestion").innerHTML = "Please enter suggestion of more than 10 characters";
-          status.push("false");
-        } else {
-          status.push("true");
-        }
-
-
-        if (status.includes("false")) {
-          return false;
-        } else {
-
-
-          document.getElementById("suggest-btn").value = "Please wait...";
-
-          
-          fetch("https://dmezapi.herokuapp.com/api/v1/form/suggestions", {
-            method: "POST",
-            headers: new Headers({ "content-type": "application/json" }),
-            body: JSON.stringify({
-              name: name,
-              suggestion: suggestion
-            }),
-          })
-            .then(function (response) {
-              return response.json();
-            })
-            .then((res) => {
-              console.log(res);
-              if (res.status === "success") {
-                Swal.fire({
-                  icon: "success",
-                  title: "Yayyy",
-                  text: "Thank you for your valuable suggestion!",
-                });
-
-                document.getElementById("suggest-btn").value = "Submit";
-              } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "Oops..",
-                  text: "There was some error. Please try again!",
-                });
-                document.getElementById("suggest-btn").value = "Submit";
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "There was some error from our side. Please try again later",
-              });
-              document.getElementById("suggest-btn").value = "Submit";
-            });
-        }
-      });
-    }
-
-  </script>
+  <script defer src="/public/main_js/form.js"></script>
 
 </body>
 
