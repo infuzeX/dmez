@@ -1,4 +1,5 @@
 const { catchAsync, handleRequestMethodError } = require("../utils/catchError");
+const AppError = require("../utils/appError");
 const jwt = require("../utils/jwt");
 
 const cartService = require("../service/cartService");
@@ -12,16 +13,6 @@ exports.checkCart = catchAsync(async (req, res, next) => {
   };
   next();
 });
-
-//VERIFY CART BEFORE RENDERING CHECKOUT PAGE
-exports.verifyGETCart = async (req, res, next) => {
-  const cart = await cartService.cartDetails(req.userId);
-  console.log(cart);
-  if (!cart) return res.redirect("/cart");
-  cart["_id"] = cart["_id"].toString();
-  req.cart = cart.toJSON();
-  next();
-};
 
 //VERIFY ORDER BEFORE RENDERING CHECKOUT PAGE
 exports.verifyOrder = async (req, res, next) => {
@@ -40,8 +31,18 @@ exports.verifyOrder = async (req, res, next) => {
   }
 };
 
+//VERIFY CART BEFORE RENDERING CHECKOUT PAGE
+exports.verifyGETCart = async (req, res, next) => {
+  const cart = await cartService.cartDetails(req.userId || req.checkout.customerId);
+  if (!cart) return next(new AppError("Cart not found", 400));
+  cart["_id"] = cart["_id"].toString();
+  req.cart = cart.toJSON();
+  next();
+};
+
 exports.verifyCheckout = async (req, res, next) => {
   const { _id, customerId, totalAmount } = req.checkout;
+  req["userId"] = req.userId || req.cart.customerId._id;
   //VERIFY CHECKOUT
   if (
     customerId == req.userId &&

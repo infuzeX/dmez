@@ -9,6 +9,7 @@ const orderRoutes = require('./route/api/orderRoute');
 
 const app = express();
 
+app.use(express.json());
 app.use(cookieParser());
 
 app.set('view engine', 'ejs');

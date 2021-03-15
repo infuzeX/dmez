@@ -9,8 +9,8 @@ router
   .route("/")
   .post(
     checkoutMiddleware.verifyOrder,
-    checkoutMiddleware.verifyCheckout,
     checkoutMiddleware.verifyGETCart,
+    checkoutMiddleware.verifyCheckout,
     orderController.placeOrderCont
   )
   .get(

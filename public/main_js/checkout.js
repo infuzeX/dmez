@@ -1,7 +1,7 @@
 const xhr = new XMLHttpRequest();
 
 async function placeOrder(res) {
-  const order = await fetch("/api/v1/orders", {
+  const order = await fetch("http://localhost:3001/api/v1/orders", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -20,7 +20,7 @@ async function placeOrder(res) {
 payload["handler"] = async function (res) {
   try {
     const response = await placeOrder(res);
-    if (res.status === "success") window.location.href = "/success";
+    if (response.status === "success") window.location.href = "/success";
     else showStatus(response);
   } catch (err) {
     showStatus({ status: "error", message: err.message });
@@ -33,7 +33,6 @@ const initPayment = () => razorpay.open();
 
 razorpay.on("payment.failed", (res) => console.log(res));
 /*========================RESPONSE==========================*/
-
 xhr.onerror = function () {
   showStatus({ status: "error", message: "something went wrong" });
 };

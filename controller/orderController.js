@@ -7,6 +7,7 @@ const { verifySignature, razorpayConfig } = require("../utils/pay");
 
 //PLACE ORDER AFTER PAYMENT
 exports.placeOrderCont = catchAsync(async (req, res, next) => {
+  console.log("here in place order");
   //VERIFY SIGNATURE
 
   //VERIFY CHECKOUT WITH CART

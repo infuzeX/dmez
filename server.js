@@ -13,6 +13,7 @@ mongoose.connect(process.env.MONGOURI || "mongodb://127.0.0.1:27017/dmez", {
 
 process.on('unhandledRejection', (error)=> {
   console.log(error.message);
+  console.log(error.stack);
 })
 
 app.listen(PORT, () => console.log("up and running"));

@@ -9,6 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>DMEZ</title>
+	<link rel="stylesheet" href="/public/css/status.css">
 	<link rel="stylesheet" href="/public/css/product.css">
 	<!-- Plugins CSS File -->
 	<link rel="stylesheet" href="/public/assets/css/bootstrap.min.css">
@@ -53,6 +54,12 @@
 </head>
 
 <body>
+	<!--status-->
+	<div style="background-color:brown" class="status">
+		<p></p>
+		<span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
+	  </div>
+	  <!--status-->
 	<header>
 		<nav>
 			<div id="navbar">
@@ -232,6 +239,7 @@
 	<!-- Main JS File -->
 	<script src="/public/assets/js/main.js"></script>
 	<!--ABD JS FILE-->
+	<script defer src="/public/main_js/status.js"></script>
 	<script defer src="/public/main_js/origins.js"></script>
 	<script defer src="/public/main_js/checkout.js"></script>
 	
