@@ -20,7 +20,7 @@ async function placeOrder(res) {
 payload["handler"] = async function (res) {
   try {
     const response = await placeOrder(res);
-    if (response.status === "success") window.location.href = "/success";
+    if (response.status === "success") window.location.href = response.path;
     else showStatus(response);
   } catch (err) {
     showStatus({ status: "error", message: err.message });

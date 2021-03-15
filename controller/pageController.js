@@ -6,14 +6,18 @@ exports.renderStaticPage = (res, page) => {
 };
 
 exports.renderCheckoutPage = (req, res) => {
+  data = req.orderPlaced
+    ? { success: true }
+    : {
+        ...req.cart,
+        key: process.env.KEY_ID,
+        order: req.checkout.orderId,
+        charge: req.checkout.charge,
+        total: req.checkout.charge + req.checkout.totalAmount,
+      };
+
   res.render("checkout.ejs", {
-    data: {
-      ...req.cart,
-      key: process.env.KEY_ID,
-      order: req.checkout.orderId,
-      charge: req.checkout.charge,
-      total: req.checkout.charge + req.checkout.totalAmount,
-    },
+    data
   });
 };
 

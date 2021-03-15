@@ -4,6 +4,7 @@ const jwt = require("../utils/jwt");
 
 const cartService = require("../service/cartService");
 
+//ACTIVE check valid cart
 exports.checkCart = catchAsync(async (req, res, next) => {
   const cart = (await cartService.cartSummary(req.userId))[0];
   if (!cart) return next(new AppError("No Item added in cart", 404));
@@ -14,7 +15,7 @@ exports.checkCart = catchAsync(async (req, res, next) => {
   next();
 });
 
-//VERIFY ORDER BEFORE RENDERING CHECKOUT PAGE
+//ACTIVE: VERIFY ORDER BEFORE RENDERING CHECKOUT PAGE
 exports.verifyOrder = async (req, res, next) => {
   try {
     const token = req.cookies._ciic_;
@@ -33,7 +34,9 @@ exports.verifyOrder = async (req, res, next) => {
 
 //VERIFY CART BEFORE RENDERING CHECKOUT PAGE
 exports.verifyGETCart = async (req, res, next) => {
-  const cart = await cartService.cartDetails(req.userId || req.checkout.customerId);
+  const cart = await cartService.cartDetails(
+    req.userId || req.checkout.customerId
+  );
   if (!cart) return next(new AppError("Cart not found", 400));
   cart["_id"] = cart["_id"].toString();
   req.cart = cart.toJSON();

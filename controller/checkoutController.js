@@ -8,7 +8,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   //SET DELIVERY CHARGE
   const totalAmount = req.cart["totalAmount"];
   if (totalAmount <= 200) req.cart["charge"] = 100;
-  if (totalAmount > 200 && totalAmount <= 400) req.cart["charge"] = 50;
+  else if (totalAmount > 200 && totalAmount <= 400) req.cart["charge"] = 50;
   else req.cart["charge"] = 0;
   //CREATE ORDERS
   const order = await razorpay.orders.create({
@@ -16,7 +16,6 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     currency: "INR",
   });
   req.cart["orderId"] = order.id;
-
   const token = await jwt.sign(req.cart, process.env.ORDER_SECRET);
 
   res

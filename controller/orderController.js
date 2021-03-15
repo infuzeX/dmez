@@ -7,7 +7,7 @@ const { verifySignature, razorpayConfig } = require("../utils/pay");
 
 //PLACE ORDER AFTER PAYMENT
 exports.placeOrderCont = catchAsync(async (req, res, next) => {
-  console.log("here in place order");
+
   //VERIFY SIGNATURE
 
   //VERIFY CHECKOUT WITH CART
@@ -27,7 +27,7 @@ exports.placeOrderCont = catchAsync(async (req, res, next) => {
       )
     );
 
-  res.cookie("_ciic_", "", { maxAge: 0 });
+  res.cookie("_ciic_", true, { maxAge: 5 * 60, httpOnly:true, secure:process.env.NODE_ENV });
   res.status(200).json({ status: "success", path: "/success" });
 });
 
