@@ -1,4 +1,5 @@
 const path = require("path");
+const orderService = require('../service/orderService');
 
 exports.renderStaticPage = (res, page) => {
   const file = path.resolve(`public/${page}`);
@@ -6,22 +7,20 @@ exports.renderStaticPage = (res, page) => {
 };
 
 exports.renderCheckoutPage = (req, res) => {
-  data = req.orderPlaced
-    ? { success: true }
-    : {
-        ...req.cart,
-        key: process.env.KEY_ID,
-        order: req.checkout.orderId,
-        charge: req.checkout.charge,
-        total: req.checkout.charge + req.checkout.totalAmount,
-      };
+  data = {
+    ...req.cart,
+    key: process.env.KEY_ID,
+    order: req.checkout.orderId,
+    charge: req.checkout.charge,
+    total: req.checkout.charge + req.checkout.totalAmount,
+  };
 
   res.render("checkout.ejs", {
-    data
+    data,
   });
 };
 
 exports.renderOrderPage = async (req, res) => {
-  const order = await order.getOrder(req.params.id);
+  const order = await orderService.fecthOrder(req.params.id);
   res.render("order.ejs", { data: order });
 };

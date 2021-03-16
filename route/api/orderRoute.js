@@ -1,22 +1,23 @@
 const router = require("express").Router();
 
+const authMiddleware = require("../../middleware/auth");
 const checkoutMiddleware = require("../../middleware/checkout");
 
-const authController = require("../../controller/authController");
 const orderController = require("../../controller/orderController");
 
 router
   .route("/")
   .post(
-    checkoutMiddleware.verifyOrder,
+    /*checkoutMiddleware.verifyOrder,
     checkoutMiddleware.verifyGETCart,
-    checkoutMiddleware.verifyCheckout,
-    orderController.placeOrderCont
+    checkoutMiddleware.verifyCheckout,*/
+    checkoutMiddleware.verifyCheckoutRequest,
+    orderController.placeOrder
   )
   .get(
-    authController.verifyToken,
-    authController.preventApiAccess,
-    orderController.getOrdersCont
+    authMiddleware.verifyToken,
+    authMiddleware.preventApiAccess,
+    orderController.fetchOrders
   );
 
 module.exports = router;

@@ -7,7 +7,7 @@ exports.catchAsync = (fn) => {
   };
 };
 
-exports.handleRequestMethodError = (url, method, msg, res, next) => {
+exports.catchError = (url, method, msg, res, next) => {
   const path = (url === "/api/v1/orders") ? "/" : "/cart";
   if (method === "GET") {
     return res.redirect(path);

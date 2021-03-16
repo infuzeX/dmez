@@ -1,7 +1,7 @@
 const Order = require('../model/order');
 const APIFeatures = require("../utils/apifeatures");
 
-exports.placeOrder = async ({customerId, address, cart, payment}) => {
+exports.createOrder = async ({customerId, address, cart, payment}) => {
 
     return await Order.create({
         customerId,
@@ -29,9 +29,7 @@ exports.placeOrder = async ({customerId, address, cart, payment}) => {
 
 exports.getOrders = async (customerId, queryString) => {
     const features = new APIFeatures(Order.find({ customerId }), queryString)
-        .filter()
-        .limitFields()
-        .sort()
-        .paginate();
     return await features.query;
 }
+
+exports.fecthOrder = async (_id) => Order.findOne({ _id })
