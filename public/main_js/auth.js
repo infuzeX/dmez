@@ -1,34 +1,36 @@
-const form = document.querySelector('form');
-const xhr = new XMLHttpRequest();
+const form = document.querySelector("form");
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = e.target.id,
-        inputs = [...e.target.elements],
-        data = {};
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const id = e.target.id,
+    inputs = [...e.target.elements],
+    authData = {};
 
-    inputs.forEach(input => {
-        if (input.name)
-            data[input.name] = input.value
-    })
-    auth(data, id);
-})
+  inputs.forEach((input) => {
+    if (input.name) authData[input.name] = input.value;
+  });
 
-function auth(data, id) {
-    console.log(data);
-    /*xhr.open('POST', `https://auth.dmez.com/api/v1/auth/${id}`);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.parse(data));*/
-}
+  const authOrigin = origins.getAuthOrigin(Number(id === "register"));
 
-xhr.onload = function () {
-    const res = JSON.parse(this.responseText);
+  authUser(authOrigin, authData);
+});
 
-    if (res.status === 'error' || res.status === 'fail') {
-        showStatus(res)
-        return;
-    }
-    //show success messsage
+async function authUser(authOrigin, data) {
+  try {
+    const res = await (
+      await fetch(`${authOrigin}/api/v1/auth/register`, {
+        method: "POST",
+        headers:{
+          "content-type":"application/json"
+        },
+        body: JSON.stringify(data),
+      })
+    ).json();
+    console.log(res);
     showStatus(res);
-    window.location.href = res.redirect;
+    if (res.status === "success") window.location.href = res.path;
+
+  } catch (err) {
+    showStatus({ status: "fail", message: "Something went from our side" });
+  }
 }
