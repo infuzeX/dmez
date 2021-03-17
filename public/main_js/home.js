@@ -1,4 +1,11 @@
+
 window.onload = function () {
+  const loaders = document.querySelectorAll('.load-wrap')
+  //const loaders = document.querySelectorAll('.loader');
+  function removeLoader(index) {
+    const child = loaders[index].lastElementChild;
+    loaders[index].removeChild(child);
+  }
   //TOP SELLING MEDICINES
   //HEART DISEASE
   fetch(
@@ -297,7 +304,7 @@ window.onload = function () {
     })
     .catch((err) => {
       console.log(err);
-    });
+    }).finally(() => removeLoader(0));;
 
   //RECOMMENDED MEDICINES
 
@@ -341,5 +348,6 @@ window.onload = function () {
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => removeLoader(1));
 };
