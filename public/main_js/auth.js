@@ -12,23 +12,24 @@ form.addEventListener("submit", (e) => {
 
   const authOrigin = origins.getAuthOrigin(Number(id === "register"));
 
-  authUser(authOrigin, authData);
+  authUser(id, authOrigin, authData);
 });
 
-async function authUser(authOrigin, data) {
+async function authUser(type, authOrigin, data) {
   try {
     const res = await (
-      await fetch(`${authOrigin}/api/v1/auth/register`, {
+      await fetch(`${authOrigin}/api/v1/auth/${type}`, {
         method: "POST",
         headers:{
           "content-type":"application/json"
         },
+        credentials:'include',
         body: JSON.stringify(data),
       })
     ).json();
     console.log(res);
     showStatus(res);
-    if (res.status === "success") window.location.href = res.path;
+   // if (res.status === "success") window.location.href = res.path;
 
   } catch (err) {
     showStatus({ status: "fail", message: "Something went from our side" });
