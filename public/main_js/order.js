@@ -7,41 +7,6 @@ const state = {
     limit: 10,
     status: "placed",
   },
-  /*orders: [{
-        "_id": "6039018f3bab401055c3c552",
-        "status": "placed",
-        "createdAt": "1614348673886",
-        "orderId": "orderId",
-        "paymentId": "paymentId",
-        "products": [{
-            "_id": "6039018f3bab401055c3c553",
-            "quantity": "4",
-            "price": "200",
-            "discount": "50",
-            "productId": "6028217097c5142cba61df3a",
-            "title": "ACECLOFENAC 100MG 10'S"
-        },
-        {
-            "_id": "6039018f3bab401055c3c553",
-            "quantity": "4",
-            "price": "200",
-            "discount": "50",
-            "productId": "6028217097c5142cba61df3a",
-            "title": "ACECLOFENAC 100MG 10'S"
-        }],
-        "totalProducts": "2",
-        "totalAmount": "600",
-        "totalSavings": "200",
-        "address": {
-            "state": "Uttar pradesh",
-            "city": "Allahabad",
-            "zipcode": "211016",
-            "area": "kareli",
-            "flatnumber": "8A/3D/K",
-            "contact": "7618956489"
-        },
-        "__v": "0"
-    }]*/
 };
 function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
  
@@ -117,7 +82,8 @@ async function fetchOrders() {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      credentials:'include'
     }
   );
   return rawResponse.json();

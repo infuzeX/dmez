@@ -6,6 +6,7 @@ async function placeOrder(res) {
     headers: {
       "content-type": "application/json",
     },
+    credentials:'include',
     body: JSON.stringify({
       address,
       payment: {

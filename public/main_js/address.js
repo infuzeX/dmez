@@ -2,6 +2,7 @@ const xhr = new XMLHttpRequest();
 //API REQUESTS
 function getAddress() {
   xhr.open("GET", `${origin}/api/v1/user?fields=address`);
+  xhr.withCredentials = true;
   xhr.send();
 }
 

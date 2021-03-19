@@ -9,7 +9,7 @@ window.onload = function () {
   //TOP SELLING MEDICINES
   //HEART DISEASE
   fetch(
-    "https://dmezapi.herokuapp.com/api/v1/products?search=heart_diseases&limit=6&fields=coverImage,title",
+    `${origin}/api/v1/products?search=heart_diseases&limit=6&fields=coverImage,title`,
     {
       method: "GET",
       headers: {
@@ -69,7 +69,7 @@ window.onload = function () {
   // SKIN DISEASE
 
   fetch(
-    "https://dmezapi.herokuapp.com/api/v1/products?search=skin_diseases&limit=6&fields=coverImage,title",
+    `${origin}/api/v1/products?search=skin_diseases&limit=6&fields=coverImage,title`,
     {
       method: "GET",
       headers: {
@@ -128,7 +128,7 @@ window.onload = function () {
   //diabetics
 
   fetch(
-    "https://dmezapi.herokuapp.com/api/v1/products?search=diabetics&limit=6&fields=coverImage,title",
+    `${origin}/api/v1/products?search=diabetics&limit=6&fields=coverImage,title`,
     {
       method: "GET",
       headers: {
@@ -189,7 +189,7 @@ window.onload = function () {
   // COMMON COLD
 
   fetch(
-    "https://dmezapi.herokuapp.com/api/v1/products?search=cold&limit=6&fields=coverImage,title",
+    `${origin}/api/v1/products?search=cold&limit=6&fields=coverImage,title`,
     {
       method: "GET",
       headers: {
@@ -249,7 +249,7 @@ window.onload = function () {
   //OTHERS
 
   fetch(
-    "https://dmezapi.herokuapp.com/api/v1/products?search=pain&limit=6&fields=coverImage,title",
+    `${origin}/api/v1/products?search=pain&limit=6&fields=coverImage,title`,
     {
       method: "GET",
       headers: {
@@ -308,7 +308,7 @@ window.onload = function () {
 
   //RECOMMENDED MEDICINES
 
-  fetch("https://dmezapi.herokuapp.com/api/v1/products?limit=24", {
+  fetch(`${origin}/api/v1/products?limit=24`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

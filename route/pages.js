@@ -11,6 +11,7 @@ const {
 } = require("../controller/pageController");
 
 router.get("/register", (req, res) => renderStaticPage(res, "register.html"));
+router.get("/forgetpassword", (req, res) => renderStaticPage(res, "forgotpw.html"))
 
 router.get("/", (req, res) => renderStaticPage(res, "index.html"));
 router.get("/home", (req, res) => renderStaticPage(res, "home.html"));

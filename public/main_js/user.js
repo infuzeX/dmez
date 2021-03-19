@@ -9,10 +9,12 @@ function displayInfo(data) {
 //API REQUESTS
 function getUserData() {
   xhr.open("GET", `${origin}/api/v1/user?fields=name,email,contact`);
+  xhr.withCredentials = true;
   xhr.send();
 }
 function updateData(url, data) {
   xhr.open("PUT", url);
+  xhr.withCredentials = true;
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
 }

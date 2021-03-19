@@ -155,6 +155,7 @@ async function addToCart(e) {
     setButtonState(button, false);
     const response = await fetch(`${origin}/api/v1/cart/${e.path[4].id}`, {
       method: "PATCH",
+      credentials:'include'
     });
     const res = await response.json();
     setButtonState(button, true);

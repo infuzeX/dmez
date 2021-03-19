@@ -138,12 +138,14 @@ function updateItemQuantity(itemId, qty) {
 function getCartData() {
   //handleLoader(cartLoader, 'fetching cart item', 'active')
   xhr.open("GET", `${origin}/api/v1/cart`);
+  xhr.withCredentials = true;
   xhr.send();
 }
 
 function updateCartQuantity(data, productId) {
   handleLoader(cartLoader, "updating item quantity", "active");
   xhr.open("PUT", `${origin}/api/v1/cart/${productId}`);
+  xhr.withCredentials = true
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
 }
@@ -158,6 +160,7 @@ function deleteCartItem(e) {
 function proceedToCheckout() {
   handleLoader(cartLoader, "proceeding to cart", "active");
   xhr.open("POST", "/api/v1/checkout");
+  xhr.withCredentials = true;
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify({ offer_id: null }));
 }

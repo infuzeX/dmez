@@ -93,6 +93,7 @@ function getProductDetails() {
 
 function addToCart() {
     xhr.open('PATCH', `${origin}/api/v1/cart/${productId}`);
+    xhr.withCredentials = true;
     xhr.send();
 }
 

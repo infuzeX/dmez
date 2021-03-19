@@ -175,7 +175,7 @@
 
 				<div class="col-sm-12 padding-right">
 
-					<div class="category-tab">
+					<div class="category-tab load-wrap wrap1">
 						<!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
@@ -188,7 +188,7 @@
 								<li><a href="#5" data-toggle="tab">Others</a></li>
 							</ul>
 						</div>
-						<div class="tab-content load-wrap">
+						<div class="tab-content">
 
 							<div class="tab-pane fade active in" id="1">
 								<div id="top-selling-med-heart"></div>
@@ -213,11 +213,9 @@
 
 								<div id="top-selling-med-others"></div>
 							</div>
-
-
-							<div class="loader">
-								<div class="load"></div>
-							</div>
+						</div>
+						<div class="loader">
+							<div class="load"></div>
 						</div>
 					</div>
 					<style>
@@ -226,7 +224,9 @@
 							min-height: 100px;
 							margin-bottom: 50px;
 						}
-
+						.wrap1 {
+							margin-bottom:0;
+						}
 						.load-wrap>.loader {
 							position: absolute;
 							top: 0;
@@ -234,7 +234,7 @@
 							width: 95%;
 							padding: 2.5%;
 							height: 100%;
-							margin-top: 50px;
+							margin: 50px 0;
 						}
 
 						.load-wrap>.loader>.load {
@@ -672,7 +672,8 @@
 
 </body>
 <!---->
-<script src="public/main_js/home.js"></script>
+<script src="/public/main_js/origins.js"></script>
+<script src="/public/main_js/home.js"></script>
 <script src="/public/main_js/search.js"></script>
 
 

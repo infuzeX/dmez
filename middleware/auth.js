@@ -6,7 +6,7 @@ exports.verifyToken = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (token) {
-      const decoded = await jwt.verify(token, process.env.SECRET);
+      const decoded = await jwt.verify(token, process.env.TOKEN_SECRET);
       req["userId"] = decoded.userId;
     }
     next();
@@ -26,17 +26,19 @@ exports.verifyToken = (req, res, next) => {
 
 //prevent unauth access to page
 exports.preventPageAccess = async (req, res, next) => {
+  console.log(req.userId);
   if (req.userId) return next();
 
   res
     .cookie("path", req.originalUrl, {
+      domain:process.env.DOMAIN,
       httpOnly: true,
     })
-    .redirect("/");
+    .redirect("/login");
 };
 //prevent auth access to login page
 exports.preventLoginAccess = async (req, res, next) =>
-  req.userId ? res.redirect("/home") : next();
+  req.userId ? res.redirect("/") : next();
 
 //prevent unauth access to api
 exports.preventApiAccess = async (req, res, next) =>
