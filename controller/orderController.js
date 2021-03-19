@@ -6,12 +6,11 @@ const { catchAsync } = require("../utils/catchError");
 const { verifySignature, razorpayConfig } = require("../utils/pay");
 
 //PLACE ORDER AFTER PAYMENT
-exports.placeOrderCont = catchAsync(async (req, res, next) => {
-
+exports.placeOrder = catchAsync(async (req, res, next) => {
   //VERIFY SIGNATURE
-
+  
   //VERIFY CHECKOUT WITH CART
-  const order = await orderService.placeOrder({
+  const order = await orderService.createOrder({
     customerId: req.checkout.customerId,
     cart: req.cart,
     address: req.body.address,
@@ -32,8 +31,8 @@ exports.placeOrderCont = catchAsync(async (req, res, next) => {
 });
 
 //GET ALL ORDERS
-exports.getOrdersCont = catchAsync(async (req, res, next) => {
-  const orders = await orderService.getOrders(req.userId, req.query);
+exports.fetchOrders = catchAsync(async (req, res, next) => {
+  const orders = await orderService.getOrders(req.userId, {});
   res.status(200).json({
     status: "success",
     results: orders.length,

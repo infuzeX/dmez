@@ -44,12 +44,13 @@ const state = {
     }]*/
 };
 function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
-  console.log(address);
+ 
   return `
   <div class="panel1">
+  
     <div class="">
       <p>ORDER PLACED</p>
-      <p>${createdAt}</p>
+      <p>${new Date(createdAt).toDateString()}</p>
     </div>
     <div>
       <p>TOTAL</p>
@@ -65,17 +66,18 @@ function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
       <p>Ref:${_id}</p>
     </div>
   </div>
-  ${popuplateProducts(products)}
+  ${popuplateProducts(_id, products)}
+ 
 </div>`;
 }
 
-function popuplateProducts(products) {
+function popuplateProducts(id, products) {
   let productsEl = "";
-  products.forEach((product) => (productsEl += orderedProductTemp(product)));
+  products.forEach((product) => (productsEl += orderedProductTemp(id, product)));
   return productsEl;
 }
 
-function orderedProductTemp({ title, coverImage }) {
+function orderedProductTemp(id, { title, coverImage }) {
   const imgUrl = coverImage ? coverImage : "/public/images/default.png";
 
   return `  <div class="panel2" style="border-top: 1px solid grey;">
@@ -86,7 +88,7 @@ function orderedProductTemp({ title, coverImage }) {
   </div>
 
   <div class="action">
-    <button><a href="/track">Track Package</a></button><br>
+    <button><a href="/account/orders/${id}">Track Package</a></button><br>
     <button>Return</button><br>
     <button>Cancel</button>
   </div>
