@@ -10,7 +10,7 @@ form.addEventListener("submit", (e) => {
     if (input.name) authData[input.name] = input.value;
   });
 
-  const authOrigin = origins.getAuthOrigin(Number(id === "register"));
+  const authOrigin = origins.getAuthOrigin(1);
 
   authUser(id, authOrigin, authData);
 });
@@ -27,10 +27,8 @@ async function authUser(type, authOrigin, data) {
         body: JSON.stringify(data),
       })
     ).json();
-    console.log(res);
     showStatus(res);
-   // if (res.status === "success") window.location.href = res.path;
-
+    if (res.status === "success") window.location.href = res.path;
   } catch (err) {
     showStatus({ status: "fail", message: "Something went from our side" });
   }

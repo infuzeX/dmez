@@ -8,6 +8,7 @@ const state = {
     status: "placed",
   },
 };
+
 function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
  
   return `
@@ -23,8 +24,8 @@ function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
     </div>
     <div>
       <p>SHIP TO</p>
-      <p>${address.flatnumber} ${address.area} ${address.city} 
-      ${address.state}</p>
+      <p>${address.flatnumber || ""} ${address.area || ""} ${address.city || ""} 
+      ${address.state || ""}</p>
     </div>
     <div>
       <p>ORDER ID</p>
@@ -92,6 +93,7 @@ async function fetchOrders() {
 window.onload = function () {
   fetchOrders()
     .then((response) => {
+     
       if (response.status === "success") {
         const orders = response.data.orders;
         let lists = "";
@@ -108,7 +110,6 @@ window.onload = function () {
       showStatus(response);
     })
     .catch((err) => {
-      console.log(err);
       showStatus({ status: "error", message: err.message });
     });
 };

@@ -16,22 +16,14 @@ exports.verifyToken = async (req, res, next) => {
   }
 };
 
-/*
-exports.verifyToken = (req, res, next) => {
-  req.userId = process.env.NODE_ENV
-    ? "60340b88f2cfb2bb9c0bf19f"
-    : "602c03dda1718b2b3c73e553";
-  next();
-};*/
 
 //prevent unauth access to page
 exports.preventPageAccess = async (req, res, next) => {
-  console.log(req.userId);
   if (req.userId) return next();
 
   res
     .cookie("path", req.originalUrl, {
-      domain:process.env.DOMAIN,
+      domain:process.env.COOKIE_ORIGIN,
       httpOnly: true,
     })
     .redirect("/login");

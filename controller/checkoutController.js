@@ -21,6 +21,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   res
     .status(200)
     .cookie("_ciic_", token, {
+      domain:process.env.COOKIE_ORIGIN,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
     })

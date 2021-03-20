@@ -19,6 +19,7 @@ exports.createOrder = async ({customerId, address, cart, payment}) => {
             state: address.state,
             city: address.city,
             zipcode: address.zipcode,
+            area: address.zipcode,
             landmark: address.landmark,
             flatnumber: address.flatnumber,
             contact: address.contact

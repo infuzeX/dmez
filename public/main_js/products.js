@@ -24,7 +24,7 @@ function checkDiscount(price, discount) {
     return `<div class="discounts">
     <h2>₹${price - discount}</h2>
     <h5 style="color: #9797A3;"><del>₹${price}</del></h5>
-    <p id="off" style="color: #00A500;"> ${(discount / price) * 100}%off</p>
+    <p id="off" style="color: #00A500;"> ${Math.round((discount / price) * 100)}%off</p>
     <style>
     .discounts h2, h5, #off {
       display: inline-block;
