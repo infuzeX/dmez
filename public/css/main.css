@@ -1202,8 +1202,8 @@ h2.title {
   border: 1px solid #f7f7f0;
   overflow: hidden;
   padding-bottom: 60px;
-  padding-left: 60px;
-  padding-top: 60px;
+  padding-left: 30px;
+  padding-top: 30px;
   position: relative;
 }
 
@@ -2430,4 +2430,39 @@ textarea {
 
   padding: 20px;
 }
+/******************************************bulk-order**********************************/
+.bulk{
+  background-color: #e5a99f;
+ text-align: center;
+ width: 35%;
+ margin: 0 auto;
+ 
+ }
+ .bulk p{
+   padding: 20px;
+   font-size: 25px;
+   color: black;
+   font-weight: 400;
+ }
+ .bulk button{
+   margin-left: 30px;
+ }
+ @media only screen and (max-width: 600px) {
+   .bulk{
+     background-color: #e5a99f;
+    text-align: center;
+   width: 100%;
+    
+    }
+   
+ }
+
+ /************************************************************************************************************/
+ .information h3 {
+   font-weight: 400;
+ }
+ .ship h3{
+   font-weight: 400;
+ }
+ 
 
