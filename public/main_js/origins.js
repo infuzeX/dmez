@@ -1,4 +1,4 @@
-const ENV = 1;
+const ENV = 2;
 const origins = {
   shop: [
     "http://127.0.0.1:3000",
