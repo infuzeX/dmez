@@ -67,10 +67,9 @@ fetch(`${origin}/api/v1/products/${productId}?fields=${fieldlist.join(",")}`, {
       method: "GET",})
     .then(res => res.json())
     .then(data => {
-    const res = await getProductDetails();
     const product = data.product;
 
-    if (res.status === "success") {
+    if (data.status === "success") {
       id.innerText = `ID: ${product.productId}`;
       title.innerText = product.title;
       description.innerText = product.description || "Not Available";
