@@ -8,13 +8,20 @@ exports.renderStaticPage = (res, page) => {
 
 exports.renderCheckoutPage = (req, res) => {
   data = {
-    ...req.cart,
+    user:{
+      name:req.cart.customerId.name,
+      email:req.cart.customerId.email,
+      contact:req.cart.customerId.contact
+    },
+    address:(req.cart.customerId.address || {}),
+    isAddress:req.cart.customerId.address?true:false,
+    totalAmount:req.cart.totalAmount,
+    products:req.cart.products,
     key: process.env.KEY_ID,
     order: req.checkout.orderId,
     charge: req.checkout.charge,
     total: req.checkout.charge + req.checkout.totalAmount,
   };
-
   res.render("checkout.ejs", {
     data,
   });

@@ -134,7 +134,6 @@ function updateItemQuantity(itemId, qty) {
 }
 
 /*========================API REQUESTS==========================*/
-
 function getCartData() {
   //handleLoader(cartLoader, 'fetching cart item', 'active')
   xhr.open("GET", `${origin}/api/v1/cart`);
@@ -158,7 +157,7 @@ function deleteCartItem(e) {
 }
 
 function proceedToCheckout() {
-  handleLoader(cartLoader, "proceeding to cart", "active");
+  handleLoader(cartLoader, "proceeding to checkout", "active");
   xhr.open("POST", "/api/v1/checkout");
   xhr.withCredentials = true;
   xhr.setRequestHeader("Content-Type", "application/json");
@@ -167,7 +166,6 @@ function proceedToCheckout() {
 
 /*========================RESPONSE==========================*/
 xhr.onload = function () {
-  console.log(this.responseText);
   const res = JSON.parse(this.responseText);
 
   //close loader
