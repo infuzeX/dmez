@@ -37,5 +37,9 @@ exports.preventApiAccess = async (req, res, next) =>
 
 //Logout user
 exports.logout = async (req, res, next) => {
-  res.cookie("token", "", { maxAge: 0 }).redirect("/");
+  res.cookie("token", "", { 
+    maxAge: 0, 
+    httpOnly:true,
+    domain:process.env.COOKIE_ORIGIN || 'dmez.in' 
+  }).redirect("/");
 };
