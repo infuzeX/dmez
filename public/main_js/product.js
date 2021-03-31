@@ -1,49 +1,44 @@
 const xhr = new XMLHttpRequest();
+
 const productId = window.location.pathname.split("/")[2];
 const productEl = document.querySelectorAll(".product_details");
-
+const gallery = document.querySelector('.xzoom-container');
 const [title, id, price, description] = productEl;
 
 function removeLoader() {
   const container = document.querySelector(".get-container");
   container.removeChild(container.children[0]);
 }
-//not active
+//NOT ACTIVE
 function formatImage(coverImage, images) {
-  if (coverImage) images.push(coverImage);
+  if (coverImage) {
+    images.push(coverImage);
+  }
+ 
+  if(!images.length) {
+    gallery.children[0].src = `/public/images/default.png`;
+    gallery.children[0].src = `/public/images/default.png`;
+    return;
+  }
 
-  images.forEach((image) => {
+  images.forEach((image, index) => {
     const a = document.createElement("a");
     const img = document.createElement("img");
-    a.classList.add = "product-gallery-item";
+    a.href = `${origin}/${image}`;
 
-    a.setAttribute("data-image", image);
-    a.setAttribute("data-zoom", image);
+    img.src = `${origin}/${image}`;
+    img.classList.add = "xzoom-gallery";
+    img.width = "90";
 
-    img.src = image;
-    img.alt = "product side";
+    if(index === 0) {
+      gallery.children[0].src = `${origin}/${image}`;
+      gallery.children[0].src = `${origin}/${image}`;
+      img.xpreview = `${origin}/${image}`; 
+    }
 
     a.appendChild(img);
-    gallery.appendChild(a);
+    gallery.children[1].appendChild(a);
   });
-
-  images.children[1].classList.add("active");
-}
-
-function formatPrice(price, discount) {
-  if (discount) {
-    discounts.innerHTML = `<div class="product-price product-element">₹${
-      price - discount
-    }</div> 
-        <h5 style="color: #9797A3;"><del>₹${price}</del></h5> 
-        <p id="off" style="color: #00A500;">${
-          (discount / price) * 100
-        }%off</p>`;
-  } else {
-    discounts.innerHTML = `<div class="product-price product-element">₹${
-      price - discount
-    }</div>`;
-  }
 }
 
 function addToCart() {
@@ -66,11 +61,11 @@ const fieldlist = [
 fetch(`${origin}/api/v1/products/${productId}?fields=${fieldlist.join(",")}`, {
       method: "GET",})
     .then(res => res.json())
-    .then(data => {
-    const product = data.product;
+    .then(res => {
 
-    if (data.status === "success") {
-      id.innerText = `ID: ${product.productId}`;
+    if (res.status === "success") {
+      const product = res.data.product;
+      id.innerText = `ID: ${product.productId || '----'}`;
       title.innerText = product.title;
       description.innerText = product.description || "Not Available";
       //price
@@ -81,6 +76,7 @@ fetch(`${origin}/api/v1/products/${productId}?fields=${fieldlist.join(",")}`, {
       } else {
         price.children[0].innerText = `₹${product.price}`;
       }
-    } else showStatus(data);
+      formatImage(product.coverImage, product.images);
+    } else showStatus(res);
 })
-.catch(err => show({status:"error", message:err.message}))
+.catch(err => showStatus({status:"error", message:err.message}))
