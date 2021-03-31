@@ -51,6 +51,8 @@ router.get(
   (req, res) => renderStaticPage(res, "login.html")
 );
 
+router.get('/logout', authMiddleware.logout)
+
 router.get(
   "/cart",
   authMiddleware.verifyToken,

@@ -16,14 +16,13 @@ exports.verifyToken = async (req, res, next) => {
   }
 };
 
-
 //prevent unauth access to page
 exports.preventPageAccess = async (req, res, next) => {
   if (req.userId) return next();
 
   res
     .cookie("path", req.originalUrl, {
-      domain:process.env.COOKIE_ORIGIN,
+      domain: process.env.COOKIE_ORIGIN,
       httpOnly: true,
     })
     .redirect("/login");
@@ -37,3 +36,6 @@ exports.preventApiAccess = async (req, res, next) =>
   req.userId ? next() : next(new AppError("Unauthorized access", 401));
 
 //Logout user
+exports.logout = async (req, res, next) => {
+  res.cookie("token", "", { maxAge: 0 }).redirect("/");
+};

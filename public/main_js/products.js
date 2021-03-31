@@ -9,6 +9,7 @@ const nav = container.children[2];
 //STATE
 let state = {
   results: 0,
+  loaded:true,
   products: [],
   settings: {
     limit: 15,
@@ -80,6 +81,7 @@ function buildProducts(products) {
 
 //product navigation
 function navigateToPage(e) {
+  if(!loaded) return;
   if (e.target.id === "prev" && state["settings"].page === 1) return;
   //check if result is less than limit means no more item available
   if (e.target.id === "next" && state["settings"].limit > state["results"])
@@ -87,6 +89,7 @@ function navigateToPage(e) {
   //update page number then request for next page product
   handleEmptySection("<div class='loader'></div>", true);
   state["settings"].page += e.target.id === "next" ? 1 : -1; //increment page
+  loaded = false;
   getProducts();
 }
 
@@ -125,6 +128,7 @@ async function getProducts() {
     const response = await fetch(`${origin}/api/v1/products?${queryString}`, {
       method: "GET",
     });
+    loaded = true;
     const res = await response.json();
     if (res.status === "success") {
       state["products"] = res.data.products;
@@ -135,6 +139,7 @@ async function getProducts() {
     }
     showStatus(res);
   } catch (err) {
+    loaded = true;
     showStatus({ status: "error", message: err.message });
   }
 }

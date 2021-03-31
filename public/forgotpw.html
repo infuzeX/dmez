@@ -24,7 +24,7 @@
  <!--status-->
  <div style="background-color:brown" class="status">
   <p></p>
-  <span onclick="closeStatus(event)">CLOSE</span>
+  <span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
 </div>
 <!--status-->
 
@@ -75,9 +75,7 @@
       <div class="join">Forgot Password</div>
       <hr class="f2">
 
-      <form id="login">
-
-
+      <form id="forget">
         <div class="email space">
             <span class="l1" style="margin-top:20px">Enter Email</span><br>
             <input type="email" name="email" class="number input" placeholder="Email" required >
@@ -89,7 +87,6 @@
             Submit
           </button>
         </div>
-
       </form>
 
 
@@ -110,10 +107,29 @@
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
     }
+    const form =document.querySelector('#forget');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if(e.target.elements.email.value){
+        console.log(e.target.elements.email.value);
+        fetch(`${origin}/api/v1/auth/forgetpassword`, {
+          method:"POST",
+          headers:{
+            "content-type":"application/json"
+          },
+          body:JSON.stringify({email:e.target.elements.email.value})
+        })
+        .then(res => res.json())
+        .then((res) => showStatus(res))
+        .catch(err =>showStatus({status:"error", message:err.message}))
+
+      }
+    })
+
   </script>
 
   <script defer src="/public/main_js/status.js"></script>
-  <script defer src="/public/main_js/auth.js"></script>
+  <script defer src="/public/main_js/origins.js"></script>
 
 </body>
 

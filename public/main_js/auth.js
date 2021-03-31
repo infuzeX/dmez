@@ -30,6 +30,7 @@ async function authUser(type, authOrigin, data) {
     showStatus(res);
     if (res.status === "success") window.location.href = res.path;
   } catch (err) {
-    showStatus({ status: "fail", message: "Something went from our side" });
+    console.log(err);
+    showStatus({ status: "fail", message: "Something went wrong from our side" });
   }
 }
