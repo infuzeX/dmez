@@ -1,6 +1,7 @@
 const status = document.querySelector('.status');
 
 function showStatus(data) {
+ 
     const color = {
         'success': "green",
         'fail': "brown",
@@ -12,7 +13,7 @@ function showStatus(data) {
     status.classList.add('status-up');
 }
 
-function closeStatus(e) {
+function closeStatus() {
     status.classList.remove('status-up');
     status.children[0].textContent = ""
 }

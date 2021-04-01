@@ -1,6 +1,7 @@
 const form = document.querySelector(".auth_form");
-console.log(form);
+
 form.addEventListener("submit", (e) => {
+  closeStatus();
   e.preventDefault();
   const id = e.target.id,
     inputs = [...e.target.elements],
