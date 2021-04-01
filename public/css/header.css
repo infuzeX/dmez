@@ -114,26 +114,27 @@ a {
 
 .top-bars{
   width: 100%;
-  background: #E5E5E5;
+  background:#232f3ee8;
 
  
 }
 .links{
   display: flex;
   justify-content: space-around;
-  padding: 30px;
+  padding: 10px;
   flex-wrap: wrap;
 }
 .links a{
-  color: #789461;
+  color: #ffffffd2;
   font-size: 18px;
   line-height: 24px;
   font-weight: bolder;
   text-decoration: none;
 }
 .links a:hover{
- color: black;
- text-decoration:underline
+ color: rgb(183,207,154);
+ text-decoration:underline;
+
  
 }
 
