@@ -32,7 +32,7 @@
 	<!--status-->
 	<div style="background-color:brown" class="status">
 		<p></p>
-		<span onclick="closeStatus(event)"><i class="fas-fa-window-close"></i></span>
+		<span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
 	</div>
 	<!--status-->
 	<header>
@@ -317,7 +317,7 @@
 							<div class="product-information">
 								<!--/product-information-->
 
-								<h2 class="product_details">Product Name</h2>
+								<h2 class="product_details"></h2>
 								<p class="product_details"></p>
 
 								<div style="display:flex">
@@ -326,7 +326,7 @@
 										<span style="margin:auto 0;font-size:16px;color: #878787;"></span>
 										<span style="margin:auto 0;font-size:16px;color: #388E3C;"></span>
 									</div>
-									<button type="button" class="btn btn-fefault cart">
+									<button onclick="addToCart()" type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
@@ -336,10 +336,7 @@
 									<h3>
 										Description
 									</h3>
-									<h5 class="product_details">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-										Facilis minima rerum
-										error distinctio nemo eveniet quis nesciunt ab in ipsa illo quod, quam doloribus
-										optio, quisquam non unde commodi recusandae!</h5>
+									<h5 class="product_details"></h5>
 								</div>
 
 							</div>
@@ -384,7 +381,16 @@
 		</a>
 	</div>
 
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+		}
 
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+
+	</script>
 
 
 	<script src="/public/js/jquery.js"></script>

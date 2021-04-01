@@ -12,6 +12,7 @@ const {
 
 router.get("/register", (req, res) => renderStaticPage(res, "register.html"));
 router.get("/forgetpassword", (req, res) => renderStaticPage(res, "forgotpw.html"))
+router.get("/resetpassword/:id", (req, res) => renderStaticPage(res, "reset.html"))
 
 router.get("/", (req, res) => renderStaticPage(res, "index.html"));
 router.get("/career", (req, res) => renderStaticPage(res, "career.html"));

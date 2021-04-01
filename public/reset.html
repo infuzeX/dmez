@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMEZ | Setting</title>
+    <link rel="stylesheet" href="/public/css/status.css">
+   
+    <link rel="stylesheet" href="/public/css/account.css">
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+
+
+</head>
+
+<body>
+    <!--status-->
+    <div style="background-color:brown" class="status">
+        <p></p>
+        <span onclick="closeStatus(event)"><i class="fas fa-window-close"></i></span>
+    </div>
+    <!--status-->
+    <header>
+        <nav>
+            <div id="navbar">
+                <div id="logo" class="reverse">
+
+                    <div class="logo" style="margin-left: 15px;"><a href="/"><img src="/public/images/dmez.png"
+                                width="45" height="64"></img>
+                        </a></div>
+                </div>
+            </div>
+
+        </nav>
+
+        <div class="orders-panel">
+            <div class="panel">
+                <div class="product">
+                    <p>Use the form below to reset your password for your Dmez account</p>
+                    <br>
+
+                    <form class="user-form">
+                        <p class="new-name">New Password:</p>
+                        <input id="" class="name" name="password"></input><br>
+                        <p class="new-name">Re-Enter new Password:</p>
+                        <input id="" class="name" name="passwordConfirm"></input><br>
+                        <button id="btn">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+</body>
+
+<script defer src="/public/main_js/status.js"></script>
+<script defer src="/public/main_js/origins.js"></script>
+<script defer>
+    const form = document.querySelector('.user-form');
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = {};
+        [...e.target.elements].forEach(input => {
+            if(input.name) {
+                data[input.name] = input.value;
+            }
+        })
+        console.log(data)
+        const token = window.location.pathname.split('/')[2];
+        fetch(`${origin}/api/v1/auth/resetpassword/${token}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === "success") {
+                    window.location.href = res.path;
+                } else {
+                    showStatus(res);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                showStatus({ status: "error", err: err.message })
+            })
+    })
+</script>
+
+</html>

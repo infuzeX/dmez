@@ -1,8 +1,6 @@
-const xhr = new XMLHttpRequest();
-
 const productId = window.location.pathname.split("/")[2];
 const productEl = document.querySelectorAll(".product_details");
-const gallery = document.querySelector('.xzoom-container');
+const gallery = document.querySelector(".xzoom-container");
 const [title, id, price, description] = productEl;
 
 function removeLoader() {
@@ -14,8 +12,8 @@ function formatImage(coverImage, images) {
   if (coverImage) {
     images.push(coverImage);
   }
- 
-  if(!images.length) {
+
+  if (!images.length) {
     gallery.children[0].src = `/public/images/default.png`;
     gallery.children[0].src = `/public/images/default.png`;
     return;
@@ -30,10 +28,10 @@ function formatImage(coverImage, images) {
     img.classList.add = "xzoom-gallery";
     img.width = "90";
 
-    if(index === 0) {
+    if (index === 0) {
       gallery.children[0].src = `${origin}/${image}`;
       gallery.children[0].src = `${origin}/${image}`;
-      img.xpreview = `${origin}/${image}`; 
+      img.xpreview = `${origin}/${image}`;
     }
 
     a.appendChild(img);
@@ -41,42 +39,53 @@ function formatImage(coverImage, images) {
   });
 }
 
-function addToCart() {
-  xhr.open("PATCH", `${origin}/api/v1/cart/${productId}`);
-  xhr.withCredentials = true;
-  xhr.send();
+async function addToCart() {
+  try {
+    const res = await fetch(`${origin}/api/v1/cart/${productId}`, {
+      method: "PATCH",
+      credentials:"include"
+    });
+    const response = await res.json();
+    showStatus(response);
+    return;
+  } catch (err) {
+    showStatus(err);
+    return;
+  }
 }
 
 //FETCH PRODUCT DETAILS
 const fieldlist = [
-    "productId",
-    "title",
-    "price",
-    "discount",
-    "description",
-    "images",
-    "coverImages",
+  "productId",
+  "title",
+  "price",
+  "discount",
+  "description",
+  "images",
+  "coverImages",
 ];
 
 fetch(`${origin}/api/v1/products/${productId}?fields=${fieldlist.join(",")}`, {
-      method: "GET",})
-    .then(res => res.json())
-    .then(res => {
-
+  method: "GET",
+})
+  .then((res) => res.json())
+  .then((res) => {
     if (res.status === "success") {
       const product = res.data.product;
-      id.innerText = `ID: ${product.productId || '----'}`;
+      id.innerText = `ID: ${product.productId || "----"}`;
       title.innerText = product.title;
       description.innerText = product.description || "Not Available";
       //price
       if (product.discount) {
         price.children[0].innerText = `₹${product.price - product.discount}`;
         price.children[1].innerHTML = `&nbsp;<del>₹${product.price}</del>&nbsp;`;
-        price.children[2].innerText = `${Math.round((product.discount / product.price) * 100)}%`;
+        price.children[2].innerText = `${Math.round(
+          (product.discount / product.price) * 100
+        )}%`;
       } else {
         price.children[0].innerText = `₹${product.price}`;
       }
       formatImage(product.coverImage, product.images);
     } else showStatus(res);
-})
-.catch(err => showStatus({status:"error", message:err.message}))
+  })
+  .catch((err) => showStatus({ status: "error", message: err.message }));
