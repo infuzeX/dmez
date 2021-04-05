@@ -7,17 +7,19 @@ const orderController = require("../../controller/orderController");
 
 router
   .route("/")
-  .post(
-    /*checkoutMiddleware.verifyOrder,
-    checkoutMiddleware.verifyGETCart,
-    checkoutMiddleware.verifyCheckout,*/
-    checkoutMiddleware.verifyCheckoutRequest,
-    orderController.placeOrder
-  )
+  .post(checkoutMiddleware.verifyCheckoutRequest, orderController.placeOrder)
   .get(
     authMiddleware.verifyToken,
     authMiddleware.preventApiAccess,
     orderController.fetchOrders
+  );
+
+router
+  .route("/:orderId/:state")
+  .patch(
+    authMiddleware.verifyToken,
+    authMiddleware.preventApiAccess,
+    orderController.updateOrderStatus
   );
 
 module.exports = router;

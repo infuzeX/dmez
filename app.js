@@ -21,10 +21,6 @@ app.use('/api/v1/checkout', checkoutRoutes);
 app.use('/api/v1/orders', orderRoutes);
 
 app.use('/', pages);
-//app.use('/')
-//app.use('/account');
-//app.use('/products');
-//app.use('/cart');
 
 //global error handler in development
 app.all("*", (req, res, next) => next(new AppError(`requested  url ${req.originalUrl} not found`, 404)));

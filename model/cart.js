@@ -1,4 +1,3 @@
-const userSchema = require("./user");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -42,6 +41,4 @@ cartSchema.virtual("totalAmount").get(function () {
   return totalAmount;
 });
 
-
-exports.User = mongoose.model("user", userSchema);
-exports.Cart = mongoose.model("cart", cartSchema);
+module.exports = cartSchema;

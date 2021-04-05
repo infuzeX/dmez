@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Cart } = require("../model/cart");
+const { Cart } = require("../model/registerModel");
 
 exports.cartSummary = async (customerId) => {
   return await Cart.aggregate([
