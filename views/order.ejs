@@ -189,20 +189,13 @@
              }
             </style>
          <h2>Order Status</h2>
+         <%for(let i = 0; i < data.status.length; i++ ){%>
           <p>
-            <span>Ordered</span>
-            <h4><%=new Date(data.createdAt).toDateString()%></h4>
-            </p>
-            <hr>
-            <p>
-                <span>Delivered</span>
-                <%if(data.status === "delivered"){%>
-                <h4><%=new Date(data.deliveredAt).toDateString()%></h4>
-                <%}else{%>
-                <h4>Not yet delivered</h4>
-                <%}%>
-            
-        </p>
+            <span><%=data.status[i].state%></span>
+            <h4><%=new Date(data.status[i].date).toDateString()%></h4>
+          </p>
+          <hr>
+         <%}%>
     </div>
 <!--status-->
     </div>

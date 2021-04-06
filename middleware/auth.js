@@ -3,7 +3,7 @@ const jwt = require("../utils/jwt");
 
 //verify token
 exports.verifyToken = async (req, res, next) => {
-  /*try {
+  try {
     const token = req.cookies.token;
     if (token) {
       const decoded = await jwt.verify(token, process.env.TOKEN_SECRET);
@@ -13,9 +13,7 @@ exports.verifyToken = async (req, res, next) => {
   } catch (err) {
     req.userId = null;
     next();
-  }*/
-  req.userId = "602c03dda1718b2b3c73e553";
-  next();
+  }
 };
 
 //prevent unauth access to page

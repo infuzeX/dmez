@@ -5,62 +5,84 @@ const state = {
   query: {
     page: 1,
     limit: 10,
-    status: "placed",
+    fields:['totalAmount', 'products', 'address', 'status']
   },
 };
 
-function orderTemplate({ totalAmount, address, products, createdAt, _id }) {
- 
-  return `
-  <div class="panel1">
+function sortStatus(status) {
   
+}
+
+function orderTemplate({ totalAmount, address, products, status, _id }) {
+  const statusObj = {};
+  status.forEach(({state, date}) => {
+    statusObj[state] = {
+      name:state,
+      date
+    }
+  })
+  console.log(statusObj);
+  status = null;
+  return `
+ <div id="${_id}"> 
+  <div class="panel1" >
     <div class="">
       <p>ORDER PLACED</p>
-      <p>${new Date(createdAt).toDateString()}</p>
+      <p>${new Date().toDateString()}</p>
     </div>
+
     <div>
       <p>TOTAL</p>
       <p>₹${totalAmount}</p>
     </div>
+
     <div>
       <p>SHIP TO</p>
-      <p>${address.flatnumber || ""} ${address.area || ""} ${address.city || ""} 
+      <p>${address.flatnumber || ""} ${address.area || ""} ${
+    address.city || ""
+  } 
       ${address.state || ""}</p>
     </div>
+
     <div>
       <p>ORDER ID</p>
       <p>Ref:${_id}</p>
     </div>
   </div>
-  ${popuplateProducts(_id, products)}
- 
-</div>`;
+
+    <div style="display:flex;justify-content:space-between;"> 
+     <div class="product">
+     ${popuplateProducts(products)}
+     </div>
+
+     <div class="action">
+       <button><a href="/account/orders/${_id}">Track Package</a></button><br>
+       ${updateButton(statusObj)}
+     </div>
+    </div>
+
+ </div>`;
 }
 
-function popuplateProducts(id, products) {
+function popuplateProducts(products) {
   let productsEl = "";
-  products.forEach((product) => (productsEl += orderedProductTemp(id, product)));
+  products.forEach(
+    (product) => (productsEl += `<p>${product.title}</p><br/>`)
+  );
   return productsEl;
 }
 
-function orderedProductTemp(id, { title, coverImage }) {
-  const imgUrl = coverImage ? coverImage : "/public/images/default.png";
-
-  return `  <div class="panel2" style="border-top: 1px solid grey;">
-
-  <div class="product">
-    <p>${title}</p>
-    <img style="width:80px;" src=${imgUrl}>
-  </div>
-
-  <div class="action">
-    <button><a href="/account/orders/${id}">Track Package</a></button><br>
-    <button>Return</button><br>
-    <button>Cancel</button>
-  </div>
-
-</div>`;
+function updateButton(status){
+  let buttons = "";
+  if(!status['returned'] && !status['cancelled'] ) {
+    buttons += '<button id="return" onclick="manageOrder(event)" >Return</button>';
+    buttons += '<button id="cancel" onclick="manageOrder(event)" >Cancel</button>';
+  }else{
+    buttons += `<button>${status['returned'].name || status['cancelled'].name}</button>`
+  }
+  return buttons;
 }
+
 
 function handleEmptySection(msg, add) {
   orderEl.innerHTML = msg;
@@ -77,23 +99,37 @@ controls.addEventListener("click", (e) => {
 //API REQUEST
 async function fetchOrders() {
   const query = new URLSearchParams(state["query"]).toString();
-  const rawResponse = await fetch(
-    `/api/v1/orders?${query}`,
-    {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials:'include'
-    }
-  );
+  const rawResponse = await fetch(`/api/v1/orders?${query}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
   return rawResponse.json();
+}
+
+async function manageOrder(e) {
+  try {
+    console.log("sdasda")
+    const rawRes = await fetch(`/api/v1/orders/${e.path[3].id}/${e.target.id}`, {
+      method: "PATCH",
+      credentials: "include",
+    });
+    const res = await rawRes.json();
+    showStatus(res);
+    if(res.status === "success"){
+      window.location.reloa()
+    }
+    return true;
+  } catch (err) {
+    showStatus({ status: "error", message: err.message });
+  }
 }
 
 window.onload = function () {
   fetchOrders()
     .then((response) => {
-     
       if (response.status === "success") {
         const orders = response.data.orders;
         let lists = "";
