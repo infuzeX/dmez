@@ -26,37 +26,6 @@ exports.cartSummary = async (customerId) => {
   ]);
 };
 
-/*exports.cartDetails = async (customerId) => {
-  return await Cart.aggregate([
-    {
-      $match: { customerId: mongoose.Types.ObjectId(customerId) },
-    },
-    {
-      $unwind: "$products",
-    },
-    {
-      $group: {
-        _id: "$_id",
-        products: {
-          $push: "$products",
-        },
-        totalSavings: {
-          $sum: { $multiply: ["$products.quantity", "$products.discount"] },
-        },
-        totalProducts: { $sum: 1 },
-        totalAmount: {
-          $sum: {
-            $multiply: [
-              "$products.quantity",
-              { $subtract: ["$products.price", "$products.discount"] },
-            ],
-          },
-        },
-      },
-    },
-  ]);
-};*/
-
 exports.cartDetails = async (customerId) => {
   return await Cart.findOne({ customerId }, { __v: 0 }).populate("customerId");
 };

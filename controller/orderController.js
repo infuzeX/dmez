@@ -27,9 +27,6 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
   }
 
   await deleteCart(req.cart._id)
-  //SEND MAIL
-  //await sendMail()
-
   res.cookie("_ciic_", true, {
     maxAge: 5 * 60,
     httpOnly: true,
@@ -71,8 +68,6 @@ exports.updateOrderStatus = catchAsync(async (req, res, next) => {
 
   if(!order)
     return next(new AppError(`Failed to ${req.params.state} order`, 400));  
-
-  //send mail
 
   res.status(200).json({
     status: "success",

@@ -28,6 +28,7 @@ const cartSchema = new Schema(
         },
       },
     ],
+    coupon:String
   },
   {
     toJSON: { virtuals: true },

@@ -21,7 +21,6 @@ function orderTemplate({ totalAmount, address, products, status, _id }) {
       date
     }
   })
-  console.log(statusObj);
   status = null;
   return `
  <div id="${_id}"> 
@@ -38,9 +37,7 @@ function orderTemplate({ totalAmount, address, products, status, _id }) {
 
     <div>
       <p>SHIP TO</p>
-      <p>${address.flatnumber || ""} ${address.area || ""} ${
-    address.city || ""
-  } 
+      <p>${address.flatnumber || ""} ${address.area || ""} ${address.city || ""} 
       ${address.state || ""}</p>
     </div>
 
@@ -78,7 +75,7 @@ function updateButton(status){
     buttons += '<button id="return" onclick="manageOrder(event)" >Return</button>';
     buttons += '<button id="cancel" onclick="manageOrder(event)" >Cancel</button>';
   }else{
-    buttons += `<button>${status['returned'].name || status['cancelled'].name}</button>`
+    buttons += `<button>${(status['returned'] || status['cancelled']).name}</button>`
   }
   return buttons;
 }
@@ -111,7 +108,6 @@ async function fetchOrders() {
 
 async function manageOrder(e) {
   try {
-    console.log("sdasda")
     const rawRes = await fetch(`/api/v1/orders/${e.path[3].id}/${e.target.id}`, {
       method: "PATCH",
       credentials: "include",
@@ -119,7 +115,7 @@ async function manageOrder(e) {
     const res = await rawRes.json();
     showStatus(res);
     if(res.status === "success"){
-      window.location.reloa()
+      window.location.reload()
     }
     return true;
   } catch (err) {

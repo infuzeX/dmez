@@ -12,7 +12,8 @@ exports.createOrder = async ({ customerId, address, cart, payment }) => {
     totalProducts: cart.totalProducts,
     totalAmount: cart.totalAmount,
     totalSavings: cart.totalSavings,
-
+    delivery:cart.delivery,
+    coupon:cart.coupon,
     address: {
       name: address.name,
       state: address.state,
@@ -30,6 +31,7 @@ exports.createOrder = async ({ customerId, address, cart, payment }) => {
         date: Date.now(),
       },
     ],
+    createdAt:Date.now()
   });
 };
 
@@ -64,6 +66,7 @@ exports.updateOrderStatus = async ({ _id, customerId, data }) => {
   if (!isEligible) return;
 
   order.status.push(data);
+  order.currentStatus = data.state;
   return await order.save();
 };
 

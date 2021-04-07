@@ -19,8 +19,17 @@ const orderSchema = new Schema({
   ],
   totalProducts: Number,
   totalAmount: Number,
-  totalSavings: Number,
+  totalSavings: {
+    type:Number,
+    default:0
+  },
+  coupon:String,
+  delivery: {
+    type: Number,
+    default: 0,
+  },
   address: {
+    name:String,
     state: String,
     city: String,
     zipcode: Number,
@@ -31,7 +40,7 @@ const orderSchema = new Schema({
   },
   status: [
     {
-      _id:false,
+      _id: false,
       state: {
         type: String,
         enum: ["placed", "dispatched", "cancelled", "returned", "delivered"],
@@ -43,7 +52,10 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  currentStatus: {
+    type: String,
+    enum: ["placed", "dispatched", "cancelled", "returned", "delivered"],
+  },
 });
-
 
 module.exports = orderSchema;
