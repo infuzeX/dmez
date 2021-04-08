@@ -1,4 +1,4 @@
-const { catchAsync } = require("../utils/catchError");
+const catchAsync = require("../utils/catchAsync");
 
 const razorpay = require("../utils/pay").razorpayConfig();
 const jwt = require("../utils/jwt");

@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
 //MIDDLEWARES
-const authMiddleware = require("../middleware/auth");
 const checkoutMiddleware = require("../middleware/checkout");
 //CONTROLLERS
+const authController = require("../controller/auth");
 const {
   renderStaticPage,
   renderCheckoutPage,
@@ -11,8 +11,12 @@ const {
 } = require("../controller/pageController");
 
 router.get("/register", (req, res) => renderStaticPage(res, "register.html"));
-router.get("/forgetpassword", (req, res) => renderStaticPage(res, "forgotpw.html"))
-router.get("/resetpassword/:id", (req, res) => renderStaticPage(res, "reset.html"))
+router.get("/forgetpassword", (req, res) =>
+  renderStaticPage(res, "forgotpw.html")
+);
+router.get("/resetpassword/:id", (req, res) =>
+  renderStaticPage(res, "reset.html")
+);
 
 router.get("/", (req, res) => renderStaticPage(res, "index.html"));
 router.get("/career", (req, res) => renderStaticPage(res, "career.html"));
@@ -47,24 +51,22 @@ router.get("/success", (req, res) => {
 //PROTECTED ROUTES
 router.get(
   "/login",
-  authMiddleware.verifyToken,
-  authMiddleware.preventLoginAccess,
+  authController.verifyToken,
+  authController.preventLoginAccess,
   (req, res) => renderStaticPage(res, "login.html")
 );
 
-router.get('/logout', authMiddleware.logout)
-
 router.get(
   "/cart",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "cart.html")
 );
 
 router.get(
   "/cart/checkout",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   checkoutMiddleware.verifyCheckoutRequest,
   /*checkoutMiddleware.verifyOrder,
   checkoutMiddleware.verifyGETCart,
@@ -74,67 +76,67 @@ router.get(
 
 router.get(
   "/account",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "account.html")
 );
 
 router.get(
   "/account/info",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "setting.html")
 );
 
 router.get(
   "/account/info/name",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "name.html")
 );
 router.get(
   "/account/info/email",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "email.html")
 );
 router.get(
   "/account/info/number",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "number.html")
 );
 router.get(
   "/account/info/password",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "password.html")
 );
 
 router.get(
   "/account/orders",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "order.html")
 );
 
 router.get(
   "/account/orders/:id",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   renderOrderPage
 );
 
 router.get(
   "/account/address",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "address.html")
 );
 router.get(
   "/account/address/edit",
-  authMiddleware.verifyToken,
-  authMiddleware.preventPageAccess,
+  authController.verifyToken,
+  authController.preventPageAccess,
   (req, res) => renderStaticPage(res, "newaddress.html")
 );
 

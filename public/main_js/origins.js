@@ -27,4 +27,4 @@ const origins = {
   },
 };
 
-const origin = origins["shop"][ENV];
+const origin = "http://127.0.0.1:3001";//origins["shop"][ENV];

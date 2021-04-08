@@ -2,7 +2,7 @@ const orderService = require("../service/orderService");
 const { deleteCart } = require("../service/cartService");
 
 const AppError = require("../utils/appError");
-const { catchAsync } = require("../utils/catchError");
+const catchAsync = require("../utils/catchAsync");
 const { verifySignature, razorpayConfig } = require("../utils/pay");
 
 //PLACE ORDER AFTER PAYMENT

@@ -1,4 +1,5 @@
-const { catchAsync, catchError } = require("../utils/catchError");
+const { catchError } = require("../utils/catchError");
+const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const jwt = require("../utils/jwt");
 
