@@ -3,41 +3,59 @@ const Schema = mongoose.Schema;
 
 //describe structure of data
 const orderSchema = new Schema({
-  customerId: String,
+  customerId: { type: Schema.Types.ObjectId, ref: "user" },
   orderId: String,
   paymentId: String,
-  products: [{
-    productId: mongoose.Types.ObjectId,
-    imageCover: String,
-    title: String,
-    brand: String,
-    quantity: Number,
-    price: Number,
-    discount: Number
-  }],
-  totalProducts: Number, 
+  products: [
+    {
+      productId: Schema.Types.ObjectId,
+      imageCover: String,
+      title: String,
+      brand: String,
+      quantity: Number,
+      price: Number,
+      discount: Number,
+    },
+  ],
+  totalProducts: Number,
   totalAmount: Number,
-  totalSavings: Number,
+  totalSavings: {
+    type:Number,
+    default:0
+  },
+  coupon:String,
+  delivery: {
+    type: Number,
+    default: 0,
+  },
   address: {
+    name:String,
     state: String,
     city: String,
     zipcode: Number,
-    area:String,
+    area: String,
     landmark: String,
     flatnumber: String,
-    contact: Number
+    contact: Number,
   },
-  status: {
-    type: String,
-    default: 'placed',
-    enum: ['placed','dispatched', 'canceled', 'returned', 'delivered']
-  },
+  status: [
+    {
+      _id: false,
+      state: {
+        type: String,
+        enum: ["placed", "dispatched", "cancelled", "returned", "delivered"],
+      },
+      date: Date,
+    },
+  ],
   createdAt: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
   },
-  deliveredAt: Date
+  currentStatus: {
+    type: String,
+    enum: ["placed", "dispatched", "cancelled", "returned", "delivered"],
+  },
 });
 
-//create a model of schema
-module.exports = mongoose.model("order", orderSchema);
+module.exports = orderSchema;
