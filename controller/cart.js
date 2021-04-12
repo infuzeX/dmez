@@ -73,7 +73,7 @@ exports.applyCoupon = catchAsync(async (req, res, next) => {
     return next(
       new AppError(
         "Coupon already applied!, please remove applied coupon to apply new coupon",
-        400
+        400 
       )
     );
   }
@@ -97,6 +97,33 @@ exports.applyCoupon = catchAsync(async (req, res, next) => {
   res.json({
     status:"success",
     message:"Coupon applied successfully",
+    data:{
+      coupon:req.cart.coupon
+    }
+  })
+});
+
+exports.removeCoupon = catchAsync(async (req, res, next) => {
+  
+  if (!req.cart)
+    return next(new AppError("Invalid Request", 400));
+
+  const coupon = await Coupon.updateOne(
+    { code: req.cart.coupon.code },
+    {
+      $pull: { users: { cart: req.cart._id } },
+    }
+  );
+
+  if (!coupon.nModified) {
+    return next(new AppError("Failed to remove coupon", 400));
+  }
+
+  req.cart.coupon = {};
+  await req.cart.save();
+  res.json({
+    status:"success",
+    message:"Coupon removed successfully",
     data:{
       coupon:req.cart.coupon
     }

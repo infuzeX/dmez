@@ -87,12 +87,14 @@ function fillSummary() {
   else if (totalPrice > 200 && totalPrice <= 400) cart["charge"] = 50;
   else cart["charge"] = 0;
   //coupon discount
-  if (cart["coupon"]) {
+  if (cart["coupon"] && cart["coupon"].code) {
     const { discount, maxDiscount } = cart.coupon;
     let couponDiscount = subTotal * (discount / 100);
     if (maxDiscount)
       cart["couponDiscount"] =
         couponDiscount > maxDiscount ? maxDiscount : couponDiscount;
+  } else {
+    cart["couponDiscount"] = 0;
   }
   cart_summary.children[0].children[1].textContent = `₹${totalPrice}`;
   cart_summary.children[1].children[1].textContent = `₹${totalSavings}`;
@@ -178,7 +180,6 @@ function proceedToCheckout() {
 /*========================RESPONSE==========================*/
 xhr.onload = function () {
   const res = JSON.parse(this.responseText);
-
   //close loader
   closeLoader(cartLoader);
   //if any error occured;
@@ -198,6 +199,7 @@ xhr.onload = function () {
     res.data.cart = null;
     fillCart(false);
     fillSummary();
+    updateCouponForm(cart.coupon.code ? true : false, cart.coupon.code);
     return;
   }
 
@@ -223,23 +225,45 @@ xhr.onerror = function () {
 window.addEventListener("DOMContentLoaded", () => getCartData());
 
 //COUPON
+function updateCouponForm() {
+  const isApplied = cart.coupon.code ? true : false;
+  const form = couponForm.children[0];
+  const input = form.children[0];
+  const button = form.children[1].children[0];
+
+  button.innerHTML = isApplied
+    ? '<i class="fas fa-window-close"></i>'
+    : '<i class="fas fa-chevron-right"></i>';
+  input.id = isApplied ? "applied" : "apply";
+  input.value = cart.coupon.code || "";
+  input.setAttribute("readonly", isApplied);
+}
+
 couponForm.addEventListener("submit", async (e) => {
   try {
+    handleLoader(cartLoader, "Applying coupon", "active");
     e.preventDefault();
-    const coupon = e.target.elements.coupon.value;
-    const rawRes = await fetch(`/api/v1/cart/coupon/${coupon}`, {
-      method: "PATCH",
+    const coupon = e.target.elements.coupon;
+
+    const methods = {
+      "apply":"PATCH",
+      "applied":"DELETE"
+    }
+    const rawRes = await fetch(`/api/v1/cart/coupon/${coupon.value}`, {
+      method: methods[coupon.id],
       credentials: "include",
     });
+
     const res = await rawRes.json();
     if (res.status === "success") {
       cart["coupon"] = res.data.coupon;
-      e.target.elements.coupon.setAttribute("readonly", true);
+      updateCouponForm();
       fillSummary();
     }
+
     showStatus(res);
   } catch (err) {
-    console.log(err)
     showStatus({ status: "error", message: "something went wrong" });
   }
+  closeLoader(cartLoader);
 });
