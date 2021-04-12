@@ -27,19 +27,21 @@ const cartSchema = new Schema(
           default: Date.now(),
         },
       },
-    ],
-    coupon:String
+    ], 
+    coupon:{
+      code:String,
+      maxDiscount:Number,
+      discount:Number
+    },
+    totalProducts:Number,
+    totalPrice:Number,
+    totalSavings:Number,
+    subTotal:Number
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
-
-cartSchema.virtual("totalAmount").get(function () {
-  let totalAmount = 0;
-  this.products.forEach(({ price, quantity, discount }) => totalAmount += (quantity * (price - discount)));
-  return totalAmount;
-});
 
 module.exports = cartSchema;

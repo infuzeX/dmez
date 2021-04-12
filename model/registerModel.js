@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const productSchema = require('./product');
 const userSchema = require('./user');
-const newCartSchema = require('./newCart');
+const newCartSchema = require('../warehouse/api-v2/newCart');
 const cartSchema = require('./cart');
 const couponSchema = require('./coupon');
 const orderSchema = require('./order');

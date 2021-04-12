@@ -1,15 +1,14 @@
 const router = require("express").Router();
 
-const checkoutMiddleware = require('../../middleware/checkout');
 const authController = require("../../controller/auth");
-const checkoutController = require("../../controller/checkoutController");
+const checkoutController = require("../../controller/checkout");
 
 router
   .route("/")
   .post(
     authController.verifyToken,
     authController.preventApiAccess,
-    checkoutMiddleware.validateCheckoutCart,
+    checkoutController.validateCheckoutCart,
     checkoutController.createOrder
   )
 

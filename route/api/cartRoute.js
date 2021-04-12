@@ -11,7 +11,13 @@ router
     authController.preventApiAccess,
     cartController.getCartProducts
   );
-
+router.patch(
+  "/coupon/:coupon",
+  authController.verifyToken,
+  authController.preventApiAccess,
+  cartController.verifyCart,
+  cartController.applyCoupon
+);
 router
   .route("/:productId")
   .patch(

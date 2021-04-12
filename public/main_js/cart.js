@@ -7,6 +7,7 @@ const cart_summary = document.querySelector(".cart-summary");
 
 let cart = {
   charge: 0,
+  couponDiscount: 0,
 };
 
 /*========================TEMPLATES==========================*/
@@ -80,19 +81,25 @@ function fillCart(isEmpty) {
 }
 
 function fillSummary() {
-    
-  if (cart["totalAmount"] <= 200) 
-    cart["charge"] = 100;
-  else if (cart["totalAmount"] > 200 && cart["totalAmount"] <= 400)
-    cart["charge"] = 50;
-  else
-    cart["charge"] = 0;
-
-  cart_summary.children[0].children[1].textContent = `₹${cart["totalAmount"]}`;
-  cart_summary.children[1].children[1].textContent = `₹${cart["totalSavings"]}`;
-  cart_summary.children[2].children[1].textContent = `₹${cart["charge"]}`;
-  cart_summary.children[3].children[1].textContent = `₹${
-    cart["totalAmount"] + cart["charge"]
+  const { subTotal, totalPrice, totalSavings } = cart;
+  //delivery charge
+  if (subTotal <= 200) cart["charge"] = 100;
+  else if (totalPrice > 200 && totalPrice <= 400) cart["charge"] = 50;
+  else cart["charge"] = 0;
+  //coupon discount
+  if (cart["coupon"]) {
+    const { discount, maxDiscount } = cart.coupon;
+    let couponDiscount = subTotal * (discount / 100);
+    if (maxDiscount)
+      cart["couponDiscount"] =
+        couponDiscount > maxDiscount ? maxDiscount : couponDiscount;
+  }
+  cart_summary.children[0].children[1].textContent = `₹${totalPrice}`;
+  cart_summary.children[1].children[1].textContent = `₹${totalSavings}`;
+  cart_summary.children[2].children[1].textContent = `₹${subTotal}`;
+  cart_summary.children[3].children[1].textContent = `₹${cart["charge"]}`;
+  cart_summary.children[4].children[1].textContent = `₹${
+    subTotal + cart["charge"] - cart["couponDiscount"]
   }`;
 }
 
@@ -102,8 +109,10 @@ function removeItemFromCart(itemId) {
   );
   const item = cart["products"][index];
   //update cart state
-  cart["totalAmount"] -= item.quantity * (item.price - item.discount);
+  cart["totalPrice"] -= item.quantity * item.price;
   cart["totalSavings"] -= item.quantity * item.discount;
+  cart["subTotal"] -=
+    item.quantity * item.price - item.quantity * item.discount;
   cart["totalProducts"] -= 1;
   //remove item from cart
   cart["products"].splice(index, 1);
@@ -127,8 +136,9 @@ function updateItemQuantity(itemId, qty) {
   //update item state
   item["quantity"] += qty;
   //update summary state
-  cart["totalAmount"] += qty * (item.price - item.discount);
+  cart["totalPrice"] += qty * item.price;
   cart["totalSavings"] += qty * item.discount;
+  cart["subTotal"] += qty * item.price - qty * item.discount;
   //update UI
   fillCart();
   fillSummary();
@@ -145,7 +155,7 @@ function getCartData() {
 function updateCartQuantity(data, productId) {
   handleLoader(cartLoader, "updating item quantity", "active");
   xhr.open("PUT", `/api/v1/cart/${productId}`);
-  xhr.withCredentials = true
+  xhr.withCredentials = true;
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
 }
@@ -184,6 +194,7 @@ xhr.onload = function () {
 
   if (res.data.cart) {
     cart = { ...cart, ...res.data.cart };
+    console.log(cart);
     res.data.cart = null;
     fillCart(false);
     fillSummary();
@@ -212,15 +223,23 @@ xhr.onerror = function () {
 window.addEventListener("DOMContentLoaded", () => getCartData());
 
 //COUPON
-couponForm.addEventListener('submit', async e => {
-  e.preventDefault();
-  const coupon = e.target.elements.coupon.value;
-  const rawRes = await fetch(`/api/v1/cart/applycoupon/${coupon}`, {
-    method:'GET',
-    credentials:'include'
-  })
-  const res = await rawRes.json();
-  //apply coupon
-  e.target.elements.coupon.setAttribute("readonly", true);
-})
-
+couponForm.addEventListener("submit", async (e) => {
+  try {
+    e.preventDefault();
+    const coupon = e.target.elements.coupon.value;
+    const rawRes = await fetch(`/api/v1/cart/coupon/${coupon}`, {
+      method: "PATCH",
+      credentials: "include",
+    });
+    const res = await rawRes.json();
+    if (res.status === "success") {
+      cart["coupon"] = res.data.coupon;
+      e.target.elements.coupon.setAttribute("readonly", true);
+      fillSummary();
+    }
+    showStatus(res);
+  } catch (err) {
+    console.log(err)
+    showStatus({ status: "error", message: "something went wrong" });
+  }
+});

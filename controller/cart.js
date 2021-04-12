@@ -1,3 +1,4 @@
+const { Coupon, Cart } = require("../model/registerModel");
 const cartService = require("../service/cartService");
 
 const catchAsync = require("../utils/catchAsync");
@@ -12,8 +13,10 @@ exports.addProductInCart = catchAsync(async (req, res, next) => {
     discount: req.body.discount,
     quantity: 1,
   };
-  const message = await cartService.addProductToCart(req.userId, data);
-  res.status(201).json({ status: "success", message });
+  await cartService.addProductToCart(req.userId, data);
+  res
+    .status(201)
+    .json({ status: "success", message: "Item added successfully" });
 });
 
 exports.getCartProducts = catchAsync(async (req, res, next) => {
@@ -21,7 +24,7 @@ exports.getCartProducts = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: {
-      cart: cart[0],
+      cart,
     },
   });
 });
@@ -51,9 +54,51 @@ exports.deleteProductFromCart = catchAsync(async (req, res, next) => {
 });
 
 exports.verifyCart = catchAsync(async (req, res, next) => {
-  const cart = (await cartService.getCartDetails(req.userId))[0];
-  if (cart && cart.totalAmount) {
+  const cart = await cartService.getCartDetails(req.userId);
+  if (cart && cart.totalProducts) {
     req.cart = cart;
   }
   next();
+});
+
+exports.applyCoupon = catchAsync(async (req, res, next) => {
+  const coupon = await Coupon.findOne({ code: req.params.coupon });
+  if (!coupon || !coupon.active)
+    return next(new AppError("Invalid coupon", 400));
+
+  if (!req.cart)
+    return next(new AppError("Invalid Request", 400));
+
+  if (req.cart.coupon.code) {
+    return next(
+      new AppError(
+        "Coupon already applied!, please remove applied coupon to apply new coupon",
+        400
+      )
+    );
+  }
+
+  req.cart.coupon = {
+    code:coupon.code,
+    discount:coupon.discount,
+    maxDiscount:coupon.maxDiscount
+  };
+
+  await req.cart.save();
+
+  coupon.users.push({
+    cart: req.cart._id,
+    user: req.userId,
+    usedAt: Date.now(),
+  });
+  coupon.userCount += 1;
+  await coupon.save();
+
+  res.json({
+    status:"success",
+    message:"Coupon applied successfully",
+    data:{
+      coupon:req.cart.coupon
+    }
+  })
 });
