@@ -2466,3 +2466,9 @@ textarea {
  }
  
 
+ @media only screen and (min-width: 700px) {
+#sp1{
+  padding: 30px;
+}
+  
+}
