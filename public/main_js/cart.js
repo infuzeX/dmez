@@ -137,14 +137,14 @@ function updateItemQuantity(itemId, qty) {
 /*========================API REQUESTS==========================*/
 function getCartData() {
   //handleLoader(cartLoader, 'fetching cart item', 'active')
-  xhr.open("GET", `${origin}/api/v1/cart`);
+  xhr.open("GET", `/api/v1/cart`);
   xhr.withCredentials = true;
   xhr.send();
 }
 
 function updateCartQuantity(data, productId) {
   handleLoader(cartLoader, "updating item quantity", "active");
-  xhr.open("PUT", `${origin}/api/v1/cart/${productId}`);
+  xhr.open("PUT", `/api/v1/cart/${productId}`);
   xhr.withCredentials = true
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
@@ -153,7 +153,7 @@ function updateCartQuantity(data, productId) {
 function deleteCartItem(e) {
   handleLoader(cartLoader, "deleting item from cart", "active");
   const productId = e.target.id;
-  xhr.open("DELETE", `${origin}/api/v1/cart/${productId}`);
+  xhr.open("DELETE", `/api/v1/cart/${productId}`);
   xhr.send();
 }
 

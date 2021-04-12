@@ -16,7 +16,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     currency: "INR",
   });
   req.cart["orderId"] = order.id;
-  const token = await jwt.sign(req.cart, process.env.ORDER_SECRET);
+  const token = await jwt.encode(req.cart, process.env.ORDER_SECRET);
 
   res
     .status(200)

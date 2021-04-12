@@ -21,7 +21,7 @@ exports.verifyCheckoutRequest = async (req, res, next) => {
   try {
     //validate checkout token
     const checkoutToken = req.cookies._ciic_;
-    req["checkout"] = await jwt.verify(checkoutToken, process.env.ORDER_SECRET);
+    req["checkout"] = await jwt.decode(checkoutToken, process.env.ORDER_SECRET);
     req["userId"] = req["userId"] || req.checkout["customerId"];
     //validate cart
     req["cart"] = (await cartService.cartDetails(req.userId)).toJSON();
