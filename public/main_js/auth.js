@@ -11,15 +11,13 @@ form.addEventListener("submit", (e) => {
     if (input.name) authData[input.name] = input.value;
   });
 
-  const authOrigin = origins.getAuthOrigin(1);
-
-  authUser(id, authOrigin, authData);
+  authUser(id, authData);
 });
 
-async function authUser(type, authOrigin, data) {
+async function authUser(type, data) {
   try {
     const res = await (
-      await fetch(`${authOrigin}/api/v1/auth/${type}`, {
+      await fetch(`/api/v1/auth/${type}`, {
         method: "POST",
         headers:{
           "content-type":"application/json"

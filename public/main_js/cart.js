@@ -1,5 +1,6 @@
 const xhr = new XMLHttpRequest();
 
+const couponForm = document.querySelector("#coupon-apply");
 const cartLoader = document.querySelector(".cart-loader");
 const cart_products = document.querySelector("#products-list");
 const cart_summary = document.querySelector(".cart-summary");
@@ -209,3 +210,17 @@ xhr.onerror = function () {
 };
 
 window.addEventListener("DOMContentLoaded", () => getCartData());
+
+//COUPON
+couponForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const coupon = e.target.elements.coupon.value;
+  const rawRes = await fetch(`/api/v1/cart/applycoupon/${coupon}`, {
+    method:'GET',
+    credentials:'include'
+  })
+  const res = await rawRes.json();
+  //apply coupon
+  e.target.elements.coupon.setAttribute("readonly", true);
+})
+

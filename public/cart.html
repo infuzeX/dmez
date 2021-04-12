@@ -51,14 +51,15 @@
 			<a style="color: #A1B985;">Howdy!</a>
 			<a href="/">Home</a>
 			<a href="/products">Shop</a>
-			<a href="/cart">  Cart</a>
+			<a href="/cart"> Cart</a>
 			<a href="/account"> Account</a>
-			
+
 			<a href="/products">Contact</a>
 			<div class="search">
 				<form class="search-container">
-					<input type="text" id="search-bar" placeholder="Search for medicines" style="border: 1px solid #A1B985">
-					<a href="#"><i id="icon" class="fas fa-search" ></i></a>
+					<input type="text" id="search-bar" placeholder="Search for medicines"
+						style="border: 1px solid #A1B985">
+					<a href="#"><i id="icon" class="fas fa-search"></i></a>
 				</form>
 
 			</div>
@@ -67,12 +68,12 @@
 	<div class="page-wrapper" style="position: relative;">
 
 		<div class="cart-loader">
-			
+
 		</div>
 
 		<main class="main">
 			<div class="page-header text-center" id="bg1">
-				
+
 				<div class="container">
 					<h1 class="page-title">Shopping Cart<span>Shop</span></h1>
 				</div><!-- End .container -->
@@ -80,8 +81,8 @@
 			<nav aria-label="breadcrumb" class="breadcrumb-nav">
 				<div class="container">
 					<ol class="breadcrumb">
-						
-			
+
+
 					</ol>
 				</div><!-- End .container -->
 			</nav><!-- End .breadcrumb-nav -->
@@ -123,12 +124,13 @@
 								<!--START .cart-bottom-->
 								<div class="cart-bottom">
 									<div class="cart-discount">
-										<form action="#">
+										<form id="coupon-apply">
 											<div class="input-group">
-												<input type="text" class="form-control" required
+												<input type="text" name="coupon" class="form-control" required
 													placeholder="coupon code">
 												<div class="input-group-append">
-													<button class="btn btn-outline-primary-2" type="submit"><i class="fas fa-chevron-right"></i></button>
+													<button class="btn btn-outline-primary-2" type="submit"><i
+															class="fas fa-chevron-right"></i></button>
 												</div>
 											</div>
 										</form>
@@ -161,7 +163,7 @@
 												<td>Shipping</td>
 												<td>₹00.00</td>
 											</tr>
-							                <!--Total-->
+											<!--Total-->
 											<tr class="summary-total">
 												<td>Total:</td>
 												<td>₹00.00</td>
@@ -171,7 +173,8 @@
 									</table><!-- End .table table-summary -->
 
 									<button onclick="proceedToCheckout()"
-										class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</button>
+										class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO
+										CHECKOUT</button>
 								</div><!-- End .summary -->
 
 							</aside><!-- End .col-lg-3 -->

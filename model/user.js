@@ -72,6 +72,7 @@ const userSchema = new Schema({
       //required:[true, "Contact is required"]
     },
   },
+  couponUsed:[{type:mongoose.Types.ObjectId, ref:'coupon'}]
 });
 
 

@@ -16,7 +16,7 @@ exports.fetchProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.verifyProductEligiblity = catchAsync(async (req, res, next) => {
-  const product = await fetchProduct(req.params.productId, {
+  const product = await productService.fetchProduct(req.params.productId, {
     fields: "title, quantity, discount, price, coverImage",
   });
   if (!product || !product.quantity)
@@ -27,12 +27,12 @@ exports.verifyProductEligiblity = catchAsync(async (req, res, next) => {
 
 //check product stock is available to increase qty in cart
 exports.checkProductQuantity = catchAsync(async (req, res, next) => {
-  const product = await getProduct(req.params.productId, {
+  const product = await productService.fetchProduct(req.params.productId, {
     fields: "quantity",
   });
   //check is present or not
   if (req.body.inc) {
-    return !product || !product.isInStock()
+    return !product || !product.quantity >= 1
       ? next(new AppError("Product out of stock", 404))
       : next();
   }
