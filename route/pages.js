@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 //MIDDLEWARES
-const checkoutController = require("../controller/checkout");
+const cartController = require("../controller/cart");
 //CONTROLLERS
 const authController = require("../controller/auth");
 const {
@@ -67,10 +67,8 @@ router.get(
   "/cart/checkout",
   authController.verifyToken,
   authController.preventPageAccess,
-  checkoutController.verifyCheckoutRequest,
-  /*checkoutMiddleware.verifyOrder,
-  checkoutMiddleware.verifyGETCart,
-  checkoutMiddleware.verifyCheckout,*/
+  authController.verifyOrderToken,
+  cartController.verifyCart,
   renderCheckoutPage
 );
 

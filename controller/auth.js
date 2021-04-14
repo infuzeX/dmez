@@ -84,10 +84,19 @@ exports.verifyToken = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.verifyOrderToken = catchAsync(async (req, res, next) => {
+  const cartOrderToken = req.cookies.cart;
+  if(cartOrderToken){
+    req["checkout"] = await jwt.decode(cartOrderToken, process.env.ORDER_SECRET);
+    req["userId"] = req["userId"] || req["checkout"].customerId;
+  }
+  next();
+});
+
 //prevent auth access to login page
 exports.preventLoginAccess = async (req, res, next) =>
   req.userId ? res.redirect("/") : next();
-  
+
 exports.preventPageAccess = async (req, res, next) => {
   if (req.userId) return next();
   res
@@ -103,7 +112,6 @@ exports.preventApiAccess = async (req, res, next) => {
     ? next()
     : next(new AppError("unauthorized access please login again", 401));
 };
-
 
 //FORGET PASSWORD
 exports.forgetPassword = catchAsync(async (req, res, next) => {

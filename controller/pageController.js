@@ -1,5 +1,5 @@
 const path = require("path");
-const orderService = require('../service/orderService');
+const orderService = require("../service/orderService");
 
 exports.renderStaticPage = (res, page) => {
   const file = path.resolve(`public/${page}`);
@@ -7,21 +7,38 @@ exports.renderStaticPage = (res, page) => {
 };
 
 exports.renderCheckoutPage = (req, res) => {
-  data = {
-    user:{
-      name:req.cart.customerId.name,
-      email:req.cart.customerId.email,
-      contact:req.cart.customerId.contact
-    },
-    address:(req.cart.customerId.address || {}),
-    isAddress:req.cart.customerId.address?true:false,
-    totalAmount:req.cart.totalAmount,
-    products:req.cart.products,
-    key: process.env.KEY_ID,
-    order: req.checkout.orderId,
-    charge: req.checkout.charge,
-    total: req.checkout.charge + req.checkout.totalAmount,
-  };
+  //VERIFY CHECKOUT WITH CART
+  if(!req.checkout) {
+    res.redirect('/cart');
+  }
+  let data = {};
+  if (
+    !(req.checkout["cartId"] == req.cart["_id"].toString()) ||
+    !(req.checkout["totalAmount"] == req.cart["totalAmount"])
+  ) {
+    data = {
+      success:false,
+      message:"Some went wrong please retry again"
+    }
+  } else {
+    data = {
+      success:true,
+      user: {
+        name: req.cart.customerId.name,
+        email: req.cart.customerId.email,
+        contact: req.cart.customerId.contact,
+      },
+      address: req.cart.customerId.address || {},
+      isAddress: req.cart.customerId.address ? true : false,
+      subTotal: req.cart.totalPrice - req.cart.totalSavings,
+      products: req.cart.products,
+      key: process.env.KEY_ID,
+      order: req.checkout.orderId,
+      couponDiscount: req.cart.couponDiscount,
+      charge: req.checkout.charge,
+      total: req.checkout.totalAmount,
+    };
+  }
   res.render("checkout.ejs", {
     data,
   });

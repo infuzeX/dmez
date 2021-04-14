@@ -4,6 +4,18 @@ const cartService = require("../service/cartService");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
+exports.verifyCart = catchAsync(async (req, res, next) => {
+  const cart = await cartService.getCartDetails(req.userId);
+  if (!cart) {
+    return next(new AppError("Your cart is empty", 400));
+  }
+  if(!cart.totalProducts) {
+    return next(new AppError("Your cart is empty", 400));
+  }
+  req.cart = cart;
+  next();
+});
+
 exports.addProductInCart = catchAsync(async (req, res, next) => {
   const data = {
     productId: req.params.productId,
@@ -53,35 +65,24 @@ exports.deleteProductFromCart = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.verifyCart = catchAsync(async (req, res, next) => {
-  const cart = await cartService.getCartDetails(req.userId);
-  if (cart && cart.totalProducts) {
-    req.cart = cart;
-  }
-  next();
-});
-
 exports.applyCoupon = catchAsync(async (req, res, next) => {
   const coupon = await Coupon.findOne({ code: req.params.coupon });
   if (!coupon || !coupon.active)
     return next(new AppError("Invalid coupon", 400));
 
-  if (!req.cart)
-    return next(new AppError("Invalid Request", 400));
-
   if (req.cart.coupon.code) {
     return next(
       new AppError(
         "Coupon already applied!, please remove applied coupon to apply new coupon",
-        400 
+        400
       )
     );
   }
 
   req.cart.coupon = {
-    code:coupon.code,
-    discount:coupon.discount,
-    maxDiscount:coupon.maxDiscount
+    code: coupon.code,
+    discount: coupon.discount,
+    maxDiscount: coupon.maxDiscount,
   };
 
   await req.cart.save();
@@ -95,19 +96,15 @@ exports.applyCoupon = catchAsync(async (req, res, next) => {
   await coupon.save();
 
   res.json({
-    status:"success",
-    message:"Coupon applied successfully",
-    data:{
-      coupon:req.cart.coupon
-    }
-  })
+    status: "success",
+    message: "Coupon applied successfully",
+    data: {
+      coupon: req.cart.coupon,
+    },
+  });
 });
 
 exports.removeCoupon = catchAsync(async (req, res, next) => {
-  
-  if (!req.cart)
-    return next(new AppError("Invalid Request", 400));
-
   const coupon = await Coupon.updateOne(
     { code: req.cart.coupon.code },
     {
@@ -122,10 +119,10 @@ exports.removeCoupon = catchAsync(async (req, res, next) => {
   req.cart.coupon = {};
   await req.cart.save();
   res.json({
-    status:"success",
-    message:"Coupon removed successfully",
-    data:{
-      coupon:req.cart.coupon
-    }
-  })
+    status: "success",
+    message: "Coupon removed successfully",
+    data: {
+      coupon: req.cart.coupon,
+    },
+  });
 });

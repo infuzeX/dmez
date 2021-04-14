@@ -1,7 +1,7 @@
 const { Order } = require("../model/registerModel");
 const APIFeatures = require("../utils/apifeatures");
 
-exports.createOrder = async ({ customerId, address, cart, payment }) => {
+exports.createOrder = async ({ customerId, address, code, cart, payment }) => {
   return await Order.create({
     customerId,
 
@@ -9,11 +9,15 @@ exports.createOrder = async ({ customerId, address, cart, payment }) => {
     paymentId: payment.paymentId,
 
     products: cart.products,
+
     totalProducts: cart.totalProducts,
-    totalAmount: cart.totalAmount,
+    totalPrice: cart.totalPrice,
     totalSavings: cart.totalSavings,
-    delivery:cart.delivery,
-    coupon:cart.coupon,
+    delivery: cart.charge,
+    coupon: code,
+    couponDiscount: cart.couponDiscount,
+    totalAmount: cart.totalAmount,
+
     address: {
       name: address.name,
       state: address.state,
@@ -31,7 +35,7 @@ exports.createOrder = async ({ customerId, address, cart, payment }) => {
         date: Date.now(),
       },
     ],
-    createdAt:Date.now()
+    createdAt: Date.now(),
   });
 };
 
@@ -55,7 +59,8 @@ exports.updateOrderStatus = async ({ _id, customerId, data }) => {
   //check same status or cancelled or returned
   let isEligible = true;
   for (let i = 0; i < order.status.length; i++) {
-    if (order.status[i].state === data.state ||
+    if (
+      order.status[i].state === data.state ||
       order.status[i].state === "cancelled" ||
       order.status[i].state === "returned"
     ) {

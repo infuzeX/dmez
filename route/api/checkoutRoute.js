@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const authController = require("../../controller/auth");
+const cartController = require("../../controller/cart");
 const checkoutController = require("../../controller/checkout");
 
 router
@@ -8,7 +9,7 @@ router
   .post(
     authController.verifyToken,
     authController.preventApiAccess,
-    checkoutController.validateCheckoutCart,
+    cartController.verifyCart,
     checkoutController.createOrder
   )
 

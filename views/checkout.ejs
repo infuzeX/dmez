@@ -18,7 +18,8 @@
 		integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
 		crossorigin="anonymous" />
 
-    <!--razopay checkout-->
+	<!--razopay checkout-->
+	<%if(data.success) {%> 
     <%if(data.isAddress){%>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <%}%>
@@ -57,9 +58,11 @@
      <script>
         const address = {}
      </script>
-    <%}%>
+	<%}%>
+	<%}%>
 </head>
 
+<%if(data.success){%>
 <body>
 	<!--status-->
 	<div style="background-color:brown" class="status">
@@ -194,8 +197,13 @@
 												<% }) %>
 												<tr class="summary-subtotal">
 													<td>Subtotal:</td>
-													<td>₹<%=data.totalAmount%></td>
+													<td>₹<%=data.subTotal%></td>
 												</tr><!-- End .summary-subtotal -->
+												<tr>
+													<td>Coupon Discount</td>
+													<td>₹<%=data.couponDiscount%></td>
+													
+												</tr>
 												<tr>
 													<td>Shipping:</td>
 													<% if(!data.charge) {%>
@@ -255,4 +263,10 @@
 	</script>
 
 </body>
+<%}else{%>
+   <body>
+	   <center><p><%=data.message%></p></center>
+	   <center><a href="/cart">cart</a></center>
+   </body>
+<%}%>
 </html>

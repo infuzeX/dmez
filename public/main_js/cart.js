@@ -5,10 +5,7 @@ const cartLoader = document.querySelector(".cart-loader");
 const cart_products = document.querySelector("#products-list");
 const cart_summary = document.querySelector(".cart-summary");
 
-let cart = {
-  charge: 0,
-  couponDiscount: 0,
-};
+let cart = {};
 
 /*========================TEMPLATES==========================*/
 function cart_product_temp({
@@ -194,12 +191,12 @@ xhr.onload = function () {
   }
 
   if (res.data.cart) {
-    cart = { ...cart, ...res.data.cart };
+    cart = { ...res.data.cart };
     console.log(cart);
     res.data.cart = null;
     fillCart(false);
     fillSummary();
-    updateCouponForm(cart.coupon.code ? true : false, cart.coupon.code);
+    updateCouponForm();
     return;
   }
 
@@ -227,6 +224,7 @@ window.addEventListener("DOMContentLoaded", () => getCartData());
 //COUPON
 function updateCouponForm() {
   const isApplied = cart.coupon.code ? true : false;
+  console.log(isApplied);
   const form = couponForm.children[0];
   const input = form.children[0];
   const button = form.children[1].children[0];
@@ -236,7 +234,13 @@ function updateCouponForm() {
     : '<i class="fas fa-chevron-right"></i>';
   input.id = isApplied ? "applied" : "apply";
   input.value = cart.coupon.code || "";
-  input.setAttribute("readonly", isApplied);
+
+  if(isApplied) {
+    input.setAttribute("readonly", true);
+  }else{
+    input.removeAttribute("readonly");
+  }
+  
 }
 
 couponForm.addEventListener("submit", async (e) => {

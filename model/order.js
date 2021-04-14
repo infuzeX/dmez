@@ -6,6 +6,7 @@ const orderSchema = new Schema({
   customerId: { type: Schema.Types.ObjectId, ref: "user" },
   orderId: String,
   paymentId: String,
+  trackingId: String,
   products: [
     {
       productId: Schema.Types.ObjectId,
@@ -18,18 +19,24 @@ const orderSchema = new Schema({
     },
   ],
   totalProducts: Number,
-  totalAmount: Number,
+  totalPrice: Number,
   totalSavings: {
-    type:Number,
-    default:0
+    type: Number,
+    default: 0,
   },
   coupon:String,
+  couponDiscount: {
+    type: Number,
+    default: 0,
+  },
   delivery: {
     type: Number,
     default: 0,
   },
+  totalAmount: Number,
+
   address: {
-    name:String,
+    name: String,
     state: String,
     city: String,
     zipcode: Number,
