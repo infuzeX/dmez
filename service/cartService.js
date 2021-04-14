@@ -50,7 +50,6 @@ exports.manageProductQuanity = async (customerId, productId, qty) => {
   const totalPrice = cart["products"][0].price * qty;
   const totalSavings = cart["products"][0].discount * qty;
   const subTotal = totalPrice - totalSavings;
-  console.log(totalPrice, totalSavings, subTotal);
   //remove product from cart if qty is 0
   if (!cart["products"][0].quantity) {
     m = (
@@ -117,86 +116,3 @@ exports.getCartDetails = async (customerId) => {
 };
 
 exports.deleteCart = async (_id) => await Cart.deleteOne({ _id });
-
-//TRASH CODE
-exports.cartSummary = async (customerId) => {
-  return await Cart.aggregate([
-    {
-      $match: { customerId: mongoose.Types.ObjectId(customerId) },
-    },
-    {
-      $unwind: "$products",
-    },
-    {
-      $group: {
-        _id: "$_id",
-        totalProducts: { $sum: 1 },
-        totalAmount: {
-          $sum: {
-            $multiply: [
-              "$products.quantity",
-              { $subtract: ["$products.price", "$products.discount"] },
-            ],
-          },
-        },
-      },
-    },
-  ]);
-};
-
-//get cart total Amount
-exports.getCartAmount = async (cartId) => {
-  return await Cart.aggregate([
-    {
-      $match: { _id: mongoose.Types.ObjectId(cartId) },
-    },
-    {
-      $unwind: "$products",
-    },
-    {
-      $group: {
-        _id: "$_id",
-        totalAmount: {
-          $sum: {
-            $multiply: [
-              "$products.quantity",
-              { $subtract: ["$products.price", "$products.discount"] },
-            ],
-          },
-        },
-      },
-    },
-  ]);
-};
-
-exports.getCartDetails_1 = async (customerId) => {
-  return await Cart.aggregate([
-    {
-      $match: { customerId: mongoose.Types.ObjectId(customerId) },
-    },
-    {
-      $unwind: "$products",
-    },
-    {
-      $group: {
-        _id: "$_id",
-        products: {
-          $push: "$products",
-        },
-        totalSavings: {
-          $sum: { $multiply: ["$products.quantity", "$products.discount"] },
-        },
-        totalProducts: { $sum: 1 },
-        totalAmount: {
-          $sum: {
-            $multiply: [
-              "$products.quantity",
-              { $subtract: ["$products.price", "$products.discount"] },
-            ],
-          },
-        },
-        //add delivery charge here
-      },
-    },
-  ]);
-};

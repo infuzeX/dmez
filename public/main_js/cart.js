@@ -61,6 +61,34 @@ function handleEmptySection(msg, isEmpty) {
   cart_products.innerHTML = msg;
 }
 
+function calculateSubTotal(products) {
+  subTotal = 0;
+  products.forEach((item) => {
+    cart["totalPrice"]
+  });
+}
+
+function calculateCouponDiscount(subtotal) {
+  //coupon discount
+  if (cart["coupon"] && cart["coupon"].code) {
+    const { discount, maxDiscount } = cart.coupon;
+    let couponDiscount = subtotal * (discount / 100);
+    if (maxDiscount)
+      cart["couponDiscount"] =
+        couponDiscount > maxDiscount ? maxDiscount : couponDiscount
+  } else {
+    cart["couponDiscount"] = 0;
+  }
+}
+
+function calculateDeliveryCharge(subTotal) {
+  //delivery charge
+  if (subTotal <= 200) cart["charge"] = 100;
+  else if (subTotal > 200 && subTotal <= 400)
+    cart["charge"] = 50;
+  else cart["charge"] = 0;
+}
+
 function fillCart(isEmpty) {
   let table_rows = "";
   if (cart["products"].length) {
@@ -78,27 +106,18 @@ function fillCart(isEmpty) {
 }
 
 function fillSummary() {
-  const { subTotal, totalPrice, totalSavings } = cart;
-  //delivery charge
-  if (subTotal <= 200) cart["charge"] = 100;
-  else if (totalPrice > 200 && totalPrice <= 400) cart["charge"] = 50;
-  else cart["charge"] = 0;
-  //coupon discount
-  if (cart["coupon"] && cart["coupon"].code) {
-    const { discount, maxDiscount } = cart.coupon;
-    let couponDiscount = subTotal * (discount / 100);
-    if (maxDiscount)
-      cart["couponDiscount"] =
-        couponDiscount > maxDiscount ? maxDiscount : couponDiscount;
-  } else {
-    cart["couponDiscount"] = 0;
-  }
-  cart_summary.children[0].children[1].textContent = `₹${totalPrice}`;
-  cart_summary.children[1].children[1].textContent = `₹${totalSavings}`;
-  cart_summary.children[2].children[1].textContent = `₹${subTotal}`;
-  cart_summary.children[3].children[1].textContent = `₹${cart["charge"]}`;
-  cart_summary.children[4].children[1].textContent = `₹${
-    subTotal + cart["charge"] - cart["couponDiscount"]
+ 
+  //calculateSubTotal(cart["products"]);
+  calculateCouponDiscount(cart["subTotal"]);
+  calculateDeliveryCharge(cart["subTotal"] - cart["couponDiscount"]);
+
+  cart_summary.children[0].children[1].textContent = `₹${cart["totalPrice"]}`;
+  cart_summary.children[1].children[1].textContent = `₹${cart["totalSavings"]}`;
+  cart_summary.children[2].children[1].textContent = `₹${cart["couponDiscount"]}`;
+  cart_summary.children[3].children[1].textContent = `₹${cart["subTotal"] - cart["couponDiscount"]}`;
+  cart_summary.children[4].children[1].textContent = `₹${cart["charge"]}`;
+  cart_summary.children[5].children[1].textContent = `₹${
+    (cart["subTotal"] - cart["couponDiscount"]) + cart["charge"]
   }`;
 }
 
@@ -110,8 +129,7 @@ function removeItemFromCart(itemId) {
   //update cart state
   cart["totalPrice"] -= item.quantity * item.price;
   cart["totalSavings"] -= item.quantity * item.discount;
-  cart["subTotal"] -=
-    item.quantity * item.price - item.quantity * item.discount;
+  cart["subTotal"] = cart["totalPrice"] - cart["totalSavings"];
   cart["totalProducts"] -= 1;
   //remove item from cart
   cart["products"].splice(index, 1);
@@ -137,7 +155,7 @@ function updateItemQuantity(itemId, qty) {
   //update summary state
   cart["totalPrice"] += qty * item.price;
   cart["totalSavings"] += qty * item.discount;
-  cart["subTotal"] += qty * item.price - qty * item.discount;
+  cart["subTotal"] = cart["totalPrice"] - cart["totalSavings"];
   //update UI
   fillCart();
   fillSummary();
@@ -192,7 +210,6 @@ xhr.onload = function () {
 
   if (res.data.cart) {
     cart = { ...res.data.cart };
-    console.log(cart);
     res.data.cart = null;
     fillCart(false);
     fillSummary();
@@ -224,7 +241,6 @@ window.addEventListener("DOMContentLoaded", () => getCartData());
 //COUPON
 function updateCouponForm() {
   const isApplied = cart.coupon.code ? true : false;
-  console.log(isApplied);
   const form = couponForm.children[0];
   const input = form.children[0];
   const button = form.children[1].children[0];
@@ -235,12 +251,11 @@ function updateCouponForm() {
   input.id = isApplied ? "applied" : "apply";
   input.value = cart.coupon.code || "";
 
-  if(isApplied) {
+  if (isApplied) {
     input.setAttribute("readonly", true);
-  }else{
+  } else {
     input.removeAttribute("readonly");
   }
-  
 }
 
 couponForm.addEventListener("submit", async (e) => {
@@ -250,9 +265,9 @@ couponForm.addEventListener("submit", async (e) => {
     const coupon = e.target.elements.coupon;
 
     const methods = {
-      "apply":"PATCH",
-      "applied":"DELETE"
-    }
+      apply: "PATCH",
+      applied: "DELETE",
+    };
     const rawRes = await fetch(`/api/v1/cart/coupon/${coupon.value}`, {
       method: methods[coupon.id],
       credentials: "include",
