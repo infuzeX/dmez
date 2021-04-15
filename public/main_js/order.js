@@ -1,5 +1,5 @@
 const orderEl = document.querySelector(".orders-panel");
-const controls = document.querySelector(".controls");
+//const controls = document.querySelector(".controls");
 
 const state = {
   query: {
@@ -9,11 +9,7 @@ const state = {
   },
 };
 
-function sortStatus(status) {
-  
-}
-
-function orderTemplate({ totalAmount, address, products, status, _id }) {
+function orderTemplate({ totalAmount, address, products, status, currentStatus, _id, createdAt }) {
   const statusObj = {};
   status.forEach(({state, date}) => {
     statusObj[state] = {
@@ -21,13 +17,20 @@ function orderTemplate({ totalAmount, address, products, status, _id }) {
       date
     }
   })
+  if(!statusObj['placed']) {
+    statusObj["placed"] = {
+      name:'placed',
+      date: createdAt
+    } 
+  }
   status = null;
+  console.log(statusObj[currentStatus || 'placed'])
   return `
  <div id="${_id}"> 
   <div class="panel1" >
     <div class="">
-      <p>ORDER PLACED</p>
-      <p>${new Date().toDateString()}</p>
+      <p>ORDER ${statusObj[currentStatus || 'placed'].name.toUpperCase()}</p>
+      <p>${new Date(statusObj[currentStatus || 'placed'].date).toDateString()}</p>
     </div>
 
     <div>
@@ -46,18 +49,23 @@ function orderTemplate({ totalAmount, address, products, status, _id }) {
       <p>Ref:${_id}</p>
     </div>
   </div>
-
-    <div style="display:flex;justify-content:space-between;"> 
+  <div style="display:flex;justify-content:space-between;"> 
+     
      <div class="product">
-     ${popuplateProducts(products)}
+      
+      ${popuplateProducts(products)}
+   
      </div>
-
-     <div class="action">
-       <button><a href="/account/orders/${_id}">Track Package</a></button><br>
+     <div class="action" style="width:30%">
+       <button>
+       <a style="text-decoration:none;color:#333" href="/account/orders/${_id}">
+       View details
+       </a>
+       </button>
        ${updateButton(statusObj)}
      </div>
-    </div>
 
+  </div>
  </div>`;
 }
 
@@ -75,11 +83,10 @@ function updateButton(status){
     buttons += '<button id="return" onclick="manageOrder(event)" >Return</button>';
     buttons += '<button id="cancel" onclick="manageOrder(event)" >Cancel</button>';
   }else{
-    buttons += `<button>${(status['returned'] || status['cancelled']).name}</button>`
+    //buttons +=  ;
   }
   return buttons;
 }
-
 
 function handleEmptySection(msg, add) {
   orderEl.innerHTML = msg;
@@ -87,11 +94,11 @@ function handleEmptySection(msg, add) {
 }
 
 //NAVIGATE
-controls.addEventListener("click", (e) => {
-  if (e.target.className) {
-    state["query"].status = e.target.className;
-  }
-});
+//controls.addEventListener("click", (e) => {
+ // if (e.target.className) {
+ //   state["query"].status = e.target.className;
+ // }
+//});
 
 //API REQUEST
 async function fetchOrders() {

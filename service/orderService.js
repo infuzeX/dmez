@@ -56,6 +56,10 @@ exports.updateOrderStatus = async ({ _id, customerId, data }) => {
   //match user with customerId
   if (!(order.customerId._id == customerId))
     throw { message: "Invalid request", statusCode: 400 };
+  //
+  if(order.currentStatus === "dispatched" && data.state === "cancelled") {
+    throw { message: "Cannot cancel order after dispatch", statusCode: 400 };
+  }
   //check same status or cancelled or returned
   let isEligible = true;
   for (let i = 0; i < order.status.length; i++) {
