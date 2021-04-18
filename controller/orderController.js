@@ -26,7 +26,6 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
   //CREATE NEW ORDER
   const order = await orderService.createOrder({
     customerId: req.checkout.customerId,
-    couponCode: req.cart.coupon && req.cart.coupon.code,
     cart: req.cart,
     address: req.body.address,
     payment: req.body.payment,
@@ -43,7 +42,7 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
 
   await deleteCart(req.cart._id);
 
-  mail.sendMailToUser({
+  mail.sendMailToClient({
     subject: "New order placed",
     email: req.cart.customerId.email,
     message: `We got your order of ${req.cart.totalProducts} Items of rs ${req.checkout.totalAmount}. We will inform you about order dispatch. THANK YOU`,
@@ -55,8 +54,8 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
     message: `New order of ${req.cart.totalProducts} Items of rs ${req.checkout.totalAmount}.`,
   });
 
-  res.cookie("_ciic_", true, {
-    maxAge: 5 * 60,
+  res.cookie("cart", "", {
+    maxAge:0,
     httpOnly: true,
     secure: process.env.NODE_ENV,
   });

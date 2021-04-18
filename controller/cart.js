@@ -6,11 +6,18 @@ const AppError = require("../utils/appError");
 
 exports.verifyCart = catchAsync(async (req, res, next) => {
   const cart = await cartService.getCartDetails(req.userId);
+  const message = "Your cart is empty";
   if (!cart) {
-    return next(new AppError("Your cart is empty", 400));
+    if(req.method === "GET") {
+      return next();
+    }
+    return next(new AppError(message, 400));
   }
   if(!cart.totalProducts) {
-    return next(new AppError("Your cart is empty", 400));
+    if(req.method === "GET") {
+      return next();
+    }
+    return next(new AppError(message, 400));
   }
   req.cart = cart;
   next();

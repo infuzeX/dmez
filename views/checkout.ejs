@@ -53,6 +53,7 @@
             area: "<%= data.address.area%>",
             landmark: "<%= data.address.landmark%>",
             flatnumber: "<%= data.address.flatnumber%>",
+            email: "<%= data.user.email%>",
             contact: "<%= data.address.contact%>"
         }
     </script>
@@ -67,6 +68,12 @@
 <%if(data.success){%>
 
 <body>
+      <!--status-->
+  <div style="background-color:brown" class="status">
+    <p></p>
+    <span onclick="closeStatus(event)"><i class="fas-fa-window-close"></i></span>
+  </div>
+  <!--status-->
     <header>
         <nav>
             <div id="navbar">
@@ -150,7 +157,7 @@
 
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label id="city">Town / City: <%= data.address.city || ''%> </label>
+                                            <label id="city">Town / City: </label>
                                             <span><%= data.address.city || ''%></span>
                                         </div><!-- End .col-sm-6 -->
 
@@ -264,6 +271,7 @@
     <script src="/public/assets/js/main.js"></script>
     <!--ABD JS FILE-->
     <script src="/public/main_js/origins.js"></script>
+    <script src="/public/main_js/status.js"></script>
     <script src="/public/main_js/checkout.js"></script>
 
     <script>

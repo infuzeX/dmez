@@ -27,7 +27,7 @@ exports.sendMailToAdmin = async (options) => {
   //create transporter
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
+    port: process.env.OUTGOING_EMAIL_PORT,
     secure: true,
     auth: {
       user: process.env.EMAIL_USERNAME,

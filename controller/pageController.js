@@ -8,21 +8,33 @@ exports.renderStaticPage = (res, page) => {
 
 exports.renderCheckoutPage = (req, res) => {
   //VERIFY CHECKOUT WITH CART
-  if(!req.checkout) {
-    res.redirect('/cart');
+  if (!req.checkout) {
+    res.redirect("/cart");
   }
-  let data = {};
+
+  if(!req.cart){
+    return res.render("checkout.ejs", {
+      data:{
+        success: false,
+        message: "Your cart is empty",
+      }
+    });
+  }
   if (
     !(req.checkout["cartId"] == req.cart["_id"].toString()) ||
     !(req.checkout["totalAmount"] == req.cart["totalAmount"])
   ) {
-    data = {
-      success:false,
-      message:"Some went wrong please retry again"
-    }
-  } else {
-    data = {
-      success:true,
+    return res.render("checkout.ejs", {
+      data:{
+        success: false,
+        message: "Some went wrong please retry again",
+      }
+    });
+  }
+
+  res.render("checkout.ejs", {
+    data:{
+      success: true,
       user: {
         name: req.cart.customerId.name,
         email: req.cart.customerId.email,
@@ -37,10 +49,7 @@ exports.renderCheckoutPage = (req, res) => {
       couponDiscount: req.cart.couponDiscount,
       charge: req.checkout.charge,
       total: req.checkout.totalAmount,
-    };
-  }
-  res.render("checkout.ejs", {
-    data,
+    }
   });
 };
 

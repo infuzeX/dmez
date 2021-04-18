@@ -39,14 +39,7 @@ router.get("/products/:id", (req, res) =>
   renderStaticPage(res, "product.html")
 );
 
-router.get("/success", (req, res) => {
-  res.cookie("_ciic_", "", {
-    maxAge: 0,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-  });
-  renderStaticPage(res, "order-success.html");
-});
+router.get("/success", (req, res) => renderStaticPage(res, "order-success.html"));
 
 //PROTECTED ROUTES
 router.get(

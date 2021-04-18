@@ -1,7 +1,8 @@
 const { Order } = require("../model/registerModel");
 const APIFeatures = require("../utils/apifeatures");
 
-exports.createOrder = async ({ customerId, address, code, cart, payment }) => {
+exports.createOrder = async ({ customerId, address, cart, payment }) => {
+
   return await Order.create({
     customerId,
 
@@ -14,7 +15,7 @@ exports.createOrder = async ({ customerId, address, code, cart, payment }) => {
     totalPrice: cart.totalPrice,
     totalSavings: cart.totalSavings,
     delivery: cart.charge,
-    coupon: code,
+    coupon:(cart.coupon ? cart.coupon.code : undefined),
     couponDiscount: cart.couponDiscount,
     totalAmount: cart.totalAmount,
 
@@ -26,6 +27,7 @@ exports.createOrder = async ({ customerId, address, code, cart, payment }) => {
       area: address.zipcode,
       landmark: address.landmark,
       flatnumber: address.flatnumber,
+      email: address.email,
       contact: address.contact,
     },
 
