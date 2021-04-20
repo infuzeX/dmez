@@ -42,7 +42,7 @@ window.onload = function () {
     } else {
       document.getElementById("submit-btn").value = "Please wait...";
 
-      fetch("/api/v1/form/contacts", {
+      fetch("/api/v1/forms/contacts", {
         method: "POST",
         headers: new Headers({ "content-type": "application/json" }),
         body: JSON.stringify({
@@ -117,7 +117,7 @@ window.onload = function () {
     } else {
       document.getElementById("suggest-btn").value = "Please wait...";
 
-      fetch("/api/v1/form/suggestions", {
+      fetch("/api/v1/forms/suggestions", {
         method: "POST",
         headers: new Headers({ "content-type": "application/json" }),
         body: JSON.stringify({

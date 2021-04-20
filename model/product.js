@@ -10,9 +10,8 @@ const productSchema = new Schema({
   discount: Number,
   quantity: Number,
   description: String,
-  dir: String,
   coverImage: String,
-  images: [String],
+  images: Array,
   diseases: [String],
   ingredients: [String],
   createdAt: {

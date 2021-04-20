@@ -110,7 +110,7 @@ exports.preventPageAccess = async (req, res, next) => {
 exports.preventApiAccess = async (req, res, next) => {
   return req.userId
     ? next()
-    : next(new AppError("unauthorized access please login again", 401));
+    : next(new AppError("You are not logged In, please login", 401));
 };
 
 //FORGET PASSWORD

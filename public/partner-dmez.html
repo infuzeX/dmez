@@ -263,7 +263,7 @@
 
 	
 </body>
-
+<script defer src="/public/main_js/search.js"></script>
 <script>
     window.onload = function () {
 
@@ -313,7 +313,7 @@
 
           document.getElementById("submit-btn").value = "Please wait...";
 
-          fetch("/api/v1/form/partners ", {
+          fetch("/api/v1/forms/partners ", {
             method: "POST",
             headers: new Headers({ "content-type": "application/json" }),
             body: JSON.stringify({

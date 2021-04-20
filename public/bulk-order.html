@@ -287,7 +287,6 @@
 	<script defer src="/public/main_js/search.js"></script>
 </body>
 
-
 <script>
 	window.onload = function () {
 		document.getElementById("submit-btn").addEventListener("click", () => {
@@ -369,7 +368,7 @@
           document.getElementById("submit-btn").value = "Please wait...";
 
           
-          fetch("/api/v1/form/bulkorders", {
+          fetch("/api/v1/forms/bulkorders", {
             method: "POST",
             headers: new Headers({ "content-type": "application/json" }),
             body: JSON.stringify({

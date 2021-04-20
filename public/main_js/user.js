@@ -8,7 +8,7 @@ function displayInfo(data) {
 }
 //API REQUESTS
 function getUserData() {
-  xhr.open("GET", `${origin}/api/v1/user?fields=name,email,contact`);
+  xhr.open("GET", `/api/v1/user?fields=name,email,contact`);
   xhr.withCredentials = true;
   xhr.send();
 }
@@ -44,11 +44,11 @@ function formData(raw) {
 function updateUserPassword(e) {
   e.preventDefault();
   const data = formData([...e.target.elements]);
-  updateData(`${origin}/api/v1/user/password`, data);
+  updateData(`/api/v1/user/password`, data);
 }
 
 function updateUserData(e) {
   e.preventDefault();
   const data = formData([...e.target.elements]);
-  updateData(`${origin}/api/v1/user`, data);
+  updateData(`/api/v1/user`, data);
 }

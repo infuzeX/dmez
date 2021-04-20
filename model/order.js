@@ -43,6 +43,7 @@ const orderSchema = new Schema({
     area: String,
     landmark: String,
     flatnumber: String,
+    email:String,
     contact: Number,
   },
   status: [

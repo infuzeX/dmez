@@ -112,7 +112,7 @@
       e.preventDefault();
       if(e.target.elements.email.value){
         console.log(e.target.elements.email.value);
-        fetch(`${origin}/api/v1/auth/forgetpassword`, {
+        fetch(`/api/v1/auth/forgetpassword`, {
           method:"POST",
           headers:{
             "content-type":"application/json"
@@ -129,7 +129,6 @@
   </script>
 
   <script defer src="/public/main_js/status.js"></script>
-  <script defer src="/public/main_js/origins.js"></script>
 
 </body>
 
