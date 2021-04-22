@@ -20,7 +20,7 @@ exports.updateUserDetails = catchAsync(async (req, res, next) => {
   );
 
   const path =
-    req.body.address && req.cookies._ciic_
+    req.body.address && req.cookies.cart
       ? "/cart/checkout"
       : "/account/address";
 

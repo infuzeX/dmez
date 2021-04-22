@@ -2,7 +2,6 @@ const { Order } = require("../model/registerModel");
 const APIFeatures = require("../utils/apifeatures");
 
 exports.createOrder = async ({ customerId, address, cart, payment }) => {
-
   return await Order.create({
     customerId,
 
@@ -15,7 +14,7 @@ exports.createOrder = async ({ customerId, address, cart, payment }) => {
     totalPrice: cart.totalPrice,
     totalSavings: cart.totalSavings,
     delivery: cart.charge,
-    coupon:(cart.coupon ? cart.coupon.code : undefined),
+    coupon: cart.coupon ? cart.coupon.code : undefined,
     couponDiscount: cart.couponDiscount,
     totalAmount: cart.totalAmount,
 
@@ -37,6 +36,7 @@ exports.createOrder = async ({ customerId, address, cart, payment }) => {
         date: Date.now(),
       },
     ],
+    currentStatus:"placed",
     createdAt: Date.now(),
   });
 };
@@ -47,35 +47,19 @@ exports.getOrders = async (customerId, queryString) => {
 };
 
 exports.updateOrderStatus = async ({ _id, customerId, data }) => {
+
   const order = await Order.findOne(
     { _id },
-    { status: 1, customerId: 1 }
-  ).populate({
-    path: "customerId",
-    select: "email",
-  });
+    { status: 1, customerId: 1,currentStatus:1, address:1 }
+  );
   if (!order) throw { message: "No order found", statusCode: 404 };
-  //match user with customerId
-  if (!(order.customerId._id == customerId))
-    throw { message: "Invalid request", statusCode: 400 };
-  //
-  if(order.currentStatus === "dispatched" && data.state === "cancelled") {
-    throw { message: "Cannot cancel order after dispatch", statusCode: 400 };
-  }
-  //check same status or cancelled or returned
-  let isEligible = true;
-  for (let i = 0; i < order.status.length; i++) {
-    if (
-      order.status[i].state === data.state ||
-      order.status[i].state === "cancelled" ||
-      order.status[i].state === "returned"
-    ) {
-      isEligible = false;
-      break;
-    }
-  }
-  if (!isEligible) return;
 
+  if (!(order.customerId._id == customerId)) return;
+  if (["cancelled", "returned"].includes(order.currentStatus)) return;
+  if (order.currentStatus != "placed" && data.state === "cancelled") return;
+  if (order.currentStatus != "delivered" && data.state === "returned") return;
+
+  //update status
   order.status.push(data);
   order.currentStatus = data.state;
   return await order.save();

@@ -55,7 +55,7 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("cart", "", {
-    maxAge:0,
+    maxAge: 0,
     httpOnly: true,
     secure: process.env.NODE_ENV,
   });
@@ -94,6 +94,18 @@ exports.updateOrderStatus = catchAsync(async (req, res, next) => {
 
   if (!order)
     return next(new AppError(`Failed to ${req.params.state} order`, 400));
+
+  mail.sendMailToClient({
+    subject: `Order ${state}`,
+    email: order.address.email,
+    message: `We got your order ${req.params.state} request. We will inform you about the progress. THANK YOU`,
+  });
+
+  mail.sendMailToAdmin({
+    subject: `Order ${state} by user`,
+    email: order.address.email,
+    message: `${order.address.name} ${state} the order. Order details <a href="${req.protocol}://admin.dmez.in/orders/${order._id}">here</a>`,
+  });
 
   res.status(200).json({
     status: "success",

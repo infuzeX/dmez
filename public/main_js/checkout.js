@@ -30,9 +30,11 @@ payload["handler"] = async function (res) {
 
 const razorpay = new Razorpay(payload);
 
-const initPayment = () => razorpay.open();
+const initPayment = () => {
+  razorpay.open()
+};
 
-razorpay.on("payment.failed", (res) => console.log(res));
+razorpay.on("payment.failed", (res) => showStatus({ status: "error", message:res.message}) );
 /*========================RESPONSE==========================*/
 xhr.onerror = function () {
   showStatus({ status: "error", message: "something went wrong" });

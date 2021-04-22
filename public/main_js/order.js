@@ -5,32 +5,41 @@ const state = {
   query: {
     page: 1,
     limit: 10,
-    fields:['totalAmount', 'products', 'address', 'status']
+    fields: ["totalAmount", "products", "address", "status", "currentStatus"],
   },
 };
 
-function orderTemplate({ totalAmount, address, products, status, currentStatus, _id, createdAt }) {
+function orderTemplate({
+  totalAmount,
+  address,
+  products,
+  status,
+  currentStatus,
+  _id,
+  createdAt,
+}) {
   const statusObj = {};
-  status.forEach(({state, date}) => {
+  status.forEach(({ state, date }) => {
     statusObj[state] = {
-      name:state,
-      date
-    }
-  })
-  if(!statusObj['placed']) {
+      name: state,
+      date,
+    };
+  });
+  if (!statusObj["placed"]) {
     statusObj["placed"] = {
-      name:'placed',
-      date: createdAt
-    } 
+      name: "placed",
+      date: createdAt,
+    };
   }
   status = null;
-  console.log(statusObj[currentStatus || 'placed'])
   return `
  <div id="${_id}"> 
   <div class="panel1" >
     <div class="">
-      <p>ORDER ${statusObj[currentStatus || 'placed'].name.toUpperCase()}</p>
-      <p>${new Date(statusObj[currentStatus || 'placed'].date).toDateString()}</p>
+      <p>ORDER ${statusObj[currentStatus || "placed"].name.toUpperCase()}</p>
+      <p>${new Date(
+        statusObj[currentStatus || "placed"].date
+      ).toDateString()}</p>
     </div>
 
     <div>
@@ -40,7 +49,9 @@ function orderTemplate({ totalAmount, address, products, status, currentStatus, 
 
     <div>
       <p>SHIP TO</p>
-      <p>${address.flatnumber || ""} ${address.area || ""} ${address.city || ""} 
+      <p>${address.flatnumber || ""} ${address.area || ""} ${
+    address.city || ""
+  } 
       ${address.state || ""}</p>
     </div>
 
@@ -62,7 +73,7 @@ function orderTemplate({ totalAmount, address, products, status, currentStatus, 
        View details
        </a>
        </button>
-       ${updateButton(statusObj)}
+       ${updateButton(currentStatus)}
      </div>
 
   </div>
@@ -71,21 +82,18 @@ function orderTemplate({ totalAmount, address, products, status, currentStatus, 
 
 function popuplateProducts(products) {
   let productsEl = "";
-  products.forEach(
-    (product) => (productsEl += `<p>${product.title}</p><br/>`)
-  );
+  products.forEach((product) => (productsEl += `<p>${product.title}</p><br/>`));
   return productsEl;
 }
 
-function updateButton(status){
-  let buttons = "";
-  if(!status['returned'] && !status['cancelled'] ) {
-    buttons += '<button id="return" onclick="manageOrder(event)" >Return</button>';
-    buttons += '<button id="cancel" onclick="manageOrder(event)" >Cancel</button>';
-  }else{
-    //buttons +=  ;
+function updateButton(status) {
+  if (status === "placed") {
+    return '<button id="cancel" onclick="manageOrder(event)">Cancel</button>';
   }
-  return buttons;
+  if (status === "delivered") {
+    return '<button id="return" onclick="manageOrder(event)">Return</button>';
+  }
+  return "";
 }
 
 function handleEmptySection(msg, add) {
@@ -95,9 +103,9 @@ function handleEmptySection(msg, add) {
 
 //NAVIGATE
 //controls.addEventListener("click", (e) => {
- // if (e.target.className) {
- //   state["query"].status = e.target.className;
- // }
+// if (e.target.className) {
+//   state["query"].status = e.target.className;
+// }
 //});
 
 //API REQUEST
@@ -115,14 +123,17 @@ async function fetchOrders() {
 
 async function manageOrder(e) {
   try {
-    const rawRes = await fetch(`/api/v1/orders/${e.path[3].id}/${e.target.id}`, {
-      method: "PATCH",
-      credentials: "include",
-    });
+    const rawRes = await fetch(
+      `/api/v1/orders/${e.path[3].id}/${e.target.id}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+      }
+    );
     const res = await rawRes.json();
     showStatus(res);
-    if(res.status === "success"){
-      window.location.reload()
+    if (res.status === "success") {
+      window.location.reload();
     }
     return true;
   } catch (err) {

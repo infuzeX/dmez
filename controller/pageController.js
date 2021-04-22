@@ -1,5 +1,6 @@
 const path = require("path");
 const orderService = require("../service/orderService");
+const util = require("../utils/catchError");
 
 exports.renderStaticPage = (res, page) => {
   const file = path.resolve(`public/${page}`);
@@ -31,17 +32,16 @@ exports.renderCheckoutPage = (req, res) => {
       }
     });
   }
-
   res.render("checkout.ejs", {
     data:{
       success: true,
+      isAddress: util.verifyAddress(req.cart.customerId.address || {}),
       user: {
         name: req.cart.customerId.name,
         email: req.cart.customerId.email,
         contact: req.cart.customerId.contact,
       },
       address: req.cart.customerId.address || {},
-      isAddress: req.cart.customerId.address ? true : false,
       subTotal: req.cart.totalPrice - req.cart.totalSavings,
       products: req.cart.products,
       key: process.env.KEY_ID,

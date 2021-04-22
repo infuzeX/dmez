@@ -145,14 +145,16 @@
         }
 
         .products {
-            display:flex;
+            display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
+
         .products>.product-detail {
-            width:50%;
+            width: 50%;
         }
-        .products>.product-detail > .details > p:nth-child(1) {
+
+        .products>.product-detail>.details>p:nth-child(1) {
             white-space: pre-wrap
         }
     </style>
@@ -168,7 +170,7 @@
                 <div class="details">
                     <p><%=product.title%></p>
                     <p>
-                        <span>Price:</span><span>₹<%=product.price%></span>
+                        <span>Price:</span><span>₹<%=product.price - product.discount%></span>
                     </p>
                     <p>
                         <span>Quantity:</span><span><%=product.quantity%></span>
@@ -190,12 +192,12 @@
             </style>
          <h2>Order Status</h2>
          <%for(let i = 0; i < data.status.length; i++ ){%>
-          <p>
-            <span><%=data.status[i].state%></span>
-            <h4><%=new Date(data.status[i].date).toDateString()%></h4>
-          </p>
-          <hr>
-         <%}%>
+            <p>
+                <span><%=data.status[i].state%></span>
+                <h4><%=new Date(data.status[i].date).toDateString()%></h4>
+            </p>
+            <hr>
+            <%}%>
     </div>
 <!--status-->
     </div>

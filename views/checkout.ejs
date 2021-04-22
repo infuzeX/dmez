@@ -18,10 +18,8 @@
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
 
-    <!--razopay checkout-->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <!--razopay checkout-->
     <%if(data.success) {%>
+
     <%if(data.isAddress){%>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <%}%>
@@ -68,12 +66,12 @@
 <%if(data.success){%>
 
 <body>
-      <!--status-->
-  <div style="background-color:brown" class="status">
-    <p></p>
-    <span onclick="closeStatus(event)"><i class="fas-fa-window-close"></i></span>
-  </div>
-  <!--status-->
+    <!--status-->
+    <div style="background-color:brown" class="status">
+        <p></p>
+        <span onclick="closeStatus(event)"><i class="fas-fa-window-close"></i></span>
+    </div>
+    <!--status-->
     <header>
         <nav>
             <div id="navbar">
@@ -142,10 +140,11 @@
                                 <div class="col-lg-9">
                                     <h2 class="checkout-title">Billing Details & Shipping Address</h2>
                                     <!-- End .checkout-title -->
-                                    <h6> <a href="" style="color: #A1B985;">Change Billing Address</a></h6>
+                                    <h6> <a href="/account/address/edit" style="color: #A1B985;">Change Billing
+                                            Address</a></h6>
                                     <div class="row">
                                         <div class="col-sm-6 col-ms-6">
-                                            <label id="fname">Name </label>
+                                            <label id="fname">Name: </label>
                                             <span><%= data.address.name || ''%></span>
                                         </div><!-- End .col-sm-6 -->
                                     </div><!-- End .row -->
@@ -270,9 +269,10 @@
     <!-- Main JS File -->
     <script src="/public/assets/js/main.js"></script>
     <!--ABD JS FILE-->
-    <script src="/public/main_js/origins.js"></script>
     <script src="/public/main_js/status.js"></script>
-    <script src="/public/main_js/checkout.js"></script>
+    <%if(data.isAddress){%>
+       <script src="/public/main_js/checkout.js"></script>
+    <%}%>
 
     <script>
         function openNav() {
@@ -288,11 +288,11 @@
 </body>
 <%}else{%>
 
-                                        <body>
-                                            <center>
-                                                <p><%=data.message%></p>
-                                            </center>
-                                            <center><a href="/cart">cart</a></center>
-                                        </body>
-                                        <%}%>
+<body>
+   <center>
+    <p><%=data.message%></p>
+   </center>
+   <center><a href="/cart">cart</a></center>
+</body>
+<%}%>
 </html>

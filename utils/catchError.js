@@ -1,15 +1,13 @@
-const AppError = require("./appError");
-
-exports.catchError = (url, method, msg, res, next) => {
-  const path = (url === "/api/v1/orders") ? "/" : "/cart";
-  if (method === "GET") {
-    return res.redirect(path);
-  } else {
-    return next(
-      new AppError(
-        msg || "Some maliciuos attempt encountered, please contact to helpline",
-        400
-      )
-    );
+exports.verifyAddress = (address) => {
+  let valid = true;
+  const requiredFields = ["name", "city", "state", "area", "zipcode", "landmark", "flatnumber", "contact"];
+  for(field of requiredFields) {
+    if(!address[field]){
+        valid = false;
+        break;
+    }
   }
-};
+  return valid;
+}
+
+
